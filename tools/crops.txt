@@ -1,0 +1,44 @@
+# name pdf page x0 y0 x1 y1 [flags]   (normalized page coordinates, origin top-left; flags: --deink[=bg] --mask=x0,y0,x1,y1)
+# Lab Direction - ECG
+lab-waves lab-ecg 1 0.27 0.505 0.87 0.748
+lab-electrodes lab-ecg 2 0.255 0.375 0.90 0.69
+lab-12leads lab-ecg 2 0.21 0.69 0.795 0.845
+lab-readout lab-ecg 3 0.19 0.40 0.73 0.85
+# Peer - EKG (the tutor's notes): p.1 outline, p.2 filled-in notes with pasted figures
+peer-electrode peer-ekg 1 0.395 0.075 0.585 0.212
+peer-endoepi peer-ekg 1 0.585 0.03 0.98 0.212
+peer-bipolar peer-ekg 1 0.24 0.435 0.36 0.507
+peer-augmented peer-ekg 1 0.685 0.468 0.80 0.538
+peer-axis-wheel peer-ekg 1 0.255 0.708 0.525 0.82
+peer-swap peer-ekg 1 0.04 0.875 0.40 0.98
+peer-hex3d peer-ekg 2 0.886 0.283 0.979 0.342 w=9000
+peer-st-elev peer-ekg 2 0.107 0.166 0.134 0.188 w=18000
+# Peer - Physiology of the Heart p.2: the tutor's Wiggers diagram with the ECG trace
+peer-wiggers peer-heart 2 0.01 0.425 0.50 0.705
+# t-RAT 2569 (Peer - EKG pp.5-10, annotated: deink)
+t69-mitral peer-ekg 6 0.30 0.12 0.70 0.30 --deink
+t69-prseg peer-ekg 7 0.17 0.205 0.83 0.356
+t69-axis60 peer-ekg 8 0.15 0.088 0.85 0.282 --deink
+t69-rate50 peer-ekg 8 0.15 0.447 0.85 0.755
+t69-brady peer-ekg 9 0.152 0.145 0.848 0.413 --deink=bg
+t69-table peer-ekg 10 0.152 0.15 0.846 0.515 --deink
+# t-RAT 2568 (clean copies, Peer - EKG pp.36-42)
+t68-watch peer-ekg 37 0.172 0.218 0.828 0.462
+t68-labels peer-ekg 38 0.158 0.518 0.842 0.762
+t68-axisnormal peer-ekg 39 0.152 0.548 0.848 0.796
+t68-dyspnea peer-ekg 40 0.155 0.115 0.85 0.395
+t68-af peer-ekg 42 0.155 0.118 0.848 0.40
+# i-RAT 266-66 (clean copies, Peer - EKG pp.43-50)
+ir-rate168 peer-ekg 47 0.08 0.17 0.915 0.445
+ir-rate100 peer-ekg 47 0.08 0.695 0.918 0.93
+ir-axis-lad peer-ekg 48 0.08 0.24 0.92 0.64
+ir-axis-normal peer-ekg 49 0.08 0.025 0.90 0.38
+ir-tachy-lad peer-ekg 49 0.08 0.617 0.87 0.897
+ir-rad-wide peer-ekg 50 0.08 0.22 0.92 0.53
+# AC papers
+ac76-axis ac75-79 18 0.128 0.425 0.442 0.548
+ac78-rate ac75-79 20 0.12 0.596 0.40 0.708
+ac78-axis ac75-79 20 0.505 0.163 0.817 0.287
+ac80-ecg ac80 9 0.12 0.358 0.83 0.668
+ac81-rate ac81 22 0.33 0.50 0.92 0.63
+ac81-ecg ac81 23 0.11 0.12 0.75 0.39

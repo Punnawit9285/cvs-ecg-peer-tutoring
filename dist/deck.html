@@ -1,0 +1,2319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CVS I Basic ECG &amp; ECG Lab &#183; Peer support 82</title>
+<meta name="description" content="Question-first peer-tutoring deck: CVS I basic ECG lecture (TBL) and ECG lab, with AC75–81 past-paper questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  /* Layout: a lab-bench stage. One large card at a time on chart-recorder paper, a strip of eight lab stations above, a sticky pager below. Browse = one scrolling worksheet. */
+  --paper: #f3f5f8;      /* page ground, cool grey */
+  --sheet: #ffffff;      /* card */
+  --sheet2: #edf0f5;     /* inset panels */
+  --ink: #19202e;        /* text */
+  --ink2: #4f5a6e;       /* secondary text */
+  --rule: #d4dae4;       /* hairlines */
+  --grid: #e9edf3;       /* chart-paper grid */
+  --art: #ae1530;        /* arterial red: brand, tracings */
+  --art-soft: #fbe5e9;
+  --ven: #1f4f97;        /* venous blue: controls, second tracing */
+  --ven-soft: #e2ebf8;
+  --ok: #13744a; --ok-soft: #dff2e7;
+  --bad: #b02f19; --bad-soft: #fbe6df;
+  --warn: #775100; --warn-soft: #fbefd2;
+  --scanbg: #ffffff;     /* paper behind real figures */
+  --f-display: "Bai Jamjuree", "IBM Plex Sans Thai", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1117; --sheet: #161a22; --sheet2: #1e232e; --ink: #e5e8ef; --ink2: #a3abbc; --rule: #2b3240; --grid: #1f2530;
+    --art: #ff6f84; --art-soft: #3a1b23; --ven: #8db3f2; --ven-soft: #1a2840;
+    --ok: #4fc98b; --ok-soft: #13301f; --bad: #ff8b74; --bad-soft: #391e17; --warn: #efc04e; --warn-soft: #32280e; --scanbg: #e6e3dc;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1117; --sheet: #161a22; --sheet2: #1e232e; --ink: #e5e8ef; --ink2: #a3abbc; --rule: #2b3240; --grid: #1f2530;
+  --art: #ff6f84; --art-soft: #3a1b23; --ven: #8db3f2; --ven-soft: #1a2840;
+  --ok: #4fc98b; --ok-soft: #13301f; --bad: #ff8b74; --bad-soft: #391e17; --warn: #efc04e; --warn-soft: #32280e; --scanbg: #e6e3dc;
+  color-scheme: dark;
+}
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--ven); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- cards ---------- */
+.card { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: clamp(16px, 2.6vw, 34px); min-width: 0; }
+.eyebrow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; font-family: var(--f-mono); font-size: .8em; color: var(--ink2); }
+.eyebrow .id { font-weight: 600; color: var(--art); font-size: 1.12em; letter-spacing: .02em; }
+.chip { border-radius: 999px; padding: 2px 9px; background: var(--sheet2); color: var(--ink2); white-space: nowrap; }
+.chip.core { background: var(--art-soft); color: var(--art); }
+.chip.kind { background: var(--ven-soft); color: var(--ven); }
+.chip.grp { background: transparent; border: 1px dashed var(--rule); }
+.concept h2, .secard h2 { font-family: var(--f-display); font-weight: 600; font-size: 1.6em; line-height: 1.2; margin: 0 0 14px; text-wrap: balance; letter-spacing: .005em; }
+.cbody { display: grid; gap: 16px; }
+.cbody > * { min-width: 0; }
+.muted { color: var(--ink2); font-weight: 400; }
+
+/* ---------- question cards ---------- */
+.stem { font-size: 1.26em; font-weight: 500; line-height: 1.45; margin: 2px 0 16px; text-wrap: pretty; }
+.stem b { color: var(--art); font-weight: 600; }
+.stem .muted { font-size: .82em; display: block; margin-top: 4px; }
+.qfig { margin: 0 0 16px; }
+.opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.opt { width: 100%; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; text-align: left; background: var(--sheet); color: var(--ink); border: 1.5px solid var(--rule); border-radius: 10px; padding: .6em .85em; cursor: pointer; transition: border-color .15s, background-color .15s, opacity .15s; line-height: 1.4; }
+.opt:hover { border-color: var(--ven); }
+.opt .L { font: 600 .88em var(--f-mono); width: 2em; height: 2em; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--rule); color: var(--ink2); }
+.opt .mk { font-weight: 700; min-width: 1em; }
+.opt.sel { border-color: var(--ven); background: var(--ven-soft); }
+.opt.sel .L { border-color: var(--ven); color: var(--ven); }
+.tfrow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tfrow .opt { padding: .9em 1em; font-size: 1.08em; font-weight: 500; }
+.rev .opt { cursor: default; }
+.rev .opt.isans, .showall .opt.isans { border-color: var(--ok); background: var(--ok-soft); }
+.rev .opt.isans .L, .showall .opt.isans .L { background: var(--ok); border-color: var(--ok); color: var(--sheet); }
+.rev .opt.isans .mk::after, .showall .opt.isans .mk::after { content: "\2713"; color: var(--ok); }
+.rev .opt.sel:not(.isans) { border-color: var(--bad); background: var(--bad-soft); }
+.rev .opt.sel:not(.isans) .L { border-color: var(--bad); color: var(--bad); }
+.rev .opt.sel:not(.isans) .mk::after { content: "\2717"; color: var(--bad); }
+.rev .opt:not(.isans):not(.sel) { opacity: .55; }
+.think { margin: 0; color: var(--ink2); font-style: italic; }
+.explain { margin-top: 16px; background: var(--ok-soft); border-radius: 12px; padding: 14px 18px; }
+.qcard:not(.rev) .explain { display: none; }
+.showall .qcard .explain { display: block; }
+.explain .ans { font: 600 1.02em var(--f-display); color: var(--ok); margin-bottom: 4px; }
+.explain p { margin: 0; }
+.flag { margin-top: 10px; background: var(--warn-soft); border-radius: 10px; padding: 8px 12px; font-size: .9em; }
+.flag b { color: var(--warn); }
+
+/* ---------- concept building blocks ---------- */
+.two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.cols2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.figpair { grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); align-items: center; }
+@media (max-width: 760px) { .two, .cols2, .cols3, .figpair { grid-template-columns: 1fr; } }
+.mini { background: var(--sheet2); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.mini h4 { margin: 0 0 6px; font: 600 1em var(--f-display); letter-spacing: .01em; }
+.mini.art h4 { color: var(--art); }
+.mini.ven h4 { color: var(--ven); }
+.mini p { margin: 0; }
+.mini ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.pts { margin: 0; padding-left: 1.2em; display: grid; gap: 7px; }
+.steps { margin: 0; padding-left: 1.3em; display: grid; gap: 7px; }
+.steps.tight { gap: 3px; }
+.note { margin: 0; background: var(--ven-soft); border-radius: 10px; padding: 10px 14px; }
+.trap { margin: 0; background: var(--warn-soft); border-radius: 10px; padding: 10px 14px; }
+.trap::before { content: "Exam trap \00B7  "; font-weight: 600; color: var(--warn); }
+.eqn { font: 600 1.65em var(--f-display); text-align: center; letter-spacing: .02em; padding: 6px 0; }
+.eqn span { color: var(--art); }
+.speeds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .speeds { grid-template-columns: 1fr; } }
+.speed { border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; background: var(--sheet); }
+.sp-h { display: grid; gap: 2px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed var(--rule); }
+.sp-h .mono { font-family: var(--f-mono); font-size: .8em; color: var(--ink2); }
+.s1 .sp-h b { color: var(--art); }
+.s2 .sp-h b { color: var(--warn); }
+.s3 .sp-h b { color: var(--ven); }
+.speed ul { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.flow.col { flex-direction: column; align-items: stretch; }
+.fbox { border: 1px solid var(--rule); background: var(--sheet); border-radius: 10px; padding: 8px 12px; flex: 1 1 140px; min-width: 0; }
+.fbox.start { background: var(--sheet2); }
+.fbox.end { background: var(--ok-soft); border-color: var(--ok); }
+.fbox.art { background: var(--art-soft); border-color: var(--art); }
+.fbox.ven { background: var(--ven-soft); border-color: var(--ven); }
+.farrow { color: var(--ink2); font-weight: 600; flex: none; text-align: center; }
+.flow.col .farrow { font-size: .9em; }
+.fstack { display: grid; gap: 8px; flex: 2 1 260px; min-width: 0; }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 600px) { .fgrid { grid-template-columns: 1fr; } }
+.cycle { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.cycle .ph { flex: 1 1 130px; background: var(--sheet2); border-radius: 8px; padding: 8px 10px; font-weight: 600; font-size: .92em; display: grid; gap: 2px; align-content: start; }
+.cycle .ph span { font-weight: 400; color: var(--ink2); font-size: .88em; }
+.cycle .sd { flex: none; align-self: center; font: 700 .9em var(--f-mono); color: var(--sheet); background: var(--ink); border-radius: 999px; padding: 4px 10px; }
+
+/* ---------- tables ---------- */
+.tblwrap { overflow-x: auto; min-width: 0; }
+.tbl { width: 100%; border-collapse: collapse; font-size: .92em; }
+.tbl caption { text-align: left; font: 600 .95em var(--f-display); padding-bottom: 6px; }
+.tbl th, .tbl td { border-bottom: 1px solid var(--rule); padding: 7px 10px; text-align: left; vertical-align: top; }
+.tbl thead th { font-family: var(--f-mono); font-size: .76em; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); background: var(--sheet2); }
+.tbl td.num { font-variant-numeric: tabular-nums; font-family: var(--f-mono); white-space: nowrap; }
+.tbl .up { color: var(--art); font-weight: 600; }
+.tbl .dn { color: var(--ven); font-weight: 600; }
+.tbl thead th.up { color: var(--art); }
+.tbl thead th.dn { color: var(--ven); }
+.tbl.compact th, .tbl.compact td { padding: 4px 8px; }
+.dogtbl td:nth-child(2), .dogtbl td:nth-child(3), .dogtbl td:nth-child(4) { text-align: center; white-space: nowrap; }
+
+/* ---------- real figures cropped from the course material ---------- */
+.stack { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.scan { margin: 0; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.paperimg { background: var(--scanbg); border: 1px solid var(--rule); border-radius: 10px; padding: 8px; isolation: isolate; }
+.scan img { display: block; width: auto; max-width: 100%; height: auto; max-height: min(440px, 62vh); margin: 0 auto; mix-blend-mode: multiply; cursor: zoom-in; border-radius: 4px; }
+.scan.tall img { max-height: min(480px, 66vh); }
+.scanrow .scan img { max-height: 360px; }
+.scan figcaption { font-size: .84em; line-height: 1.4; color: var(--ink2); text-wrap: pretty; }
+.scan figcaption .src { font-family: var(--f-mono); font-size: .88em; white-space: nowrap; opacity: .9; }
+.scan figcaption .src::before { content: "\00B7  "; }
+.scan figcaption.srconly .src::before { content: none; }
+.scanrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; align-items: start; min-width: 0; }
+.qfig .scan { max-width: 760px; }
+.qfig .scan.tall { max-width: 560px; }
+
+/* ---------- cloze blanks: {{key detail}} in concept cards ---------- */
+.cz { border-radius: 4px; padding: 0 .22em; background: var(--sheet2); color: transparent; box-shadow: inset 0 -2px 0 var(--art); cursor: pointer; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: color .18s, background-color .18s; }
+.cz * { color: transparent !important; }
+.cz:hover { background: var(--art-soft); }
+.cz.on, .czopen .cz, .showall .cz { color: inherit; background: var(--art-soft); }
+.cz.on *, .czopen .cz *, .showall .cz * { color: inherit !important; }
+.cz.last { animation: czpop .5s ease-out; }
+@keyframes czpop { 0% { box-shadow: inset 0 -2px 0 var(--art), 0 0 0 4px var(--art-soft); } 100% { box-shadow: inset 0 -2px 0 var(--art), 0 0 0 0 transparent; } }
+@media print { .cz { color: inherit; background: none; } .cz * { color: inherit !important; } }
+
+/* ---------- figure zoom ---------- */
+.zoom { position: fixed; inset: 0; z-index: 60; background: rgba(6, 8, 12, .88); display: grid; place-items: center; padding: 16px; cursor: zoom-out; }
+.zoom[hidden] { display: none; }
+.zoom .zbox { display: grid; gap: 10px; justify-items: center; max-width: 100%; }
+.zoom .zpaper { background: #fff; border-radius: 10px; padding: 10px; max-width: min(1700px, 100%); }
+.zoom img { display: block; max-width: 100%; max-height: calc(100vh - 120px); width: auto; height: auto; }
+.zoom .zcap { color: #e5e8ef; font-size: .92em; text-align: center; max-width: 900px; margin: 0; }
+
+/* Thai explanation under each concept card (student deck: collapsible; tutor deck: open) */
+.thx { margin-top: 16px; border: 1px solid var(--rule); border-left: 3px solid var(--ok); border-radius: 10px; background: var(--sheet); padding: 0 14px; }
+.thx summary { cursor: pointer; padding: 10px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.thx summary::marker, .thx summary::-webkit-details-marker { color: var(--ok); }
+.thx-h { font: 600 1.02em var(--f-display); color: var(--ok); }
+.thx-s { font: .74em var(--f-mono); color: var(--ink2); }
+.thx[open] summary { border-bottom: 1px dashed var(--rule); margin-bottom: 10px; }
+.thx-body { display: grid; gap: 9px; padding-bottom: 14px; line-height: 1.7; font-family: "IBM Plex Sans Thai", var(--f-body); }
+.thx-body p { margin: 0; }
+.thx-body b { font-weight: 600; color: var(--ink); }
+
+/* cover: counts + QR to the live deck (student deck start card and PDF cover) */
+.coverline { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px 32px; margin: 4px 0 22px; padding: 14px 0 16px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.counts { display: flex; gap: 44px; }
+.counts > div { display: grid; }
+.counts b { font: 600 3.2em/1 var(--f-display); letter-spacing: -.01em; }
+.counts span { font: .8em var(--f-mono); color: var(--ink2); letter-spacing: .04em; margin-top: 5px; }
+.qrlink { display: grid; justify-items: end; gap: 6px; color: var(--ink2); text-decoration: none; }
+.qrlink img { width: 112px; height: 112px; display: block; }
+.qrlink span { font: .72em var(--f-mono); }
+.qrlink .qrcap { font: 600 .78em var(--f-display); color: var(--ink); letter-spacing: .01em; }
+.qrlink:hover span { color: var(--ven); text-decoration: underline; }
+.legend { margin: 14px 0 0; font: .8em var(--f-mono); color: var(--ink2); }
+.legend .chip { margin-right: 6px; }
+@media (max-width: 560px) { .qrlink img, .qrlink .qrcap { display: none; } .qrlink { justify-items: start; } .counts b { font-size: 2.6em; } }
+
+/* figure that would give away a card's blanks: collapsed behind a summary (closed in the PDF) */
+.figans { border: 1px dashed var(--rule); border-radius: 10px; padding: 8px 12px; }
+.figans summary { cursor: pointer; font: 500 .85em var(--f-mono); color: var(--ink2); }
+.figans[open] summary { margin-bottom: 8px; }
+
+/* long source chips wrap instead of widening the card on phones */
+.eyebrow .chip { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--sheet); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--sheet); border-bottom: 1px solid var(--rule); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px 18px; align-items: center; }
+@media (max-width: 1020px) { .bar { grid-template-columns: minmax(0, 1fr) auto; } .tabs { grid-column: 1 / -1; order: 3; } }
+.brand { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.brand svg { flex: none; width: 38px; height: 22px; }
+.brand b { display: block; font: 600 1.05rem var(--f-display); letter-spacing: .01em; white-space: nowrap; }
+.brand small { display: block; color: var(--ink2); font: .72rem var(--f-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tabs { display: flex; gap: 6px; overflow-x: auto; min-width: 0; padding-block: 2px; scrollbar-width: thin; }
+.tab { flex: none; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink2); border-radius: 999px; padding: 5px 12px; font-size: .84rem; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.tab:hover { border-color: var(--ven); color: var(--ink); }
+.tab .k { font-family: var(--f-mono); color: var(--art); margin-right: 6px; font-weight: 600; }
+.tab[aria-current="true"] { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
+.tab[aria-current="true"] .k { color: var(--art-soft); }
+.ctrls { display: flex; gap: 8px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: transparent; color: var(--ink2); padding: 6px 11px; font-size: .85rem; font-weight: 500; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ven); color: var(--sheet); }
+.chk { display: inline-flex; gap: 6px; align-items: center; font-size: .85rem; color: var(--ink2); cursor: pointer; user-select: none; white-space: nowrap; }
+.chk input { accent-color: var(--art); width: 16px; height: 16px; margin: 0; }
+.icon { display: inline-grid; place-items: center; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); border-radius: 8px; height: 32px; width: 34px; padding: 0; cursor: pointer; }
+.icon svg { width: 16px; height: 16px; }
+main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 0; }
+#present { max-width: 1180px; margin: 0 auto; }
+#present .card { font-size: clamp(15px, .5vw + 11.5px, 20px); }
+.stage { min-height: 55vh; }
+.eyebrow .sp { flex: 1; }
+.pager { position: sticky; bottom: 0; z-index: 5; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 8px 10px; align-items: center; background: var(--paper); padding-block: 12px calc(10px + env(safe-area-inset-bottom, 0px)); margin-top: 14px; border-top: 1px solid var(--rule); }
+.pos { font-family: var(--f-mono); font-size: .82rem; color: var(--ink2); text-align: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pos span { color: var(--art); font-weight: 600; }
+.btn { border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); border-radius: 10px; padding: 9px 14px; font-size: .95rem; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.btn:hover:not(:disabled) { border-color: var(--ven); }
+.btn.primary { background: var(--art); color: var(--sheet); border-color: var(--art); min-width: 8.5em; }
+.btn.small { padding: 5px 11px; font-size: .85rem; }
+.btn:disabled { opacity: .4; cursor: default; }
+.prog { grid-column: 1 / -1; height: 3px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+.prog i { display: block; height: 100%; background: var(--art); width: 0; transition: width .2s; }
+.keys { grid-column: 1 / -1; font: .72rem var(--f-mono); color: var(--ink2); text-align: center; }
+@media (max-width: 560px) { .pager { grid-template-columns: auto minmax(0, 1fr) auto; } #reveal { grid-column: 1 / -1; order: 5; } .keys { display: none; } }
+
+/* intro and section cards */
+.secard .lede { font-size: 1.1em; color: var(--ink2); margin: 0 0 16px; max-width: 65ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 26px; font-family: var(--f-mono); font-size: .82em; color: var(--ink2); margin-bottom: 16px; }
+.stats b { font: 600 1.7em var(--f-display); color: var(--ink); display: block; line-height: 1.1; }
+.minih { font: 600 .8em var(--f-mono); text-transform: uppercase; letter-spacing: .07em; color: var(--ink2); margin: 0 0 8px; }
+.toc { margin: 0; padding-left: 0; list-style: none; columns: 2 280px; column-gap: 28px; }
+.toc li { break-inside: avoid; margin-bottom: 5px; }
+.toc .tid { font-family: var(--f-mono); color: var(--art); font-size: .85em; margin-right: 8px; }
+.stations { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 4px 0 16px; }
+.station { text-align: left; border: 1px solid var(--rule); background: var(--sheet2); border-radius: 12px; padding: 12px 14px; cursor: pointer; display: grid; gap: 2px; }
+.station:hover { border-color: var(--ven); }
+.station .k { font: 600 .78rem var(--f-mono); color: var(--art); }
+.station b { font: 600 1.05rem var(--f-display); }
+.station span:last-child { color: var(--ink2); font-size: .86rem; }
+.howto { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.howto div { background: var(--sheet2); border-radius: 10px; padding: 10px 12px; font-size: .92em; }
+.howto b { display: block; font-family: var(--f-display); margin-bottom: 2px; }
+kbd { font: .82em var(--f-mono); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px; background: var(--sheet); }
+
+/* browse */
+#browse { max-width: 1000px; margin: 0 auto; padding-bottom: 48px; }
+.btools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding-block: 4px 6px; }
+.btools input[type="search"] { flex: 1 1 260px; min-width: 0; border: 1px solid var(--rule); background: var(--sheet); border-radius: 10px; padding: 9px 12px; }
+.bcount { font: .8rem var(--f-mono); color: var(--ink2); }
+.bsec { display: grid; gap: 14px; margin-top: 28px; }
+.bsec > header { scroll-margin-top: 130px; }
+.bsec > header h2 { font: 600 1.5rem var(--f-display); margin: 0; text-wrap: balance; }
+.bsec > header p { margin: 4px 0 0; color: var(--ink2); }
+.bsec > header .eyebrow { margin-bottom: 6px; }
+#blist .card { font-size: 15px; scroll-margin-top: 130px; }
+#blist .stem { font-size: 1.1em; }
+.qfoot { margin-top: 12px; display: flex; justify-content: flex-end; }
+
+/* Thai bullet explanations & concept key points */
+.ex-list { margin: 6px 0 0; padding-left: 1.25em; display: grid; gap: 5px; line-height: 1.55; }
+.ex-list li::marker { color: var(--ok); }
+.tpoints { margin-bottom: 14px; background: var(--ven-soft); border-left: 3px solid var(--ven); border-radius: 10px; padding: 10px 14px; }
+.tpoints .tp-head { font: 600 .75em var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ven); margin-bottom: 4px; }
+.tpoints ul { margin: 0; padding-left: 1.25em; display: grid; gap: 4px; line-height: 1.5; }
+.traps-box { margin: 12px 0; background: var(--warn-soft); border-left: 3px solid var(--warn); border-radius: 10px; padding: 10px 14px; }
+.traps-box .tp-head { font: 600 .75em var(--f-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--warn); margin-bottom: 4px; }
+.traps-box ul { margin: 0; padding-left: 1.25em; display: grid; gap: 4px; line-height: 1.5; }
+.brand > div { min-width: 0; }
+.brand b { overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 640px) { .bar { grid-template-columns: minmax(0, 1fr); position: relative; } .ctrls { justify-content: flex-start; } }
+
+</style>
+</head>
+<body>
+<div id="app">
+<header class="bar">
+  <div class="brand">
+    <svg viewBox="0 0 38 22" aria-hidden="true"><path d="M1,12 L9,12 L12,4 L16,19 L20,8 L23,12 L37,12" fill="none" stroke="var(--art)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b>CVS I &#183; ECG</b><small>Peer support 82 deck &#183; AC75&#8211;81 + ECG TBL</small></div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+  <div class="ctrls">
+    <div class="seg" role="group" aria-label="View">
+      <button type="button" id="vPresent" aria-pressed="true">Present</button>
+      <button type="button" id="vBrowse" aria-pressed="false">Browse</button>
+    </div>
+    <label class="chk" for="coreOnly"><input type="checkbox" id="coreOnly"> Core only</label>
+    <button type="button" class="icon" id="themeBtn" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8,1.5 A6.5,6.5 0 0 1 8,14.5 Z" fill="currentColor"/></svg></button>
+    <button type="button" class="icon" id="fsBtn" aria-label="Full screen"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5,5.5 V1.5 H5.5 M10.5,1.5 H14.5 V5.5 M14.5,10.5 V14.5 H10.5 M5.5,14.5 H1.5 V10.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+<main>
+  <section id="present" aria-label="Present mode">
+    <div class="stage" id="stage"></div>
+    <div class="pager">
+      <button type="button" class="btn" id="prev">&#8592; Prev</button>
+      <div class="pos" id="pos" aria-live="polite"></div>
+      <button type="button" class="btn primary" id="reveal">Reveal</button>
+      <button type="button" class="btn" id="next">Next &#8594;</button>
+      <div class="prog"><i id="progBar"></i></div>
+      <div class="keys">&#8592; &#8594; move &#183; Space reveal / next blank &#183; Enter all blanks &#183; A&#8211;F choose &#183; T / F true-false &#183; R reset &#183; L Thai &#183; B browse</div>
+    </div>
+  </section>
+  <section id="browse" aria-label="Browse mode" hidden>
+    <div class="btools">
+      <input type="search" id="q" placeholder="Search: aVF, 1500, biphasic, A7&#8230;" aria-label="Search questions and concepts">
+      <label class="chk" for="showAll"><input type="checkbox" id="showAll"> Show all answers</label>
+      <span class="bcount" id="bcount"></span>
+    </div>
+    <div id="blist"></div>
+  </section>
+</main>
+</div>
+
+<script>
+/* Shared registry for both pages (deck + tutor notes) and print.js.
+   Concept-card HTML may mark key details as {{blanks}}: they render as click-to-reveal cloze spans.
+   CVS.fig(name, caption, src, page[, cls]) builds a click-to-zoom course figure from img/<name>.jpg
+   (sizes from data/figs.js); src is a key of CVS.SRC. Past-paper options keep their original order. */
+window.CVS = {
+  sections: [],
+  dims: {},
+  SRC: {
+    lab: 'Lab Direction &#8211; ECG',
+    ekg: 'Peer &#8211; EKG',
+    heart: 'Peer &#8211; Physiology of the Heart',
+    ac75: 'AC75&#8211;79 CVS',
+    ac80: 'AC80 CVS1 MCQ',
+    ac81: 'AC81 CVS MCQ'
+  },
+  cloze: function (h) { return String(h).replace(/\{\{([\s\S]*?)\}\}/g, '<span class="cz">$1</span>'); },
+  fig: function (name, cap, src, page, cls) {
+    var d = this.dims[name];
+    if (!d) throw new Error('no image ' + name);
+    var alt = String(cap).replace(/<[^>]+>/g, '').replace(/"/g, '&quot;');
+    return '<figure class="scan' + (cls ? ' ' + cls : '') + '"><div class="paperimg"><img src="img/' + name + '.jpg" width="' + d[0] + '" height="' + d[1] + '" alt="' + alt + '" loading="lazy" decoding="async"></div><figcaption>' + cap + ' <span class="src">' + this.SRC[src] + ', p.' + page + '</span></figcaption></figure>';
+  },
+  add: function (sec) {
+    sec.items.forEach(function (it) { if (it.html) it.html = window.CVS.cloze(it.html); });
+    this.sections.push(sec);
+  }
+};
+
+/* Generated by tools/dims.sh from img/*.jpg. */
+CVS.dims = {
+  "ac76-axis": [628, 318],
+  "ac78-axis": [624, 321],
+  "ac78-rate": [560, 290],
+  "ac80-ecg": [1420, 802],
+  "ac81-ecg": [1280, 764],
+  "ac81-rate": [1180, 368],
+  "ir-axis-lad": [1680, 1132],
+  "ir-axis-normal": [1640, 1005],
+  "ir-rad-wide": [1680, 877],
+  "ir-rate100": [1676, 665],
+  "ir-rate168": [1670, 778],
+  "ir-tachy-lad": [1580, 792],
+  "lab-12leads": [1170, 438],
+  "lab-electrodes": [1290, 891],
+  "lab-readout": [1080, 1273],
+  "lab-waves": [1200, 687],
+  "peer-augmented": [230, 198],
+  "peer-axis-wheel": [540, 317],
+  "peer-bipolar": [240, 204],
+  "peer-electrode": [380, 388],
+  "peer-endoepi": [790, 515],
+  "peer-hex3d": [837, 751],
+  "peer-st-elev": [486, 560],
+  "peer-swap": [720, 297],
+  "peer-wiggers": [980, 792],
+  "t68-af": [1386, 798],
+  "t68-axisnormal": [1392, 702],
+  "t68-dyspnea": [1390, 792],
+  "t68-labels": [1368, 691],
+  "t68-watch": [1312, 691],
+  "t69-axis60": [1400, 549],
+  "t69-brady": [1392, 758],
+  "t69-mitral": [800, 509],
+  "t69-prseg": [1320, 427],
+  "t69-rate50": [1400, 872],
+  "t69-table": [1388, 1033],
+};
+
+/* Section C: Cardiophysiology, how the ECG is made.
+   Sources: Peer - EKG p.1-2 (tutor notes), Lab Direction - ECG p.1, ECG TBL t-RAT 2569 / 2568, i-RAT 266-66, AC77, AC80.
+   {{text}} = cloze blank on concept cards. Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'C', short: 'Cardiophysiology', title: 'Cardiophysiology: how the ECG is made', kind: 'Lecture',
+  blurb: 'Dipoles and skin electrodes, which cells make which wave, why the T wave is upright, and where each action-potential phase sits on the tracing.',
+  items: [
+    { t: 'c', id: 'C-C1', title: 'What a skin electrode sees: the moving dipole', src: 'Peer – EKG p.1–2 · i-RAT 266-66',
+      html: '<div class="two"><div class="stack">' +
+        '<ul class="pts">' +
+        '<li>A lead compares a <b>+ electrode</b> with a reference, so the ECG records a {{potential difference}} on the skin, never the voltage inside one cell.</li>' +
+        '<li>Outside resting (polarized) myocytes the charge is <b>{{+}}</b>; outside depolarized myocytes it turns <b>{{−}}</b>.</li>' +
+        '<li>While a wave travels, the border between the two zones is a <b>dipole</b>: the electrode over the depolarized zone is relatively {{negative}}, the one over still-resting tissue relatively + .</li>' +
+        '<li>Muscle all at rest, or all depolarized: no difference, so the line stays {{flat (isoelectric)}}.</li>' +
+        '</ul>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Wave moving&#8230;</th><th>Depolarization</th><th>Repolarization</th></tr></thead><tbody>' +
+        '<tr><td>toward the + electrode</td><td>{{upward}}</td><td>{{downward}}</td></tr>' +
+        '<tr><td>away from the + electrode</td><td>{{downward (−)}}</td><td>{{upward (+)}}</td></tr>' +
+        '<tr><td>at 90° to the lead</td><td colspan="2">{{biphasic}}: equal up and down</td></tr>' +
+        '</tbody></table></div></div>' +
+        CVS.fig('peer-electrode', 'Tutor sketch: electrodes over a strip of muscle; the depolarized part (−) on the left, resting part (+) on the right.', 'ekg', 1) + '</div>' +
+        '<p class="note">Repolarization is the mirror image of depolarization: same direction of travel, opposite sign of the deflection.</p>' },
+    { t: 'q', id: 'C1', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following statements is true regarding the electrical vector of the ventricular action potential recorded by the potential difference between two electrodes?',
+      o: ['During depolarization, the depolarization wave is a positive wave because the electrode placed in the depolarized area is relatively positive compared to the recording electrode in the polarized area.',
+        'During depolarization, the depolarization wave is a positive wave because the electrode placed in the depolarized area is relatively negative compared to the recording electrode in the polarized area.',
+        'During repolarization, the repolarization wave is a positive wave because the electrode placed in the repolarized area is relatively positive compared to the recording electrode in the depolarized area.',
+        'During repolarization, the repolarization wave is a negative wave because the electrode placed in the repolarized area is relatively negative compared to the recording electrode in the depolarized area.'],
+      a: 1,
+      ex: 'The outside of depolarized cells is negative and the outside of resting cells is positive, so the electrode over the depolarized area is relatively negative. A depolarization wave heading toward the recording (+) electrode in resting tissue gives a positive wave. Repolarized tissue is outside-positive again, not negative, so the last two statements have the signs wrong.' },
+
+    { t: 'c', id: 'C-C2', title: 'Which wave comes from which cells', src: 'Lab Direction p.1 · t-RAT 2569 · t-RAT 2568',
+      html: '<div class="tblwrap"><table class="tbl"><thead><tr><th>Electrical event</th><th>Main current</th><th>What the ECG shows</th></tr></thead><tbody>' +
+        '<tr><td>Atrial depolarization</td><td>phase 0 of atrial muscle</td><td>{{P wave}}</td></tr>' +
+        '<tr><td>Ventricular depolarization (septum → apex → free walls)</td><td>{{fast Na⁺ influx}} (phase 0)</td><td>{{QRS complex}}</td></tr>' +
+        '<tr><td>Ventricular repolarization</td><td>{{K⁺ efflux}} from ventricular myocytes (phase 3)</td><td>{{T wave}}</td></tr>' +
+        '<tr><td>Atrial repolarization</td><td>K⁺ leaving atrial cells</td><td>no wave of its own: it {{overlaps the ventricular depolarization}}</td></tr>' +
+        '</tbody></table></div>' +
+        '<div class="cols2"><div class="mini art"><h4>Why atrial repolarization is invisible</h4><p>It is small and happens at the {{same time}} as the large ventricular complex, so the QRS hides it.</p></div>' +
+        '<div class="mini ven"><h4>Size follows muscle mass</h4><p>The thin atria give a small P; the {{thick ventricles}} give the big QRS.</p></div></div>' +
+        '<p class="trap">The SA node and AV node fire too: their tiny currents make {{no visible wave}}. The PR segment is the time the impulse spends crossing the AV node.</p>' },
+    { t: 'q', id: 'C2', src: 't-RAT 2569', core: true,
+      q: 'Why is the atrial repolarization wave not visible on the ECG?',
+      o: ['Because it occurs too gradually to be detectable', 'Because it occurs too rapidly to be detectable', 'Because it overlaps with the ventricular depolarization wave', 'Because it overlaps with the ventricular repolarization wave'],
+      a: 2,
+      ex: 'Atrial repolarization happens while the ventricles depolarize, so the big QRS complex hides it. It is not too fast or too slow, and it is over long before the T wave.' },
+    { t: 'q', id: 'C3', src: 't-RAT 2568',
+      q: 'Which of the following ion movements is primarily responsible for the T wave observed on the ECG?',
+      o: ['Na⁺ influx into ventricular myocytes', 'Na⁺ influx into atrial myocytes', 'K⁺ efflux from ventricular myocytes', 'K⁺ efflux from atrial myocytes'],
+      a: 2,
+      ex: 'The T wave is ventricular repolarization, phase 3, carried by K⁺ leaving ventricular myocytes. Na⁺ influx into ventricles makes the QRS; atrial K⁺ efflux is hidden in the QRS.' },
+    { t: 'q', id: 'C4', src: 'AC77',
+      q: 'Inhibiting fast Na Channel at ventricle, what is absent from EKG?',
+      o: ['P wave', 'PR segment', 'QRS wave', 'ST segment', 'T wave'],
+      a: 2,
+      ex: 'Fast Na⁺ channels carry phase 0 of working ventricular muscle, which is the QRS. The P wave (atria) and the PR segment (AV node) do not depend on ventricular Na⁺ channels.',
+      flag: 'The recall says "absent". Blocking ventricular fast Na⁺ channels in reality slows and widens the QRS rather than erasing it; the item tests the link phase 0 of ventricular muscle = QRS.' },
+
+    { t: 'c', id: 'C-C3', title: 'Why the T wave points the same way as the QRS', src: 'Peer – EKG p.1–2 · i-RAT 266-66',
+      html: '<div class="two"><div class="stack"><ol class="steps">' +
+        '<li>Depolarization spreads from {{endocardium → epicardium}} (inside out).</li>' +
+        '<li>Endocardial cells have the {{longer action potential}}; epicardial cells are activated later but finish first.</li>' +
+        '<li>So repolarization runs the opposite way, {{epicardium → endocardium}} (outside in).</li>' +
+        '<li>Opposite direction × opposite sign (C-C1 table) = the T wave has the {{same polarity}} as the QRS. This is called <b>{{concordant}}</b>.</li>' +
+        '</ol>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Normal T wave</th><th>Leads</th></tr></thead><tbody>' +
+        '<tr><td>Upright</td><td>{{II, V3–V6}}</td></tr><tr><td>Inverted</td><td>{{aVR}}</td></tr></tbody></table></div></div>' +
+        CVS.fig('peer-endoepi', 'Tutor sketch: endocardium is activated first (filled dots) but its action potential lasts longer than the epicardium’s.', 'ekg', 1) + '</div>' +
+        '<p class="trap">"Repolarization is normally discordant" is the wrong option: a healthy T wave follows its QRS. A T wave that goes against the QRS points to disease.</p>' },
+    { t: 'q', id: 'C5', src: 'i-RAT 266-66', core: true,
+      q: 'Normally, the ventricular repolarization wave is concordant with the ventricular depolarization wave because of which of the following cardiac properties?',
+      o: ['The action potential duration of the endocardial cells is longer than that of the epicardial cells.', 'The action potential duration of the epicardial cells is longer than that of the endocardial cells.', 'The action potential duration is similar in both the endocardial and the epicardial cells.', 'The repolarization wave is normally discordant with the depolarization wave because depolarization and repolarization occur in the same direction towards or away from the electrode.'],
+      a: 0,
+      ex: 'Endocardium depolarizes first but keeps a longer action potential, so epicardium repolarizes first. Repolarization therefore travels outside to inside, the reverse of depolarization, and the two reversals cancel: the T wave has the same polarity as the QRS.' },
+
+    { t: 'c', id: 'C-C4', title: 'Action-potential phases on the tracing', src: 'Peer – EKG p.2 · t-RAT 2569 · i-RAT 266-66 · AC80',
+      html: '<div class="tblwrap"><table class="tbl"><thead><tr><th>Ventricular action potential</th><th>Ion current</th><th>Where it sits on the ECG</th></tr></thead><tbody>' +
+        '<tr><td>Phase 0, upstroke</td><td>fast Na⁺ in</td><td>{{QRS complex}}</td></tr>' +
+        '<tr><td>Phase 2, plateau</td><td>Ca²⁺ in ≈ K⁺ out</td><td>{{ST segment}}: every ventricular cell is depolarized, so the line is isoelectric</td></tr>' +
+        '<tr><td>Phase 3, repolarization</td><td>K⁺ out</td><td>{{T wave}}</td></tr>' +
+        '<tr><td>Phase 4, rest</td><td>K⁺ leak (I<sub>K1</sub>)</td><td>{{TP segment}}</td></tr>' +
+        '</tbody></table></div>' +
+        '<div class="cols2"><div class="mini art"><h4>Atria run earlier</h4><p>Atrial phase 0 = P wave. Atrial phase 3 falls {{inside the QRS}}.</p></div>' +
+        '<div class="mini ven"><h4>Refractory periods</h4><p>Absolute refractory period ≈ from the QRS through the {{whole plateau}} to about the peak of T. The second half of T is the {{relative}} refractory period.</p></div></div>' +
+        '<p class="trap">Phase 4 is <b>not</b> the downslope after the plateau: that downslope is phase 3. Rest comes after it.</p>' },
+    { t: 'q', id: 'C6', src: 't-RAT 2569', core: true,
+      q: 'Which component of the ECG most likely corresponds to phase 4 of the action potential in ventricular muscle cells?',
+      o: ['QRS complex', 'ST segment', 'T wave', 'TP segment'],
+      a: 3,
+      ex: 'Phase 4 is the resting potential between beats: the flat TP segment. QRS = phase 0, ST segment = phase 2 plateau, T wave = phase 3.' },
+    { t: 'q', id: 'C7', src: 'i-RAT 266-66',
+      q: 'Which of the following segments in the EKG most likely contains Phase 3 of the action potential in atrial muscles?',
+      o: ['P wave', 'QRS complex', 'T wave', 'ST segment'],
+      a: 1,
+      ex: 'Atrial repolarization (atrial phase 3) happens while the ventricles depolarize, so it is buried in the QRS complex. The P wave is atrial phase 0; the T wave and ST segment belong to the ventricles.' },
+    { t: 'q', id: 'C8', src: 'AC80',
+      q: 'Which part of ECG wave is the absolute refractory period in a cardiac cycle?',
+      o: ['P wave', 'PR interval', 'ST segment', 'T wave', 'RR interval'],
+      a: 2,
+      ex: 'The ventricular absolute refractory period lasts from phase 0 through the plateau into early phase 3. On the ECG that is the QRS and ST segment up to about the peak of T. The ST segment lies wholly inside it.',
+      flag: 'Only the ST segment lies entirely within the absolute refractory period; the T wave is partly relative refractory. Teach the span (QRS → mid-T) rather than a single label.' }
+  ]
+});
+
+/* Section W: Waves, intervals and segments.
+   Sources: Lab Direction - ECG p.1, Peer - EKG p.1-2 (tutor notes, filled-in values), Peer - Physiology of the Heart p.2 (Wiggers sketch),
+   ECG TBL t-RAT 2569 / 2568, i-RAT 266-66 (with key), AC75-79. Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'W', short: 'Waves', title: 'Waves, intervals and segments', kind: 'Lecture',
+  blurb: 'Naming the parts of the tracing, what each interval times, the normal values the exam checks, the ECG on the cardiac cycle, and what autonomic tone changes.',
+  items: [
+    { t: 'c', id: 'W-C1', title: 'Waves, segments and intervals', src: 'Lab Direction p.1 · t-RAT 2569 · t-RAT 2568',
+      html: '<div class="two"><div class="stack"><ul class="pts">' +
+        '<li><b>Wave</b>: a deflection away from baseline: P, Q, R, S, T, U.</li>' +
+        '<li><b>Segment</b>: a {{flat stretch between two waves}}: the PR, ST and TP segments.</li>' +
+        '<li><b>Interval</b>: a {{wave plus the segment after it}}. PR interval = start of P → start of QRS. QT interval = start of QRS → {{end of T}}.</li>' +
+        '<li><b>PR segment</b> (end of P → QRS): the impulse is held in the {{AV node}}, so this stretch measures AV nodal delay.</li>' +
+        '<li><b>ST segment</b>: the ventricles are all depolarized ({{plateau}}), so it sits on the isoelectric line.</li>' +
+        '<li><b>Isoelectric line</b>: the baseline, best judged on the {{TP segment}} where the whole heart is at rest.</li>' +
+        '</ul></div>' +
+        CVS.fig('lab-waves', 'Fig 10-1: P, QRS, T and U waves; PR interval, PR segment, QRS duration, ST segment and QT interval. Calibration 10 mV mark at left.', 'lab', 1) + '</div>' +
+        '<p class="trap">PR <i>interval</i> includes the P wave (atrial depolarization + nodal delay); PR <i>segment</i> is only the {{AV delay}} part.</p>' },
+    { t: 'q', id: 'W1', src: 't-RAT 2568', core: true,
+      q: 'A 12-lead ECG from a 40-year-old woman is shown below. Identify the ECG components labeled A and B, respectively.',
+      fig: CVS.fig('t68-labels', 't-RAT 2568 Q8: arrows A (lead II) and B (lead V2).', 'ekg', 38),
+      o: ['P wave, T wave', 'PR interval, TP segment', 'Q wave, ST segment', 'P wave, ST segment'],
+      a: 3,
+      ex: 'Arrow A points at the small hump before the QRS in lead II: the P wave. Arrow B points at the flat stretch just after the QRS in V2: the ST segment.' },
+    { t: 'q', id: 'W2', src: 't-RAT 2569', core: true,
+      q: 'A 2nd-year medical student is studying the effects of a cardiovascular drug. He obtains ECG recordings from healthy individuals and measures the duration of specific parts of the ECG. A lead II recording from a healthy individual is shown. A specific part of the recording is marked with “X”. Which of the following cardiac electrophysiological properties best explains the duration of the marked part in the recording?',
+      fig: CVS.fig('t69-prseg', 't-RAT 2569 Q8: lead II with the part marked X.', 'ekg', 7),
+      o: ['Transmission of the electrical impulse through the AV node', 'Atrial depolarization which corresponds to atrial conntraction', 'Interval between ventricular depolarization and repolarization', 'Ventricular depolarization which corresponds to ventricular systole'],
+      a: 0,
+      ex: 'X is the PR segment, from the end of the P wave to the start of the QRS. During it the impulse crosses the slow AV node, so its length is AV nodal delay. Atrial depolarization is the P wave itself; ventricular depolarization is the QRS.' },
+    { t: 'q', id: 'W3', src: 't-RAT 2568',
+      q: 'Which of the following correctly matches an ECG segment with the corresponding phase of the cardiac cycle?',
+      o: ['P wave – Ventricular systole', 'PR interval – Atrial depolarization and AV nodal delay', 'QRS complex – Ventricular repolarization', 'ST segment – Ventricular filling'],
+      a: 1,
+      ex: 'The PR interval runs from the start of P (atrial depolarization) to the start of QRS, so it holds atrial depolarization plus AV nodal delay. The P wave precedes atrial, not ventricular, systole; QRS is depolarization; the ST segment falls in ventricular ejection, not filling.' },
+
+    { t: 'c', id: 'W-C2', title: 'Intervals time the conduction', src: 'Peer – EKG p.2 (tutor notes) · i-RAT 266-66 key',
+      html: '<div class="tblwrap"><table class="tbl"><thead><tr><th>Measure</th><th>What it times</th><th>Normal</th><th>Too short / too long</th></tr></thead><tbody>' +
+        '<tr><td><b>PR interval</b></td><td>atria start → ventricles start (incl. AV node)</td><td>{{120–200 ms}}</td><td>&lt; 120: {{pre-excitation}} (impulse skips the AV node) · &gt; 200: {{1st-degree AV block}}</td></tr>' +
+        '<tr><td><b>QRS width</b></td><td>ventricular depolarization</td><td>≤ {{100–110 ms}}</td><td>&lt; 120 ms; wider = slow ventricular conduction</td></tr>' +
+        '<tr><td><b>QT interval</b></td><td>ventricles depolarize → finish repolarizing</td><td>QT ∝ RR ∝ 1/HR</td><td>shortens when the heart rate {{rises}}</td></tr>' +
+        '<tr><td><b>QTc</b></td><td>QT corrected for heart rate: QT / √RR</td><td>{{330–440 ms}} (♀ up to {{450}})</td><td>QTc 500 ms = prolonged</td></tr>' +
+        '</tbody></table></div>' +
+        '<p class="note">Box count at 25 mm/s: 1 small box = 40 ms, so a normal PR = {{3–5}} small boxes and QRS ≤ 110 ms ≈ under 3 small boxes.</p>' +
+        '<p class="trap">An AV-node conduction defect changes the {{P-to-QRS time}}, not the QT or ST.</p>' },
+    { t: 'q', id: 'W4', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following components in the EKG will be altered if there is a conduction defect of the atrioventricular node?',
+      o: ['PR interval', 'QT interval', 'RR interval', 'ST segment'],
+      a: 0,
+      ex: 'The PR interval contains the AV nodal delay, so slower AV conduction lengthens it (PR > 200 ms = 1st-degree AV block). QT and ST belong to the ventricles; RR reflects the SA node rate.' },
+    { t: 'q', id: 'W5', src: 'i-RAT 266-66', core: true,
+      q: 'Regarding the EKG, which of the following findings is ABNORMAL?',
+      o: ['QRS interval 100 msec', 'PR interval 100 msec', 'Heart rate 100 bpm with a sinus rhythm', 'Negative T wave in lead aVR'],
+      a: 1,
+      ex: 'PR 100 ms is shorter than 120 ms: the impulse reached the ventricles too early (pre-excitation). QRS 100 ms is normal, 100 bpm is the upper limit of normal sinus rate, and T is normally negative in aVR.' },
+
+    { t: 'c', id: 'W-C3', title: 'Normal or not? The findings the exam checks', src: 'Peer – EKG p.2 · i-RAT 266-66 key · AC75–79',
+      html: '<div class="two"><div class="tblwrap"><table class="tbl compact"><thead><tr><th>Finding</th><th>Normal</th><th>Abnormal example</th></tr></thead><tbody>' +
+        '<tr><td>P wave polarity</td><td>{{upright in II}}, {{negative in aVR}}</td><td>negative P in II</td></tr>' +
+        '<tr><td>T wave polarity</td><td>upright in V3–V6</td><td>—</td></tr>' +
+        '<tr><td>ST segment</td><td>isoelectric, deviation within {{±1 mm}}</td><td>{{ST elevation 4 mm}}; depression 2 mm</td></tr>' +
+        '<tr><td>Q wave</td><td>small q, width {{&lt; 40 ms}}</td><td>broad, deep Q: old {{myocardial infarction}}</td></tr>' +
+        '<tr><td>PR · QRS · QT</td><td>PR 160 ms · QRS 100 ms · QTc 330–440</td><td>PR 240 · QRS 140 · QT 140 · QTc 500</td></tr>' +
+        '<tr><td>RR interval</td><td>{{600–1000 ms}} (60–100 bpm)</td><td>RR 500 ms = {{120 bpm}}</td></tr>' +
+        '<tr><td>QRS axis</td><td>−30° to +90°, so 30° is {{inside the range}}</td><td>see section A</td></tr>' +
+        '</tbody></table></div>' +
+        CVS.fig('peer-st-elev', 'ST segment elevation: the segment after the QRS sits well above the baseline (dashed lines).', 'ekg', 2) + '</div>' +
+        '<p class="trap">Convert RR to rate before judging it: HR = 60 000 ÷ RR (ms). RR 800 ms = 75 bpm (normal).</p>' },
+    { t: 'q', id: 'W6', src: 'i-RAT 266-66', core: true,
+      q: 'Regarding the EKG, which of the following findings is normal?',
+      o: ['Negative P wave in lead aVR', 'QTc interval 500 msec', 'RR interval 500 msec', 'ST segment depression 2 mm'],
+      a: 0,
+      ex: 'aVR looks at the heart from the right shoulder, so the normal P (and QRS and T) is negative there. QTc 500 ms is prolonged, RR 500 ms means 120 bpm, and ST depression of 2 mm is beyond ±1 mm.' },
+    { t: 'q', id: 'W7', src: 'AC77',
+      q: 'Which of the following is normal EKG?',
+      o: ['PR interval 240 ms', 'QT interval 140 ms', 'Negative P wave in Lead II', 'Negative P wave in Lead VR', 'RR interval 500 ms'],
+      a: 3,
+      ex: 'A negative P in aVR is normal sinus rhythm. PR 240 ms is a 1st-degree AV block, QT 140 ms is far too short, a negative P in lead II means the impulse is not coming from the SA node, and RR 500 ms is 120 bpm.' },
+    { t: 'q', id: 'W8', src: 'AC78',
+      q: 'Which of the following is a normal EKG pattern?',
+      o: ['PR Interval 240 msec', 'QRS wave 140 msec', 'Positive T wave in leadV3', 'RR interval 500 msec', 'Negative P wave in lead II'],
+      a: 2,
+      ex: 'T waves are normally upright in V3–V6. PR 240 ms is prolonged, QRS 140 ms is wide, RR 500 ms is tachycardia, and a negative P in lead II is not sinus.' },
+    { t: 'q', id: 'W9', src: 'AC75', core: true,
+      q: 'Abnormal EKG?',
+      o: ['Positive P lead II (positive t?)', 'Negative P aVR', 'PR interval 120-200 msec', 'QRS width 60-110 msec', 'Broad Q & high altitude'],
+      a: 4,
+      ex: 'A broad (> 40 ms), deep Q wave marks an old myocardial infarction. The other four are the normal findings: P upright in II and negative in aVR, PR 120–200 ms, QRS up to 110 ms.',
+      flag: 'Recall wording. "High altitude" most likely means high amplitude (a deep Q), and "(positive t?)" shows the writer was unsure whether option A said P or T; both are normal in lead II.' },
+    { t: 'q', id: 'W10', src: 'AC79',
+      q: 'What is abnormal EKG?',
+      o: ['PR interval 160 msec', 'QRS 100 msec', 'ST segment elevated 4 mm', 'RR interval 800 msec', 'QRS axis 30 องศา <span class="muted">(30 degrees)</span>'],
+      a: 2,
+      ex: 'The ST segment should stay within ±1 mm of the baseline; 4 mm of elevation is abnormal (acute injury). PR 160 ms, QRS 100 ms, RR 800 ms (75 bpm) and an axis of 30° are all normal.' },
+    { t: 'q', id: 'W11', src: 'AC79',
+      q: 'Which of the following considered as an abnormal ECG finding',
+      o: ['RR interval 800 msec', 'PR interval 160 msec', 'ST segment elevation 4 mm', 'QRS interval 100 msec', 'QRS axis 30'],
+      a: 2,
+      ex: 'Same item as W10 with the options reordered: only the 4 mm ST elevation is outside normal limits.' },
+
+    { t: 'c', id: 'W-C4', title: 'The ECG on the cardiac cycle', src: 'Peer – Physiology of the Heart p.2 · t-RAT 2569 · t-RAT 2568 · AC75–77',
+      html: '<div class="two"><div class="stack"><p>Electrical events come first; each wave {{precedes}} the contraction it triggers.</p>' +
+        '<div class="flow col">' +
+        '<div class="fbox start"><b>P wave</b> → {{atrial contraction}} (the atrial kick at the end of filling)</div><div class="farrow">↓</div>' +
+        '<div class="fbox art"><b>QRS</b> → ventricles contract: AV valves close ({{S1}}), {{isovolumic contraction}}, then the aortic valve opens just after the QRS</div><div class="farrow">↓</div>' +
+        '<div class="fbox art"><b>ST · T</b> → ejection (rapid, then reduced during T)</div><div class="farrow">↓</div>' +
+        '<div class="fbox ven"><b>End of T</b> → aortic valve closes ({{S2}}) → {{isovolumic relaxation}}</div><div class="farrow">↓</div>' +
+        '<div class="fbox ven"><b>Early TP segment</b> → mitral valve opens → {{rapid filling}}: the largest flow across the mitral valve</div>' +
+        '</div></div>' +
+        CVS.fig('peer-wiggers', 'Tutor’s Wiggers sketch: aortic, LV and LA pressure, LV volume and the ECG trace, with the phases labelled underneath.', 'heart', 2) + '</div>' },
+    { t: 'q', id: 'W12', src: 'AC75, AC77', core: true,
+      q: 'Which of the following occurred after P wave in EKG test?',
+      o: ['Atrial contraction', 'Ventricular filling', 'Ventricular contraction', 'Isovolumic relaxation', 'Isovolumic contraction'],
+      a: 0,
+      ex: 'The P wave is atrial depolarization, and the atria contract right after it. Ventricular contraction and isovolumic contraction follow the QRS; isovolumic relaxation follows the T wave.' },
+    { t: 'q', id: 'W13', src: 'AC76',
+      q: 'Which of the following event occurs just after the T wave?',
+      o: ['Atrial contraction', 'Decreased ventricular filling', 'Decreased ventricular ejection', 'Isovolumetric relaxation', 'Closure of mitral valve'],
+      a: 3,
+      ex: 'The T wave ends ventricular repolarization; the aortic valve closes (S2) and the ventricle relaxes with all valves shut: isovolumetric relaxation. Reduced ejection happens during the T wave; atrial contraction follows the next P; the mitral valve closes at the QRS.' },
+    { t: 'q', id: 'W14', src: 't-RAT 2568',
+      q: 'The opening of the aortic valve corresponds most closely to which component of the ECG?',
+      o: ['P wave', 'QRS complex', 'PR interval', 'T wave'],
+      a: 1,
+      ex: 'The QRS starts ventricular contraction; once LV pressure passes aortic pressure (end of isovolumic contraction) the aortic valve opens, right at the end of the QRS. The T wave is near aortic valve closure.',
+      flag: 'Strictly the valve opens just after the QRS, around the start of the ST segment. Among the options the QRS complex is the closest.' },
+    { t: 'q', id: 'W15', src: 't-RAT 2569', core: true,
+      q: 'ECG below is obtained from a 52-year-old healthy man. Blood flow across the mitral valve is largest around which indicated point on this ECG tracing?',
+      fig: CVS.fig('t69-mitral', 't-RAT 2569 Q5: points A–D marked on one cardiac cycle.', 'ekg', 6),
+      o: ['A', 'B', 'C', 'D'],
+      a: 3,
+      ex: 'Point D, just after the T wave, is early diastole: the mitral valve has opened and rapid ventricular filling carries the largest flow. B (the P wave) only leads to the smaller atrial kick; C is during ejection when the mitral valve is shut.' },
+
+    { t: 'c', id: 'W-C5', title: 'Autonomic tone changes the timing', src: 'i-RAT 266-66 key · t-RAT 2569 · AC79',
+      html: '<div class="cols2"><div class="mini art"><h4>Sympathetic up · or atropine (vagus blocked)</h4><ul>' +
+        '<li>SA node fires faster → {{RR interval shortens}} (HR up)</li>' +
+        '<li>AV node conducts faster → PR gets shorter</li>' +
+        '<li>QT ∝ RR → QT {{shortens}}</li>' +
+        '<li>QRS width {{unchanged}}: ventricular conduction is not autonomic</li></ul></div>' +
+        '<div class="mini ven"><h4>Vagus up (acetylcholine on M₂)</h4><ul>' +
+        '<li>SA node slower → RR {{lengthens}}</li>' +
+        '<li>AV node slower → PR {{lengthens}}</li>' +
+        '<li>Strong vagal effect → AV block or a pause</li></ul></div></div>' +
+        '<p class="note">To see a drug act on the SA node, measure the {{RR interval}}, which is the heart rate.</p>' +
+        '<p class="trap">ST elevation is not an autonomic effect: it means {{myocardial injury}}. QRS amplitude does not grow with sympathetic tone.</p>' },
+    { t: 'q', id: 'W16', src: 'i-RAT 266-66',
+      q: 'What would be the expected change to the EKG of a person with an increase in the sympathetic tone?',
+      o: ['An increase in the R-R interval', 'An increase in the amplitude of the QRS complex', 'A shortened QT interval', 'A narrower QRS complex'],
+      a: 2,
+      ex: 'Sympathetic tone raises the heart rate, so RR falls, and QT shortens with it (QT ∝ RR). It does not make the QRS taller or narrower.' },
+    { t: 'q', id: 'W17', src: 't-RAT 2569', core: true,
+      q: 'Which of the following changes to the ECG does NOT occur in a person who is given a muscarinic antagonist?',
+      o: ['Unchanged QRS interval', 'Decreased RR interval', 'Decreased QT interval', 'Elevated ST segment'],
+      a: 3,
+      ex: 'Blocking muscarinic receptors removes vagal brake: HR up (RR down), QT down with RR, QRS width unchanged. ST elevation is a sign of myocardial injury, not of a muscarinic blocker.' },
+    { t: 'q', id: 'W18', src: 'AC79',
+      q: 'ให้ atropine ไปที่ SA node check ผลที่ไหนของ EKG<br><span class="muted">Atropine is given to act on the SA node. Where on the EKG do you check its effect?</span>',
+      o: ['RR interval', 'QT interval', 'ST segment', 'PR interval', 'QRS comple'],
+      a: 0,
+      ex: 'The SA node sets the heart rate, which the ECG shows as the RR interval: atropine shortens it. PR reflects the AV node, QT and ST the ventricles.' }
+  ]
+});
+
+/* Section L: Leads, the hexaxial reference system and swapped electrodes.
+   Sources: Lab Direction - ECG p.2, Peer - EKG p.1-2 (tutor notes), ECG TBL t-RAT 2569 / 2568, i-RAT 266-66, AC78-81.
+   Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'L', short: 'Leads', title: 'Limb leads, the hexaxial wheel and swapped electrodes', kind: 'Lecture',
+  blurb: 'Which electrodes make leads I, II and III, where aVR, aVL and aVF point, which leads are perpendicular, and what each electrode swap does.',
+  items: [
+    { t: 'c', id: 'L-C1', title: 'Bipolar limb leads (Einthoven)', src: 'Lab Direction p.2 · Peer – EKG p.1',
+      html: '<div class="two"><div class="stack"><div class="tblwrap"><table class="tbl"><thead><tr><th>Lead</th><th>+ electrode</th><th>− electrode</th><th>Angle</th></tr></thead><tbody>' +
+        '<tr><td><b>I</b></td><td>{{LA}}</td><td>{{RA}}</td><td>0°</td></tr>' +
+        '<tr><td><b>II</b></td><td>{{LL}}</td><td>RA</td><td>{{+60°}}</td></tr>' +
+        '<tr><td><b>III</b></td><td>LL</td><td>{{LA}}</td><td>{{+120°}}</td></tr>' +
+        '</tbody></table></div>' +
+        '<ul class="pts"><li>Each bipolar lead uses {{two limb electrodes}}; the right leg (RL) electrode is the {{ground}} and is in no lead.</li>' +
+        '<li>Leads I, II and III form Einthoven’s triangle: {{II = I + III}}.</li>' +
+        '<li>A lead points from its − electrode toward its + electrode: lead I points {{horizontally to the left}}, II down-left, III down-right.</li></ul></div>' +
+        CVS.fig('peer-bipolar', 'Tutor sketch: lead I at 0°, with leads II and III each 60° below it.', 'ekg', 1) + '</div>' +
+        '<p class="trap">Only one bipolar lead uses the left arm as its <i>negative</i> pole: “left arm and left leg” = {{lead III}}.</p>' },
+    { t: 'q', id: 'L1', src: 't-RAT 2569',
+      q: 'When recording lead II on an ECG, where is the positive electrode placed?',
+      o: ['Left arm', 'Right arm', 'Left leg', 'Right leg'],
+      a: 2,
+      ex: 'Lead II runs from the right arm (−) to the left leg (+), pointing down-left at +60°.' },
+    { t: 'q', id: 'L2', src: 't-RAT 2568',
+      q: 'When recording Lead II on a standard 12-lead ECG, where are the positive and negative electrodes placed, respectively?',
+      o: ['Right arm and left arm', 'Right arm and left leg', 'Left arm and left leg', 'Left leg and right arm'],
+      a: 3,
+      ex: 'Positive first: left leg (+), right arm (−). The second option has the right pair in the wrong order.' },
+    { t: 'q', id: 'L3', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following leads requires electrode placements at the left arm and the left foot?',
+      o: ['Lead I', 'Lead II', 'Lead III', 'Lead aVL'],
+      a: 2,
+      ex: 'Lead III = left leg (+) versus left arm (−). Lead I uses both arms, lead II right arm and left leg; aVL is an augmented lead with its + pole on the left arm.' },
+    { t: 'q', id: 'L4', src: 'AC79',
+      q: 'what is the location of lead III?',
+      o: ['Right arm and right leg', 'Right arm and left arm', 'Left arm and left leg', 'Right arm and left leg', 'Left arm and right leg'],
+      a: 2,
+      ex: 'Lead III joins the left arm (−) and the left leg (+). The right leg is only the ground.' },
+    { t: 'q', id: 'L5', src: 't-RAT 2568', core: true,
+      q: 'A medical student wears a smart watch on the left wrist and activates the ECG feature by placing the right index finger on the digital crown, as shown in the figure below. The watch contains a positive electrode on the back that contacts the left wrist, and the crown functions as a negative electrode. Which standard ECG lead is most closely represented by this configuration?',
+      fig: CVS.fig('t68-watch', 't-RAT 2568 Q4: watch on the left wrist, right index finger on the crown.', 'ekg', 37),
+      o: ['Lead I', 'Lead II', 'Lead III', 'Lead aVR'],
+      a: 0,
+      ex: 'Positive on the left arm, negative on the right arm: that is lead I, pointing at 0°.' },
+
+    { t: 'c', id: 'L-C2', title: 'Augmented leads and the hexaxial wheel', src: 'Peer – EKG p.1–2 · i-RAT 266-66 · AC78',
+      html: '<div class="two"><div class="stack"><ul class="pts">' +
+        '<li><b>Augmented (unipolar) limb leads</b>: one limb is +, compared with the average of the other two. aVR: + on the {{right arm}}. aVL: + on the {{left arm}}. aVF: + on the {{left foot}}.</li>' +
+        '<li>Angles: aVL {{−30°}}, aVF {{+90°}}, aVR {{−150°}}.</li>' +
+        '<li>Put the six limb leads on one wheel and they sit every <b>30°</b>: the hexaxial reference system (frontal plane only; chest leads are the horizontal plane).</li></ul>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Lead</th><th>Perpendicular partner (90° apart)</th></tr></thead><tbody>' +
+        '<tr><td>I (0°)</td><td>{{aVF (+90°)}}</td></tr><tr><td>II (+60°)</td><td>{{aVL (−30°)}}</td></tr><tr><td>III (+120°)</td><td>{{aVR (−150°)}}</td></tr></tbody></table></div></div>' +
+        '<div class="stack">' + CVS.fig('peer-augmented', 'Tutor sketch: aVR and aVL 30° above the horizontal, aVF straight down.', 'ekg', 1) +
+        CVS.fig('peer-hex3d', 'The six frontal-plane leads around the chest: aVR, aVL, I, II, aVF and III.', 'ekg', 2) + '</div></div>' +
+        '<p class="trap">Perpendicular pairs pair a bipolar lead with an augmented lead: memorise I–aVF, II–aVL, III–aVR.</p>' },
+    { t: 'q', id: 'L6', src: 'i-RAT 266-66', core: true,
+      q: 'The electrical vector of which lead is perpendicular to the vector of lead aVR in the frontal plane axis?',
+      o: ['Lead I', 'Lead II', 'Lead III', 'Lead aVL'],
+      a: 2,
+      ex: 'aVR points to −150°; 90° from it is +120° (or −60°), which is lead III.' },
+    { t: 'q', id: 'L7', src: 'AC78',
+      q: 'Which lead is perpendicular to lead aVL?',
+      o: ['Lead I', 'Lead II', 'Lead III', 'Lead aVR', 'Lead aVF'],
+      a: 1,
+      ex: 'aVL points to −30°; 90° away is +60°, which is lead II.' },
+
+    { t: 'c', id: 'L-C3', title: 'Swapped limb electrodes', src: 'Peer – EKG p.1–2 · AC80 · AC81 · TBL RATs',
+      html: '<div class="two"><div class="tblwrap"><table class="tbl compact"><thead><tr><th>Swap</th><th>What the tracing does</th><th>Lead left unchanged</th></tr></thead><tbody>' +
+        '<tr><td><b>RA ↔ LA</b> (commonest)</td><td>lead I {{upside down (−I)}}; II ↔ III; aVR ↔ aVL</td><td>{{aVF}}</td></tr>' +
+        '<tr><td><b>RA ↔ LL</b></td><td>II inverted; I and III swap and invert; aVR ↔ aVF</td><td>{{aVL}}</td></tr>' +
+        '<tr><td><b>LA ↔ LL</b></td><td>III inverted; I ↔ II; aVL ↔ aVF</td><td>{{aVR}}</td></tr>' +
+        '<tr><td><b>LL ↔ RL</b></td><td>{{almost no change}}: RL is only the ground and both legs sit at nearly the same potential</td><td>all</td></tr>' +
+        '</tbody></table></div>' +
+        CVS.fig('peer-swap', 'Tutor sketch: swapping the arm electrodes turns lead I upside down (I becomes −I).', 'ekg', 1) + '</div>' +
+        '<p class="note">Rule of thumb: the unchanged lead is the augmented lead of the {{limb that was not moved}}.</p>' +
+        '<p class="trap">“Where does the aVF tracing show up after an arm swap?” Still in {{aVF}}: nothing touched the left leg.</p>' },
+    { t: 'q', id: 'L8', src: 'AC80', core: true,
+      q: 'During an ECG test on a patient, the physician accidentally swaps a pair of leads. However, the aVF waveform is not affected by this mistake, while the rest of the waveforms are incorrect. The leads of which extremities have been swapped?',
+      o: ['Left arm and left leg', 'Left arm and right leg', 'Right arm and left arm', 'Right arm and left leg', 'Right arm and right leg'],
+      a: 2,
+      ex: 'aVF is the left-leg lead, so it stays correct only if the left leg was not moved: the two arms were swapped. That also inverts lead I and swaps II with III and aVR with aVL.' },
+    { t: 'q', id: 'L9', src: 'AC81', core: true,
+      q: 'During an electrocardiography procedure, an extreme lead reversal occurs. Only lead aVL is normal, while other leads are mixed up. Which leads are reversed?',
+      o: ['Left arm, left leg', 'Right arm, left leg', 'Right leg, left leg', 'Left arm, right arm', 'Left leg, right leg'],
+      a: 1,
+      ex: 'aVL is the left-arm lead, so the left arm stayed put and the other two active electrodes swapped: right arm and left leg. AC81 short key: right arm, left leg.' },
+    { t: 'q', id: 'L10', src: 't-RAT 2569', core: true,
+      q: 'When the electrode on the left arm is mistakenly reversed with the electrode on the right arm, the ECG tracing that would normally show up on Lead aVF will be shown on which of the following leads instead?',
+      o: ['Lead I', 'Lead II', 'Lead aVL', 'Lead aVF'],
+      a: 3,
+      ex: 'An arm swap leaves the left-leg electrode alone, so aVF still shows the true aVF tracing. Lead I becomes inverted (−I), II and III trade places, aVR and aVL trade places.' },
+    { t: 'q', id: 'L11', src: 't-RAT 2568',
+      q: 'Which of the following changes would occur if the left leg (LL) and right leg (RL) electrodes are switched?',
+      o: ['Lead I is inverted', 'Lead II is inverted', 'Lead V1 is inverted', 'None of the above'],
+      a: 3,
+      ex: 'The right-leg electrode is the ground and the two legs sit at almost the same potential, so swapping them changes essentially nothing. Lead I does not use either leg.' },
+    { t: 'q', id: 'L12', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following leads is NOT affected when the electrodes at the left arm and the left leg are reversed?',
+      o: ['Lead I', 'Lead II', 'Lead aVL', 'Lead aVR'],
+      a: 3,
+      ex: 'The right arm was not moved, so aVR (right-arm +) is unchanged. Lead I and II trade places (I uses LA, II uses LL), aVL and aVF trade places, lead III inverts.' }
+  ]
+});
+
+/* Section R: Heart rate from the tracing.
+   Sources: Peer - EKG p.1-2 (tutor notes: standardization, 1500 rule, speed correction), ECG TBL t-RAT 2569 / 2568, i-RAT 266-66 (key), AC75-81.
+   Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'R', short: 'Rate', title: 'Heart rate from the tracing', kind: 'Lecture',
+  blurb: 'ECG paper standardization, the 1500 and 300 rules, correcting for paper speeds other than 25 mm/s, and counting an irregular rhythm.',
+  items: [
+    { t: 'c', id: 'R-C1', title: 'ECG paper and the 1500 rule', src: 'Peer – EKG p.1–2 (tutor notes) · i-RAT 266-66 key',
+      html: '<div class="cols2"><div class="mini"><h4>Standardization</h4><ul>' +
+        '<li>Paper speed: {{25 mm/s}}</li><li>Gain: {{10 mm/mV}} (the calibration box at the start of each row)</li>' +
+        '<li>1 small box = 1 mm = {{0.04 s}} (40 ms)</li><li>1 big box = 5 small = 5 mm = {{0.2 s}}</li></ul></div>' +
+        '<div class="mini"><h4>Rate from one RR interval (regular rhythm, standard speed)</h4><ul>' +
+        '<li>HR = {{1500}} ÷ small boxes between two R waves</li><li>HR = {{300}} ÷ big boxes</li>' +
+        '<li>HR = 60 ÷ RR in seconds: RR 0.8 s → {{75 bpm}}</li></ul></div></div>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Big boxes between R waves</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr></thead><tbody>' +
+        '<tr><td>Heart rate (bpm)</td><td>300</td><td>150</td><td>{{100}}</td><td>75</td><td>{{60}}</td><td>50</td></tr></tbody></table></div>' +
+        '<p class="note">Why the rule works: in one minute the paper moves (speed × 60 s) millimetres, and each small box is 1 mm. Normal sinus rate {{60–100}} bpm.</p>' },
+    { t: 'q', id: 'R1', src: 'AC75', core: true,
+      q: 'RR interval 15 mm หา heart rate (ความเร็วกระดาษ 25 mm/s)?<br><span class="muted">RR interval 15 mm: find the heart rate (paper speed 25 mm/s).</span>',
+      o: ['50 bpm', '75 bpm', '100 bpm', '150 bpm', '200 bpm'],
+      a: 2,
+      ex: '15 mm = 15 small boxes at 25 mm/s = 0.6 s. HR = 1500 ÷ 15 = 100 bpm.' },
+    { t: 'q', id: 'R2', src: 'i-RAT 266-66',
+      q: 'In this EKG, which runs at a speed of 25 mm/s, what is the heart rate?',
+      fig: CVS.fig('ir-rate100', 'i-RAT Q15: 12-lead at 25 mm/s.', 'ekg', 47),
+      o: ['50 bpm', '100 bpm', '150 bpm', '200 bpm'],
+      a: 1,
+      ex: 'The R waves are 15 small boxes (3 big boxes) apart: 1500 ÷ 15 = 100 bpm.' },
+    { t: 'q', id: 'R3', src: 'AC78',
+      q: 'An ECG shows with an ECG speed of 25 mm/s, what is the heart rate?',
+      fig: CVS.fig('ac78-rate', 'AC78 Q22: leads V5 and V6 at 25 mm/s.', 'ac75', 20),
+      o: ['25', '50', '100', '200', '300'],
+      a: 2,
+      ex: 'The R waves are about 3 big boxes (15 small boxes) apart: 300 ÷ 3 = 100 bpm.',
+      flag: 'The printed copy is small; the RR measures about 15 small boxes. Check the box count on the original if you show it on video.' },
+
+    { t: 'c', id: 'R-C2', title: 'When the paper runs at another speed', src: 'Peer – EKG p.1–2 (tutor notes) · i-RAT 266-66 key · AC76 · AC80 · AC81',
+      html: '<p>The 1500 rule assumes 25 mm/s. For any speed, count the boxes first, then correct:</p>' +
+        '<p class="eqn"><span>HR = 1500 ÷ small boxes × <b>speed ÷ 25</b></span><span>= 60 × speed (mm/s) ÷ RR (mm)</span></p>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Paper speed</th><th>The tracing looks</th><th>Rule</th></tr></thead><tbody>' +
+        '<tr><td>12.5 mm/s</td><td>squeezed, half as wide</td><td>{{750}} ÷ small boxes</td></tr>' +
+        '<tr><td>25 mm/s</td><td>standard</td><td>1500 ÷ small boxes</td></tr>' +
+        '<tr><td>30 mm/s</td><td>a little stretched</td><td>{{1800}} ÷ small boxes</td></tr>' +
+        '<tr><td>50 mm/s</td><td>{{stretched, twice as wide}}</td><td>{{3000}} ÷ small boxes</td></tr>' +
+        '</tbody></table></div>' +
+        '<div class="cols2"><div class="mini art"><h4>Worked: i-RAT Q14</h4><p>50 mm/s, RR = 18 small boxes. 1500 ÷ 18 = 83 is the trap; × 2 for the speed = {{168 bpm}}.</p></div>' +
+        '<div class="mini ven"><h4>Worked: AC76 Q7</h4><p>12.5 mm/s, RR = 15 mm. 1500 ÷ 15 = 100, × 0.5 = {{50 bpm}}.</p></div></div>' +
+        '<p class="trap">Fast paper makes a normal rate look {{too slow}}; slow paper makes it look fast. Always read the speed printed under the tracing.</p>' },
+    { t: 'q', id: 'R4', src: 'AC76', core: true,
+      q: 'If an EKG paper that is run with a speed of 12.5 mm/sec reveal sinus rhythm with R-R interval of 15 mm, what is the heart rate?',
+      o: ['25', '50', '75', '100', '150'],
+      a: 1,
+      ex: 'At 12.5 mm/s, 15 mm of paper = 1.2 s. HR = 60 ÷ 1.2 = 50 bpm (or 750 ÷ 15).' },
+    { t: 'q', id: 'R5', src: 'AC80',
+      q: 'Given that Paper velocity = 12.5, RR interval = 15 small boxes, what is the heart rate?',
+      o: ['100', '50', '200', '25', '150'],
+      a: 1,
+      ex: 'Same numbers as R4: 15 small boxes at 12.5 mm/s = 1.2 s, so 50 bpm. 100 is the answer you get if you forget the speed.' },
+    { t: 'q', id: 'R6', src: 'i-RAT 266-66', core: true,
+      q: 'In this EKG, which runs at a speed of 50 mm/s, what is the heart rate?',
+      fig: CVS.fig('ir-rate168', 'i-RAT Q14: 12-lead at 50 mm/s.', 'ekg', 47),
+      o: ['21 bpm', '42 bpm', '84 bpm', '168 bpm'],
+      a: 3,
+      ex: 'The RR is about 18 small boxes. At 25 mm/s that would be 1500 ÷ 18 ≈ 83, but the paper runs twice as fast, so the true rate is about 168 bpm (3000 ÷ 18).' },
+    { t: 'q', id: 'R7', src: 't-RAT 2569',
+      q: 'In this ECG, which runs at a speed of 50 mm/s, what is the heart rate?',
+      fig: CVS.fig('t69-rate50', 't-RAT 2569 Q12: 12-lead at 50 mm/s.', 'ekg', 8),
+      o: ['50 bpm', '100 bpm', '150 bpm', '200 bpm'],
+      a: 3,
+      ex: 'The R waves are about 15 small boxes apart. 1500 ÷ 15 = 100 at standard speed; doubled for 50 mm/s = 200 bpm.' },
+    { t: 'q', id: 'R8', src: 'AC81', core: true,
+      q: 'From the given EKG, find the heart rate. (Paper speed 50 mm/s)',
+      fig: CVS.fig('ac81-rate', 'AC81 Q2: rhythm strip at 50 mm/s.', 'ac81', 22),
+      o: ['50 bpm', '80 bpm', '100 bpm', '150 bpm', '200 bpm'],
+      a: 4,
+      ex: 'AC81 short key: 200 bpm. Count the small boxes between R waves, apply 1500 ÷ boxes, then double for 50 mm/s.' },
+    { t: 'q', id: 'R9', src: 'AC77',
+      q: 'ให้กราฟ 50 mm/s เมื่อนับ QRS ได้ 18 wave ถาม Heart rate<br><span class="muted">A tracing at 50 mm/s is given; 18 QRS waves are counted. What is the heart rate?</span>',
+      o: ['50 bpm', '100 bpm', '150 bpm', '200 bpm', '250 bpm'],
+      a: 3,
+      ex: 'Read literally: 18 QRS complexes on a standard 250 mm strip. At 50 mm/s that strip covers only 5 s, so 18 × 12 ≈ 216 bpm, nearest 200 bpm.',
+      flag: 'Recalled stem, no key. If “18” was really 18 small boxes between R waves (as in i-RAT Q14, R6), the rate is 3000 ÷ 18 ≈ 167 bpm, and the nearest option would be 150. Teach the method, not the letter.' },
+    { t: 'q', id: 'R10', src: 't-RAT 2568', core: true,
+      q: 'A 35-year-old man presents to the Emergency Department with progressive dyspnea. A 12-lead ECG is obtained, revealing the findings shown. The paper speed is 30 mm/sec. What is the heart rate?',
+      fig: CVS.fig('t68-dyspnea', 't-RAT 2568 Q12–13: 12-lead, paper speed 30 mm/s.', 'ekg', 40),
+      o: ['35 – 40 bpm', '60 – 65 bpm', '70 – 75 bpm', '100 – 105 bpm'],
+      a: 2,
+      ex: 'The R waves are about 25 small boxes (5 big boxes) apart. 1500 ÷ 25 = 60 at 25 mm/s; × 30/25 = 72 bpm.' },
+
+    { t: 'c', id: 'R-C3', title: 'Irregular rhythm: count, don’t divide', src: 't-RAT 2568 (tutor notes on Q14)',
+      html: '<ul class="pts"><li>When the RR intervals {{vary}}, one RR gives a different rate every time you measure.</li>' +
+        '<li>Count instead: the rhythm strip along the bottom of a 12-lead is {{10 s}} long at 25 mm/s (250 mm).</li>' +
+        '<li>Rate ≈ number of QRS complexes in the strip × {{6}}.</li>' +
+        '<li>Example (t-RAT 2568 Q14): 22 QRS in the strip → {{132}} bpm.</li></ul>' +
+        '<div class="cols2"><div class="mini art"><h4>Atrial fibrillation on the strip</h4><ul><li>no P waves: a {{wavy, fibrillating baseline}}</li><li>RR {{irregularly irregular}}</li><li>QRS narrow: the ventricles still conduct normally</li></ul></div>' +
+        '<div class="mini ven"><h4>Ventricular vs atrial rate</h4><p>In AF you count the {{ventricular rate}} (QRS); the atria fire far faster and cannot be counted.</p></div></div>' },
+    { t: 'q', id: 'R11', src: 't-RAT 2568', core: true,
+      q: 'This ECG is recorded at a speed of 25 mm/sec. What is the estimated ventricular rate based on this tracing?',
+      fig: CVS.fig('t68-af', 't-RAT 2568 Q14: 25 mm/s; the bottom row is a 10-second strip.', 'ekg', 42),
+      o: ['66 bpm', '99 bpm', '132 bpm', '162 bpm'],
+      a: 2,
+      ex: 'The rhythm is irregularly irregular without P waves (AF), so divide-by-boxes fails. About 22 QRS complexes fill the 10-second strip: 22 × 6 = 132 bpm.' }
+  ]
+});
+
+/* Section A: QRS axis.
+   Sources: Peer - EKG p.1-2 (tutor notes: axis wheel, quadrant check, shortcut and direct methods), ECG TBL t-RAT 2569 / 2568, i-RAT 266-66 (key),
+   AC75-81. Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'A', short: 'Axis', title: 'QRS axis', kind: 'Lecture',
+  blurb: 'Axis zones, the lead I + aVF quadrant check, how big each lead’s QRS should be, two ways to read the axis off a 12-lead, and combined rate-axis items.',
+  items: [
+    { t: 'c', id: 'A-C1', title: 'Axis zones and the quadrant check', src: 'Peer – EKG p.1–2 (tutor notes) · i-RAT 266-66 key',
+      html: '<div class="two"><div class="stack"><div class="tblwrap"><table class="tbl compact"><thead><tr><th>Zone</th><th>Range</th></tr></thead><tbody>' +
+        '<tr><td>Normal</td><td>{{−30° to +90°}}</td></tr><tr><td>Left axis deviation</td><td>{{−30° to −90°}}</td></tr>' +
+        '<tr><td>Right axis deviation</td><td>{{+90° to +180°}}</td></tr><tr><td>Extreme (northwest)</td><td>−90° to ±180°</td></tr></tbody></table></div>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Lead I</th><th>aVF</th><th>Axis</th></tr></thead><tbody>' +
+        '<tr><td>+</td><td>+</td><td>{{normal axis}} (0° to +90°)</td></tr>' +
+        '<tr><td>−</td><td>+</td><td>{{RAD}}</td></tr>' +
+        '<tr><td>−</td><td>−</td><td>{{extreme axis}}</td></tr>' +
+        '<tr><td>+</td><td>−</td><td>look at {{lead II}}: + → still normal (0° to −30°); − → {{LAD}}</td></tr>' +
+        '</tbody></table></div></div>' +
+        CVS.fig('peer-axis-wheel', 'Axis wheel: normal −30° to 90° (green), left axis deviation (purple), right (blue), extreme (red).', 'ekg', 1) + '</div>' +
+        '<p class="trap">LAD and “lead I +, aVF −” are not the same thing: 0° to −30° also gives I + / aVF −, and it is normal. Lead {{II negative}} is what proves LAD.</p>' },
+    { t: 'q', id: 'A1', src: 'AC75',
+      q: 'QRS axis เป็นยังไง ให้ Lead 1 - biphasic, Lead aVF positive, Lead 3 – positive?<br><span class="muted">What is the QRS axis when lead I is biphasic, aVF positive and lead III positive?</span>',
+      o: ['Unidentified', 'Right deviation', 'Left deviation', 'Normal axis', 'Extreme …'],
+      a: 3,
+      ex: 'Lead I biphasic puts the axis at ±90°; aVF positive picks +90°. With the course range −30° to +90°, +90° is the edge of normal.',
+      flag: 'Recall item with no key. The answer sits exactly on the border (+90°). The course range counts +90° as normal; some books call anything past +90° right axis deviation.' },
+    { t: 'q', id: 'A2', src: 'AC79',
+      q: '(ให้ภาพ EKG มา) Lead I negative, Lead aVF positive ถาม QRS axis<br><span class="muted">(An ECG was shown.) Lead I negative, lead aVF positive: what is the QRS axis?</span>',
+      o: ['Normal axis', 'Left axis deviation', 'Right axis deviation', 'Extreme axis deviation'],
+      a: 2,
+      ex: 'Lead I negative means the axis points right of +90° or above; aVF positive keeps it in the lower half. Together: +90° to +180°, right axis deviation.' },
+    { t: 'q', id: 'A3', src: 'i-RAT 266-66', core: true,
+      q: 'What will be seen in a person with right axis deviation?',
+      o: ['Lead I will be positive and lead II will be positive.', 'Lead II will be negative and lead aVF will be positive.', 'Lead I will be negative and lead II will be negative.', 'Lead I will be negative and the lead aVF will be positive.'],
+      a: 3,
+      ex: 'Right axis deviation (+90° to +180°) points away from lead I (0°) and toward aVF (+90°): lead I negative, aVF positive.' },
+    { t: 'q', id: 'A4', src: 't-RAT 2569',
+      q: 'A 43-year-old woman with chronic pulmonary hypertension presents to the emergency department with dyspnea lasting 2 hours. Her ECG shows right axis deviation. What ECG findings would you expect?',
+      o: ['Lead I positive and Lead II positive', 'Lead aVL positive and Lead aVF positive', 'Lead I negative and Lead aVF negative', 'Lead I negative and Lead aVF positive'],
+      a: 3,
+      ex: 'Same pattern as A3: right axis deviation gives lead I negative with aVF positive. Lead I and aVF both negative is the extreme axis.' },
+    { t: 'q', id: 'A5', src: 't-RAT 2568', core: true,
+      q: 'A 43-year-old woman with long-standing hypertension presents to the emergency department with chest pain lasting 2 hours. Her ECG shows left axis deviation. What ECG findings would you expect?',
+      o: ['Lead I positive and Lead II positive', 'Lead aVL positive and Lead aVF positive', 'Lead I negative and Lead aVF negative', 'Lead I positive and Lead III negative'],
+      a: 3,
+      ex: 'Left axis deviation (−30° to −90°) points up-left: lead I positive, and leads II, III and aVF negative. Lead I and II both positive is a normal axis.' },
+
+    { t: 'c', id: 'A-C2', title: 'How big should each lead’s QRS be?', src: 'Peer – EKG p.2 (tutor notes) · TBL RATs · AC77–81',
+      html: '<p>Each lead shows the mean QRS vector {{projected onto its own axis}}.</p>' +
+        '<div class="tblwrap"><table class="tbl"><thead><tr><th>Angle between axis and lead</th><th>QRS in that lead</th></tr></thead><tbody>' +
+        '<tr><td>0° (pointing at the lead)</td><td>{{tallest positive}}</td></tr>' +
+        '<tr><td>acute, &lt; 90°</td><td>{{more positive than negative}}</td></tr>' +
+        '<tr><td>90° (perpendicular)</td><td>{{biphasic}}: R ≈ S</td></tr>' +
+        '<tr><td>obtuse, &gt; 90°</td><td>{{more negative than positive}}</td></tr>' +
+        '<tr><td>180° (pointing away)</td><td>{{deepest negative}}</td></tr>' +
+        '</tbody></table></div>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Axis</th><th>−60°</th><th>−30°</th><th>+30°</th><th>+60°</th><th>+120°</th></tr></thead><tbody>' +
+        '<tr><td>Equiphasic lead</td><td>aVR</td><td>{{II}}</td><td>{{III}}</td><td>{{aVL}}</td><td>aVR</td></tr>' +
+        '<tr><td>Tallest R</td><td>aVL</td><td>aVL</td><td>I ≈ II</td><td>II</td><td>{{III}}</td></tr></tbody></table></div>' +
+        '<p class="trap">“Highest amplitude” can mean the tallest R or the deepest S. For −60° the AC81 key accepted both aVL (tallest R) and lead III (deepest S).</p>' },
+    { t: 'q', id: 'A6', src: 't-RAT 2569', core: true,
+      q: 'Which ECG lead will be biphasic in a person whose QRS axis is +30 degrees?',
+      o: ['Lead II', 'Lead III', 'Lead aVL', 'Lead aVR'],
+      a: 1,
+      ex: 'The biphasic lead is 90° away from the axis: +30° + 90° = +120°, which is lead III.' },
+    { t: 'q', id: 'A7', src: 't-RAT 2568',
+      q: 'Which ECG lead is most likely to appear biphasic in a patient whose QRS axis is approximately -30 degrees?',
+      o: ['Lead I', 'Lead II', 'Lead aVL', 'Lead aVF'],
+      a: 1,
+      ex: '−30° + 90° = +60°, lead II. That is why lead II decides normal versus left axis deviation at the −30° border.' },
+    { t: 'q', id: 'A8', src: 'i-RAT 266-66', core: true,
+      q: 'Which EKG lead will be biphasic in a person whose cardiac axis is positive 60 degrees?',
+      o: ['Lead I', 'Lead II', 'Lead III', 'Lead aVL'],
+      a: 3,
+      ex: '+60° − 90° = −30°, which is aVL. Lead II (+60°) would show the tallest R.' },
+    { t: 'q', id: 'A9', src: 't-RAT 2569', core: true,
+      q: 'A ventricular depolarization wave, when traveling −60 degrees in the frontal plane, will cause a large negative deflection in which lead?',
+      o: ['aVR', 'aVL', 'Lead II', 'Lead III'],
+      a: 3,
+      ex: 'Lead III points to +120°, exactly opposite −60° (180° apart), so it records the largest negative deflection. aVR (−150°) is 90° away and biphasic; aVL (−30°) is positive.' },
+    { t: 'q', id: 'A10', src: 'AC80',
+      q: 'QRS axis is +120 degrees. Which leads show the highest amplitude of R?',
+      o: ['II', 'III', 'aVL', 'aVF', 'aVR'],
+      a: 1,
+      ex: 'Lead III sits at +120°, the same direction as the axis, so its R wave is the tallest.' },
+    { t: 'q', id: 'A11', src: 'AC81', core: true,
+      q: 'EKG shows the QRS axis is approximately -60 degrees. Which lead will show the highest amplitude?',
+      o: ['Lead aVL', 'Lead aVR', 'Lead II', 'Lead III', 'Lead aVF'],
+      a: [0, 3],
+      ex: 'aVL (−30°) is only 30° from −60°, so it has the tallest R. Lead III (+120°) is 180° away, so it has the deepest S. The AC81 short key highlights both.' },
+    { t: 'q', id: 'A12', src: 'AC77',
+      q: 'Acute angle with lead<br>What is the characteristic of P wave?',
+      o: ['Biphasic wave', 'Tallest positive wave', 'Tallest negative wave', 'Postive wave taller than negative wave', 'Negative wave taller than positive wave'],
+      a: 3,
+      ex: 'A vector less than 90° from a lead projects onto its positive half, so the wave is more positive than negative. Tallest positive needs the vector exactly along the lead (0°).',
+      flag: 'Garbled recall: it probably asked about the wave (QRS or P) in a lead that makes an acute angle with the vector. The principle is the same for any wave.' },
+    { t: 'q', id: 'A13', src: 'AC78',
+      q: 'Evaluated QRS axis and lead II axis create an obtuse angle. Which of the following correctly describes the characteristic of QRS waves in lead II?',
+      o: ['Highest positive wave', 'Highest negative wave', 'More positive than negative', 'More negative than positive', 'Biphasic'],
+      a: 3,
+      ex: 'An obtuse angle (90°–180°) projects onto the negative half of lead II, so its QRS is more negative than positive. Highest negative needs exactly 180°.' },
+
+    { t: 'c', id: 'A-C3', title: 'Reading the axis off a 12-lead: two methods', src: 'Peer – EKG p.2 (tutor notes) · TBL RATs · AC76–78',
+      html: '<div class="cols2"><div class="mini art"><h4>Shortcut: start from the flattest lead</h4><ol class="steps tight">' +
+        '<li>Look only at the six {{limb leads}} (frontal plane).</li>' +
+        '<li>Find the most {{biphasic}} one (R ≈ S).</li>' +
+        '<li>The axis is {{±90°}} from it: two candidate directions.</li>' +
+        '<li>Check the lead lying at one candidate: {{upright}} → the axis points there; negative → the other one.</li></ol></div>' +
+        '<div class="mini ven"><h4>Direct: the farthest pair</h4><ol class="steps tight">' +
+        '<li>Mark each limb lead + or −.</li>' +
+        '<li>Take the two + leads that lie {{farthest apart}}, and the two − leads.</li>' +
+        '<li>The axis is the {{midpoint}} of the + pair, give or take {{15°}}.</li></ol></div></div>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Worked: t-RAT 2569 Q11</th><th>Reading</th></tr></thead><tbody>' +
+        '<tr><td>Equiphasic limb lead</td><td>{{aVL}} (−30°)</td></tr>' +
+        '<tr><td>Two candidates</td><td>{{+60° or −120°}}</td></tr>' +
+        '<tr><td>Lead at that angle (II)</td><td>tall R → axis = {{plus 60°}}</td></tr></tbody></table></div>' +
+        '<p class="note">Check the answer against the quadrant (A-C1): lead I and aVF must agree with the angle you found.</p>' },
+    { t: 'q', id: 'A14', src: 'AC77',
+      q: 'ให้กราฟแปลผลได้ว่า ใน Lead I, II, III, VL, VF Positive wave ใหญ่กว่า Negative wave ส่วนใน Lead VR Positive wave เล็กกว่า Negative wave ถาม Axis<br><span class="muted">From the tracing: in leads I, II, III, aVL and aVF the positive wave is larger than the negative wave; in aVR the positive wave is smaller. What is the axis?</span>',
+      o: ['Normal axis', 'Left axis deviation', 'Right axis deviation', 'Extreme axis deviation'],
+      a: 0,
+      ex: 'Lead I and aVL positive keep the axis left of +60°; lead III positive keeps it below +30°. The axis is +30° to +60°, inside the normal range.' },
+    { t: 'q', id: 'A15', src: 't-RAT 2569', core: true,
+      q: 'According to this ECG, what is the calculated QRS axis?',
+      fig: CVS.fig('t69-axis60', 't-RAT 2569 Q11: 12-lead (pen marks removed).', 'ekg', 8),
+      o: ['0 degrees', '30 degrees', '60 degrees', '90 degrees'],
+      a: 2,
+      ex: 'aVL is the most biphasic limb lead, so the axis is +60° or −120°. Lead II (+60°) is tall and positive, so the axis is +60°.' },
+    { t: 'q', id: 'A16', src: 'AC78',
+      q: 'Please interpret the axis of this ECG',
+      fig: CVS.fig('ac78-axis', 'AC78 Q23: 12-lead.', 'ac75', 20),
+      o: ['Normal axis', 'Right axis deviation', 'Left axis deviation', 'Extreme axis deviation'],
+      a: 0,
+      ex: 'Leads I, II, III and aVF are upright, aVR is negative and aVL is small and near-biphasic: the axis is about +60°, normal.' },
+    { t: 'q', id: 'A17', src: 'AC76',
+      q: 'From the EKG below, what is the most likely axis deviation?',
+      fig: CVS.fig('ac76-axis', 'AC76 Q9: 12-lead at 25 mm/s.', 'ac75', 18),
+      o: ['Normal axis', 'Right axis deviation', 'Left axis deviation', 'Extreme axis deviation'],
+      a: 1,
+      ex: 'Lead I is net negative (small r, deeper S) while aVF and lead III are upright, and aVL is clearly negative: the axis is beyond +90°, right axis deviation.',
+      flag: 'No key, and the copy is low resolution. Lead I looks net negative; if the original shows it equiphasic, the axis is about +90° (border of normal).' },
+    { t: 'q', id: 'A18', src: 't-RAT 2568',
+      q: 'A 50-year-old man presents to his primary care physician for a routine medical check-up. His ECG, recorded at a paper speed of 25 mm/s, is shown below. What is the QRS axis?',
+      fig: CVS.fig('t68-axisnormal', 't-RAT 2568 Q11: 12-lead at 25 mm/s.', 'ekg', 39),
+      o: ['Normal axis', 'Right axis deviation', 'Left axis deviation', 'Extreme axis deviation'],
+      a: 0,
+      ex: 'Leads I, II, III and aVF are positive; aVR and aVL are negative. Lead I and aVF both positive put the axis between 0° and +90°: normal.' },
+    { t: 'q', id: 'A19', src: 't-RAT 2568', core: true,
+      q: 'A 35-year-old man presents to the Emergency Department with progressive dyspnea. A 12-lead ECG is obtained, revealing the findings shown. What is the QRS axis?',
+      fig: CVS.fig('t68-dyspnea', 't-RAT 2568 Q12–13: 12-lead, paper speed 30 mm/s.', 'ekg', 40),
+      o: ['-30 to 90 degrees', '-30 to -90 degrees', '90 to 180 degrees', '-90 to 180 degrees'],
+      a: 1,
+      ex: 'Lead I and aVL are positive; leads II, III and aVF are deeply negative. Lead I + with aVF − and lead II − means left axis deviation, −30° to −90°.' },
+    { t: 'q', id: 'A20', src: 'i-RAT 266-66', core: true,
+      q: 'According to this EKG, what is the calculated QRS axis?',
+      fig: CVS.fig('ir-axis-lad', 'i-RAT Q16: 12-lead.', 'ekg', 48),
+      o: ['(-90) – (-120) degrees', '(-30) – (-90) degrees', '(30) – (90) degrees', '(90) – (120) degrees'],
+      a: 1,
+      ex: 'Lead I, aVL and aVR are positive; II, III and aVF are negative. The axis lies up and to the left, in the −30° to −90° band.' },
+    { t: 'q', id: 'A21', src: 'i-RAT 266-66',
+      q: 'According to this EKG, what is the interpretation of the QRS axis?',
+      fig: CVS.fig('ir-axis-normal', 'i-RAT Q17: 12-lead.', 'ekg', 49),
+      o: ['Normal axis', 'Left axis deviation', 'Right axis deviation', 'Extreme axis deviation'],
+      a: 0,
+      ex: 'I, II, III, aVL and aVF are positive and only aVR is negative: the axis is about +30° to +60°, normal.' },
+
+    { t: 'c', id: 'A-C4', title: 'Rate, axis and QRS width in one item', src: 'i-RAT 266-66 key · t-RAT 2569',
+      html: '<p>Combined items test three separate readings. Do them one at a time, then pick the option that matches all three.</p>' +
+        '<div class="flow"><div class="fbox start"><b>1 · Rate</b><br>read the {{paper speed}} first; 1500 ÷ small boxes, then correct</div><div class="farrow">→</div>' +
+        '<div class="fbox art"><b>2 · Axis</b><br>lead I and aVF, then {{lead II}} if I + / aVF −</div><div class="farrow">→</div>' +
+        '<div class="fbox ven"><b>3 · QRS width</b><br>normal ≤ 100–110 ms, i.e. under {{3 small boxes}}</div></div>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Item</th><th>Rate</th><th>Axis</th><th>Answer</th></tr></thead><tbody>' +
+        '<tr><td>i-RAT Q18 · 25 mm/s</td><td>RR 11 small boxes → {{136 bpm}}</td><td>I +, II −, aVF −</td><td>{{tachycardia}} with LAD</td></tr>' +
+        '<tr><td>i-RAT Q19</td><td>—</td><td>I −, aVF +</td><td>RAD with {{wide QRS}}</td></tr>' +
+        '<tr><td>t-RAT 2569 Q13 · 15 mm/s</td><td>RR ≈ 20 small boxes → {{45 bpm}}</td><td>I +, II −, aVF −</td><td>{{bradycardia}} with LAD</td></tr>' +
+        '</tbody></table></div>' },
+    { t: 'q', id: 'A22', src: 'i-RAT 266-66', core: true,
+      q: 'In this EKG, which runs at a speed of 25 mm/s, which of the following is true?',
+      fig: CVS.fig('ir-tachy-lad', 'i-RAT Q18: 12-lead at 25 mm/s.', 'ekg', 49),
+      o: ['Normal heart rate with left axis deviation', 'Tachycardia with left axis deviation', 'Normal heart rate with right axis deviation', 'Tachycardia with right axis deviation'],
+      a: 1,
+      ex: 'RR ≈ 11 small boxes: 1500 ÷ 11 ≈ 136 bpm, tachycardia. Lead I and aVL positive with II, III and aVF negative: left axis deviation.' },
+    { t: 'q', id: 'A23', src: 'i-RAT 266-66',
+      q: 'According to this ECG, which of the following is true?',
+      fig: CVS.fig('ir-rad-wide', 'i-RAT Q19: 12-lead at 25 mm/s.', 'ekg', 50),
+      o: ['Left axis deviation with wide QRS complex', 'Right axis deviation with wide QRS complex', 'Left axis deviation with normal QRS complex', 'Right axis deviation with normal QRS complex'],
+      a: 1,
+      ex: 'Lead I and aVL are negative while II, III and aVF are positive: right axis deviation. The QRS spans about 3 small boxes or more, so it is wide.' },
+    { t: 'q', id: 'A24', src: 't-RAT 2569', core: true,
+      q: 'A 32-year-old man presents to his primary physician for a routine medical check-up. His ECG, which runs at a speed of 15 mm/s, is shown below. What are his heart rate and QRS axis?',
+      fig: CVS.fig('t69-brady', 't-RAT 2569 Q13: 12-lead, paper speed 15 mm/s (pen marks removed).', 'ekg', 9),
+      o: ['Normal heart rate and normal axis', 'Bradycardia and right axis deviation', 'Bradycardia and left axis deviation', 'Tachycardia and superior axis deviation'],
+      a: 2,
+      ex: 'RR ≈ 20 small boxes: 1500 ÷ 20 = 75 at 25 mm/s, × 15/25 = 45 bpm, bradycardia. Lead I and aVL positive, II, III and aVF negative: left axis deviation.' }
+  ]
+});
+
+/* Section E: ECG lab, recording and reading a 12-lead.
+   Sources: Lab Direction - ECG p.1-3, Peer - EKG p.1-2 (tutor notes), ECG TBL t-RAT 2569 / 2568, i-RAT 266-66 (key),
+   AC75 (heart block lab items), AC76-81, AC77 (dog lab item). Past-paper stems and options keep their original wording and order. */
+CVS.add({
+  id: 'E', short: 'Lab', title: 'ECG lab: record and read a 12-lead', kind: 'Lab',
+  blurb: 'Electrode positions for the 12 leads, the criteria for sinus rhythm, the rhythms that are not sinus, and the lab sheet’s order for reading a whole tracing.',
+  items: [
+    { t: 'c', id: 'E-C1', title: 'Recording a 12-lead in the lab', src: 'Lab Direction p.2–3 (Fig 10-2)',
+      html: '<div class="two"><div class="stack"><p><b>10 electrodes → 12 leads.</b> Four limb electrodes (RA, LA, LL, and RL as ground) give I, II, III, aVR, aVL, aVF. Six chest electrodes give V1–V6.</p>' +
+        '<div class="tblwrap"><table class="tbl compact"><thead><tr><th>Lead</th><th>Electrode position</th></tr></thead><tbody>' +
+        '<tr><td>V1</td><td>{{4th ICS, right}} sternal border</td></tr>' +
+        '<tr><td>V2</td><td>{{4th ICS, left}} sternal border</td></tr>' +
+        '<tr><td>V3</td><td>{{midway between V2 and V4}}</td></tr>' +
+        '<tr><td>V4</td><td>5th ICS, {{midclavicular line}}</td></tr>' +
+        '<tr><td>V5</td><td>{{anterior axillary line}}, level with V4</td></tr>' +
+        '<tr><td>V6</td><td>{{mid-axillary line}}, level with V4 and V5</td></tr></tbody></table></div>' +
+        '<p class="note">The chest leads see the heart in the {{horizontal plane}}; the six limb leads see the frontal plane.</p></div>' +
+        '<div class="stack">' + CVS.fig('lab-electrodes', 'Fig 10-2: limb electrodes RA, LA, RL, LL and chest electrodes V1–V6 with the mid-clavicular, anterior and mid-axillary lines.', 'lab', 2) +
+        CVS.fig('lab-12leads', 'Fig 10-2 (lower part): the normal complex in each of the 12 leads; note the negative complex in aVR.', 'lab', 2) + '</div></div>' +
+        '<p class="trap">V1 and V2 sit in the {{4th}} intercostal space; V4–V6 run outward along the 5th-space level, so V5 is not on the same vertical line as V4.</p>' },
+    { t: 'q', id: 'E1', src: 'AC76',
+      q: 'Which of the following is the correct position of lead V2 placement in 12-lead EKG?',
+      o: ['4th left intercostal space - along margin of the sternum', '4th right intercostal space - along margin of the sternum', '5th right intercostal space - mid-clavicular line', '5th right intercostal space - mid-axillary line', '5th right intercostal space - anterior axillary line'],
+      a: 0,
+      ex: 'V2 sits in the 4th intercostal space at the left sternal border. The 4th right space is V1.' },
+    { t: 'q', id: 'E2', src: 'AC77',
+      q: 'Which of the following is the correct position of lead V4 placement in 12-lead EKG?',
+      o: ['4th left intercostal space - along margin of the sternum', '4th right intercostal space - along margin of the sternum', '5th right intercostal space - mid-clavicular line', '5th right intercostal space - mid-axillary line', '5th right intercostal space - anterior axillary line'],
+      a: 2,
+      ex: 'V4 is in the 5th intercostal space on the (left) midclavicular line. Mid-axillary is V6; anterior axillary is V5.',
+      flag: 'The recalled options repeat the V2 item and say “right” for every 5th-space choice. V4 is on the left; pick the 5th space + midclavicular line.' },
+    { t: 'q', id: 'E3', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following is the correct positioning of the EKG electrode for lead V4?',
+      o: ['At the 5th intercostal space to the left of the sternum', 'At the 5th intercostal space at the midclavicular line', 'At the 5th intercostal space at the anterior axillary line', 'At the 5th intercostal space at the midaxillary line'],
+      a: 1,
+      ex: 'V4 = 5th intercostal space, midclavicular line. Then V5 is the anterior axillary line and V6 the mid-axillary line at the same level.' },
+    { t: 'q', id: 'E4', src: 'AC78',
+      q: 'What is the position of lead V5?',
+      o: ['4th ICS and parasternal border', '5th ICS and parasternal border', '4th ICS and midclavicular line', '5th ICS and midclavicular line', '5th ICS and anterior axillary line'],
+      a: 4,
+      ex: 'V5 is on the anterior axillary line at the level of V4 (5th space). 5th space midclavicular is V4.' },
+    { t: 'q', id: 'E5', src: 't-RAT 2568', core: true,
+      q: 'A 62-year-old man presents to the emergency department with chest pain radiating to his left arm. An ECG is performed. During lead placement, the medical student assisting asks about the correct anatomical location for placing lead V5. Where should lead V5 be placed?',
+      o: ['On the midaxillary line in the 5th intercostal space', 'On the midclavicular line in the 5th intercostal space', 'On the anterior axillary line in the 5th intercostal space', 'On the left side of the sternum in the 4th intercostal space'],
+      a: 2,
+      ex: 'V5 = anterior axillary line at the V4 level. Midaxillary is V6, midclavicular is V4, and the 4th space beside the sternum is V2.' },
+
+    { t: 'c', id: 'E-C2', title: 'What makes a rhythm sinus', src: 'Peer – EKG p.1–2 (tutor notes) · TBL RATs · AC75 · AC81',
+      html: '<div class="tblwrap"><table class="tbl"><thead><tr><th>Criterion</th><th>What you check on the tracing</th></tr></thead><tbody>' +
+        '<tr><td>Rate</td><td>{{60–100}} bpm</td></tr>' +
+        '<tr><td>Origin</td><td>the impulse comes from the {{SA node}}</td></tr>' +
+        '<tr><td>Conduction</td><td>every P is followed by a QRS, {{1 : 1}}</td></tr>' +
+        '<tr><td>P shape</td><td>{{monomorphic}}: the same shape beat after beat within one lead</td></tr>' +
+        '<tr><td>P direction</td><td>upright in {{lead II}}, inverted in {{aVR}}</td></tr></tbody></table></div>' +
+        '<p class="trap">“Uniform P morphology in every lead” is <b>not</b> a criterion: P waves differ {{from lead to lead}}; they only have to match within the same lead.</p>' +
+        '<p class="trap">“Positive P waves in all leads” is wrong too, because the P is {{negative in aVR}}.</p>' },
+    { t: 'q', id: 'E6', src: 'AC75',
+      q: 'Which of the following is the character of sinus rhythm?',
+      o: ['Normal 100-120 bpm', 'Negative P wave aVL', 'Each P wave followed by QRS complex', 'Originated from sinus'],
+      a: [2, 3],
+      ex: 'Sinus rhythm starts in the SA node and every P is followed by a QRS. The normal rate is 60–100 bpm, and the P is negative in aVR, not aVL.',
+      flag: 'No key, and two options are true as recalled: “originated from sinus” is the definition and “each P followed by QRS” is the ECG criterion. If the real paper wanted one ECG feature, it is the P–QRS option.' },
+    { t: 'q', id: 'E7', src: 't-RAT 2569', core: true,
+      q: 'Which of the following statements is correct regarding the normal sinus rhythm?',
+      o: ['Positive P waves in all leads', 'Monomorphic P waves in all leads', 'QRS complexes preceded by P waves in all leads', 'Normal rate between 50-100 bpm'],
+      a: 2,
+      ex: 'Every QRS is preceded by its P wave. P is negative in aVR, P waves only need to be monomorphic within each lead, and the normal rate is 60–100 bpm.' },
+    { t: 'q', id: 'E8', src: 't-RAT 2568',
+      q: 'Which of the following ECG findings would most strongly suggest that the rhythm is normal sinus origin?',
+      o: ['QRS rate between 40–60 bpm', 'inverted P waves in lead II', 'P wave followed by QRS in 1:1 ratio', 'Positive P wave in lead aVR'],
+      a: 2,
+      ex: 'A P before every QRS in a 1:1 ratio shows the atria drive the ventricles. 40–60 bpm is a junctional escape rate; inverted P in II or upright P in aVR means the impulse starts away from the SA node.' },
+    { t: 'q', id: 'E9', src: 'i-RAT 266-66', core: true,
+      q: 'Which of the following is NOT required to determine a normal sinus rhythm?',
+      o: ['A heart rate of 60-100 bpm', 'Primary pacemaker at the sinoatrial node', 'P wave precedes every QRS complex', 'Uniform P wave morphology in every lead'],
+      a: 3,
+      ex: 'P waves look different in different leads; they only need the same shape within one lead. The other three are sinus criteria.' },
+    { t: 'q', id: 'E10', src: 'AC81', core: true,
+      q: 'From the EKG, which of the following is correct? (Paper speed 25 mm/s)<br><span class="muted">(ภาพในข้อสอบมี 13 QRS complexes · the exam image had 13 QRS complexes)</span>',
+      fig: CVS.fig('ac81-ecg', 'AC81 Q4: 12-lead at 25 mm/s.', 'ac81', 23),
+      o: ['Bradycardia', 'Sinus rhythm', 'Prolonged PR interval', 'Abnormal ST segment elevation', 'Normal QRS axis'],
+      a: 1,
+      ex: 'AC81 short key: sinus rhythm. Each QRS has a P before it, upright in II. 13 QRS in the 10-second strip ≈ 78 bpm, so not bradycardia; PR and ST are normal; lead I is negative with aVF positive, so the axis is not normal.' },
+
+    { t: 'c', id: 'E-C3', title: 'When the rhythm is not sinus', src: 'AC75 (heart block lab) · AC77 (dog lab) · i-RAT 266-66',
+      html: '<div class="tblwrap"><table class="tbl"><thead><tr><th>Rhythm</th><th>ECG pattern</th></tr></thead><tbody>' +
+        '<tr><td>1st-degree AV block</td><td>PR {{&gt; 200 ms}}; every P still conducted</td></tr>' +
+        '<tr><td>2nd-degree AV block</td><td>some P waves are {{not followed by a QRS}}</td></tr>' +
+        '<tr><td>3rd-degree (complete) AV block</td><td>P waves and QRS complexes {{dissociated}}: atria at the sinus rate, ventricles at a slower escape rate (e.g. 70 vs 40)</td></tr>' +
+        '<tr><td>SA node failure</td><td>the next pacemaker, the {{AV node}} (junction), takes over: slow, narrow QRS, P absent or abnormal</td></tr>' +
+        '<tr><td>Atrial fibrillation</td><td>no P waves, RR {{irregularly irregular}}, {{QRS still narrow}}</td></tr></tbody></table></div>' +
+        '<p class="note">Narrow QRS = the ventricles are still activated through the {{His–Purkinje system}}, so the problem sits above the ventricles.</p>' +
+        '<p class="trap">Pulse deficit (apex rate &gt; radial pulse) is real in AF, but it is found by {{feeling the pulse}}, not on the ECG.</p>' },
+    { t: 'q', id: 'E11', src: 'AC75', core: true,
+      q: 'An 80-year-old woman presents with syncope. The 12 EKG lead shows 70 bpm of atrial rate and 40bpm of ventricular rate. There is also no association between sinus p wave and QRS complex. Which of the following is most likely conduction abnormality?',
+      o: ['1st degree av block', '2nd degree av block', '3rd degree av block', 'SA exit block', 'Right bundle branch block'],
+      a: 2,
+      ex: 'No relationship between P and QRS, with the atria faster than the ventricles, is complete (3rd-degree) AV block: an escape pacemaker below the block drives the ventricles at 40 bpm.' },
+    { t: 'q', id: 'E12', src: 'AC75',
+      q: 'A 70-year-old man presents with dyspnea on... An EKG shows 50 bpm with regular narrow Q wave. However, P wave is abnormally seen SA node abnormality is diagnosed. Which of the following structure is a pacemaker cell in this patient?',
+      o: ['AV node', 'Bundle branch', 'Purkinje fiber', 'Atrium', 'Ventricle'],
+      a: 0,
+      ex: 'With the SA node failing, the next fastest pacemaker, the AV node (junction), takes over. A narrow QRS shows the impulse starts above the ventricles and uses the normal His–Purkinje route.',
+      flag: 'Recall wording: “narrow Q wave” means a narrow QRS complex.' },
+    { t: 'q', id: 'E13', src: 'AC77',
+      q: 'What is an EKG finding during atrial defibrillation?',
+      o: ['Regular rhythm', 'Pulse deficit', 'Tall P wave', 'Narrow QRS complexes', 'Slow ventricular rate'],
+      a: 3,
+      ex: 'In atrial fibrillation the ventricles are still activated through the normal conduction system, so the QRS stays narrow. The rhythm is irregular, there are no P waves, and the ventricular rate is usually fast.',
+      flag: '“Atrial defibrillation” in the recall means atrial fibrillation. Pulse deficit is a bedside finding in AF, not an ECG finding.' },
+
+    { t: 'c', id: 'E-C4', title: 'The lab sheet: read every tracing in this order', src: 'Lab Direction p.3–4 (items 2.2.2–2.2.9)',
+      html: '<div class="two"><ol class="steps">' +
+        '<li><b>Rate</b> (per minute) and whether it is {{regular}}.</li>' +
+        '<li><b>P wave</b>: normal, {{notched}}, biphasic or tall-peaked.</li>' +
+        '<li><b>QRS height</b> in V1, V5 and V6 (mm), normal or not.</li>' +
+        '<li><b>QRS axis</b> in degrees: normal is {{−30° to +90°}}.</li>' +
+        '<li><b>T wave</b>: normal, {{inverted}} or tent-shaped.</li>' +
+        '<li><b>ST segment</b>: on the isoelectric line, {{elevated}} or depressed.</li>' +
+        '<li><b>PR interval</b> in seconds: normal {{0.12–0.20 s}}.</li>' +
+        '<li><b>QT interval</b> in seconds, judged against the heart rate.</li></ol>' +
+        CVS.fig('lab-readout', 'Lab sheet items 2.2.3–2.2.7: the P-wave, T-wave and ST-segment shapes to tick.', 'lab', 3) + '</div>' +
+        '<p class="trap">Combined “which interpretation is wrong?” items: check each row of the table against the tracing, one by one; usually {{two}} rows are wrong.</p>' },
+    { t: 'q', id: 'E14', src: 'AC80', core: true,
+      q: 'Interpret this ECG (รูปจากอินเทอร์เน็ตที่ใกล้เคียง)<br><span class="muted">(The picture is a similar ECG found online, not the exam image.)</span>',
+      fig: CVS.fig('ac80-ecg', 'AC80 Q1: stand-in 12-lead found online by the AC80 writers.', 'ac80', 9),
+      o: ['Tachycardia', 'ST elevation', 'Right axis deviation', 'Prolonged PR interval', 'Non-sinus rhythm'],
+      a: 2,
+      ex: 'Lead I is mostly negative (deep S), aVF and lead III are upright and lead II is nearly flat: right axis deviation. The RR is about 4 big boxes (≈ 75–80 bpm), so not tachycardia.',
+      flag: 'No key, and the AC80 writers used a stand-in image. On this image right axis deviation is the clear finding; the real exam tracing may have differed.' },
+    { t: 'q', id: 'E15', src: 't-RAT 2569', core: true,
+      q: 'A 2nd-year medical student is working on an ECG assignment and has interpreted the tracing as shown in the table. Which of the following interpreted parameters is INCORRECT?',
+      fig: CVS.fig('t69-table', 't-RAT 2569 Q14: tracing at 25 mm/s and the student’s interpretation table (pen marks removed).', 'ekg', 10),
+      o: ['Rate and QRS axis', 'Rhythm and P wave', 'QRS axis and QRS complex', 'PR interval and ST segment'],
+      a: 2,
+      ex: 'Leads I, II, III and aVF are all upright, so the axis is normal, not left axis deviation. The QRS is under 3 small boxes, so it is narrow, not wide. Rate 75 bpm (RR 4 big boxes), sinus rhythm, PR 160 ms and an isoelectric ST are correct.' },
+    { t: 'open', id: 'E16', src: 'Lab sheet', core: false,
+      q: 'Lab sheet 2.2: you have printed your partner’s 12-lead. Read it in the order of the sheet and say what a normal result is for each item.',
+      ans: 'Rate 60–100 per minute, regular. P wave upright in II, smooth (no notch, not biphasic, not tall-peaked). QRS height in V1, V5 and V6 within normal for your partner (V1 mostly negative, V5–V6 mostly positive). Axis −30° to +90°. T wave upright (not inverted, not tent-shaped) except aVR. ST segment on the isoelectric line (within ±1 mm). PR 0.12–0.20 s. QT judged against the rate (QTc 330–440 ms).' }
+  ]
+});
+
+/* Thai layers shared by the student deck, the tutor deck and print.js.
+   THAI_Q[id]: 1–3 answer bullets per question (why the answer is right, why the traps are wrong).
+   THAI_CONCEPT[id]: 1–3 key points per concept card. They sit above the cloze card, so they state principles without spelling out the blanks.
+   THAI_SEC[id]: {big, traps} for each section card. */
+window.THAI_SEC = {
+  "C": {
+    "big": "ECG คือการวัด <b>ความต่างศักย์บนผิวหนัง</b> ระหว่าง electrode สองจุด ซึ่งเกิดเฉพาะตอนที่คลื่น depolarization หรือ repolarization กำลังวิ่งผ่านกล้ามเนื้อหัวใจ ถ้าเข้าใจว่า electrode “เห็น” dipole ยังไง ก็จะอธิบายได้ทุกคลื่น",
+    "traps": [
+      "ผิวนอกของเซลล์ที่ depolarize แล้วเป็น <b>ลบ</b> ส่วนเซลล์ที่ยังพักเป็น <b>บวก</b> (ข้อที่สลับเครื่องหมายคือตัวหลอก)",
+      "Atrial repolarization ไม่หายไปไหน แค่ <b>ถูก QRS บัง</b> เพราะเกิดพร้อมกัน",
+      "T wave ปกติ <b>ไปทางเดียวกับ QRS</b> (concordant) เพราะ endocardium มี AP ยาวกว่า epicardium",
+      "Phase 4 = <b>TP segment</b> ไม่ใช่ T wave; ST segment = plateau (phase 2)",
+      "T wave เกิดจาก <b>K⁺ efflux ของ ventricle</b> ไม่ใช่ของ atrium"
+    ]
+  },
+  "W": {
+    "big": "อ่าน ECG ให้แยก <b>wave · segment · interval</b> ให้ออก แล้วจำค่าปกติไม่กี่ตัว (PR, QRS, QTc, ST) จากนั้นผูกแต่ละส่วนกับเหตุการณ์ทางกลของ cardiac cycle และผลของ autonomic",
+    "traps": [
+      "PR <b>interval</b> รวม P wave ด้วย ส่วน PR <b>segment</b> คือเวลาที่ไฟค้างอยู่ใน AV node อย่างเดียว",
+      "P wave <b>ติดลบใน aVR เป็นเรื่องปกติ</b> แต่ P ติดลบใน lead II ผิดปกติ",
+      "RR 500 ms = 120 bpm (tachycardia) ส่วน RR 800 ms = 75 bpm (ปกติ) ต้องแปลงเป็น rate ก่อนตัดสิน",
+      "ST elevation ไม่ใช่ผลของยา autonomic แต่บอก <b>myocardial injury</b>",
+      "หลัง T wave = isovolumetric relaxation; เลือดผ่าน mitral มากสุดช่วง rapid filling ต้น TP segment"
+    ]
+  },
+  "L": {
+    "big": "Limb lead 6 ตัวมาจาก electrode แค่ 3 จุด (RA, LA, LL; RL เป็น ground) จำขั้วของ I, II, III และมุมของทั้ง 6 lead บน hexaxial wheel ให้ได้ แล้วโจทย์สลับสายจะตอบได้ด้วยเหตุผลเดียว",
+    "traps": [
+      "Lead II: <b>+ ที่ขาซ้าย, − ที่แขนขวา</b> (ถามเรียง positive แล้ว negative ระวังสลับลำดับ)",
+      "Lead III ใช้ <b>แขนซ้าย (−) กับขาซ้าย (+)</b>",
+      "คู่ตั้งฉาก: <b>I–aVF, II–aVL, III–aVR</b>",
+      "สลับสายแขน → aVF ไม่เปลี่ยน; สลับ RA–LL → aVL ไม่เปลี่ยน; สลับ LA–LL → aVR ไม่เปลี่ยน",
+      "สลับ LL กับ RL แทบ <b>ไม่เปลี่ยนอะไร</b> เพราะ RL เป็นแค่ ground"
+    ]
+  },
+  "R": {
+    "big": "นับช่องระหว่าง R สองตัวแล้วใช้ <b>1500 ÷ ช่องเล็ก</b> (ที่ 25 mm/s) แต่ต้อง <b>ดูความเร็วกระดาษก่อนทุกครั้ง</b> และถ้าจังหวะไม่สม่ำเสมอให้นับ QRS ใน strip แทน",
+    "traps": [
+      "50 mm/s → คลื่นถูกยืดกว้างเป็น 2 เท่า ต้อง <b>คูณ 2</b> (i-RAT: 1500/18 = 83 ผิด, ที่ถูกคือ 168)",
+      "12.5 mm/s → ต้อง <b>คูณ 0.5</b> (RR 15 mm → 50 bpm ไม่ใช่ 100)",
+      "สูตรรวม: HR = 1500 ÷ ช่องเล็ก × (speed ÷ 25)",
+      "AF (RR ไม่สม่ำเสมอ) → นับ QRS ใน rhythm strip 10 วินาที × 6"
+    ]
+  },
+  "A": {
+    "big": "Axis ปกติ −30° ถึง +90° ดูเร็วด้วย <b>lead I + aVF</b> แล้วใช้ <b>lead II</b> ตัดสินช่วง 0 ถึง −30° ส่วนการคำนวณองศาใช้หลักว่า lead ที่ <b>biphasic ตั้งฉาก</b> กับ axis และ lead ที่ขนานจะสูงสุด",
+    "traps": [
+      "I บวก + aVF ลบ <b>ยังไม่ใช่ LAD เสมอ</b> ต้องดู lead II ด้วย (II ลบ = LAD)",
+      "Biphasic lead = ห่างจาก axis 90° เช่น axis +60° → aVL, −30° → II, +30° → III",
+      "Lead ที่อยู่ <b>ตรงข้าม</b> axis (180°) ให้ deflection ลบลึกที่สุด",
+      "มุมแหลม (&lt;90°) = บวกมากกว่าลบ, มุมป้าน (&gt;90°) = ลบมากกว่าบวก",
+      "ข้อรวม rate + axis ต้องอ่าน paper speed ก่อนเสมอ"
+    ]
+  },
+  "E": {
+    "big": "แล็บ ECG คือการติด electrode 10 จุดให้ได้ 12 leads แล้วอ่านผลตามลำดับในใบแล็บ: rate → P → QRS → axis → T → ST → PR → QT โดยเริ่มจากถามว่าเป็น sinus rhythm หรือเปล่า",
+    "traps": [
+      "V1–V2 อยู่ <b>ICS 4</b> (ขวา/ซ้าย ข้าง sternum) ส่วน V4 อยู่ <b>ICS 5 midclavicular</b>, V5 anterior axillary, V6 midaxillary",
+      "Sinus rhythm ไม่ต้องการ P หน้าตาเหมือนกัน <b>ทุก lead</b> แค่เหมือนกันใน lead เดียวกัน",
+      "P <b>ลบใน aVR</b> คือปกติ ส่วน “P บวกทุก lead” ผิด",
+      "Complete AV block: P กับ QRS <b>ไม่สัมพันธ์กัน</b>, atrial rate เร็วกว่า ventricular rate",
+      "AF บน ECG: QRS <b>แคบ</b>, RR ไม่สม่ำเสมอ, ไม่มี P (pulse deficit ตรวจจากชีพจร ไม่ใช่ ECG)"
+    ]
+  }
+};
+
+window.THAI_CONCEPT = {
+  "C-C1": [
+    "ECG เห็นคลื่นไฟฟ้า <b>เฉพาะตอนที่มันกำลังวิ่ง</b> ผ่านกล้ามเนื้อหัวใจ",
+    "ทิศของคลื่นเทียบกับขั้วบวก + ชนิดของคลื่น (depol/repol) เป็นตัวกำหนดว่า deflection ขึ้นหรือลง"
+  ],
+  "C-C2": [
+    "แต่ละคลื่นบน ECG ผูกกับ <b>เหตุการณ์ไฟฟ้าของห้องหัวใจหนึ่งห้อง</b> และกระแสไอออนหนึ่งชนิด",
+    "เหตุการณ์ที่ <b>เล็กเกินไป</b> หรือ <b>เกิดพร้อมคลื่นใหญ่</b> จะไม่เห็นเป็นคลื่นของตัวเอง"
+  ],
+  "C-C3": [
+    "ลำดับ depolarization กับลำดับ repolarization ของผนัง ventricle <b>กลับทิศกัน</b>",
+    "เมื่อทั้งทิศและเครื่องหมายกลับพร้อมกัน ผลบน ECG จึงหักล้างกันจนคลื่นชี้ทางเดียวกัน"
+  ],
+  "C-C4": [
+    "แต่ละ phase ของ ventricular action potential มี <b>ตำแหน่งของตัวเองบน ECG</b>",
+    "ช่วงที่ทุกเซลล์อยู่ในสถานะเดียวกัน (ไม่มีความต่างศักย์) จะเป็น <b>เส้นราบ</b>",
+    "Refractory period ไล่ตามรูปร่าง AP: ช่วงต้นห้ามกระตุ้นเด็ดขาด ช่วงท้ายกระตุ้นได้ถ้าแรงพอ"
+  ],
+  "W-C1": [
+    "แยกคำสามคำให้ออก: <b>wave, segment, interval</b> แล้วจะอ่านทุกโจทย์ได้",
+    "ช่วงราบแต่ละช่วงบอกว่าไฟอยู่ตรงไหนของระบบนำไฟฟ้าในขณะนั้น"
+  ],
+  "W-C2": [
+    "Interval แต่ละตัวคือ <b>เวลาการนำไฟฟ้า</b> ของส่วนหนึ่งในหัวใจ ถ้าสั้นหรือยาวผิดปกติจะชี้ตำแหน่งปัญหา",
+    "QT ขึ้นกับ heart rate จึงต้องปรับเป็น QTc ก่อนตัดสิน"
+  ],
+  "W-C3": [
+    "ตัดสินปกติ/ผิดปกติจาก <b>ทิศของคลื่น</b> (lead ไหนควรบวก/ลบ) และ <b>ค่าตัวเลข</b> (เวลา, ความสูง)",
+    "ค่า RR ต้องแปลงเป็น heart rate ก่อนเสมอ"
+  ],
+  "W-C4": [
+    "เหตุการณ์ไฟฟ้ากับเหตุการณ์ทางกลเกิด <b>ตามลำดับที่แน่นอน</b> ในทุกจังหวะ",
+    "จับคู่ P, QRS, T กับ valve ที่เปิด/ปิดและช่วงของ cardiac cycle"
+  ],
+  "W-C5": [
+    "Autonomic ปรับ <b>SA node กับ AV node</b> จึงเปลี่ยนเวลาที่เกี่ยวกับ rate และ AV conduction",
+    "การนำไฟฟ้าภายใน ventricle ไม่ได้ถูกคุมด้วย autonomic"
+  ],
+  "L-C1": [
+    "Bipolar limb lead แต่ละตัวใช้ electrode <b>สองแขนขา</b> หนึ่งเป็นบวก อีกหนึ่งเป็นลบ",
+    "ทิศของ lead ชี้จากขั้วลบไปขั้วบวก"
+  ],
+  "L-C2": [
+    "Augmented lead ใช้แขนขาเดียวเป็นขั้วบวกเทียบกับค่าเฉลี่ยของอีกสองข้าง",
+    "รวม 6 lead บนวงกลมเดียวจะห่างกันทุก 30° และแต่ละ lead มีคู่ที่ตั้งฉากกับมัน"
+  ],
+  "L-C3": [
+    "การสลับสายแต่ละคู่จะทิ้ง <b>lead ไว้หนึ่งตัวที่ยังถูก</b> หาให้เจอว่าตัวไหน",
+    "สลับสายแขนขาเป็นสาเหตุที่พบบ่อยของ ECG “แปลก” ที่ไม่ใช่โรค"
+  ],
+  "R-C1": [
+    "กระดาษ ECG มาตรฐานกำหนดทั้ง <b>ความเร็ว</b> (แกนเวลา) และ <b>gain</b> (แกนความสูง)",
+    "Rate คำนวณจากจำนวนช่องระหว่าง R สองตัว ช่องยิ่งมาก rate ยิ่งช้า"
+  ],
+  "R-C2": [
+    "สูตร 1500 ใช้ได้เฉพาะ <b>ความเร็วมาตรฐาน</b> ถ้าความเร็วเปลี่ยนต้องปรับสัดส่วนตาม",
+    "ความเร็วกระดาษที่ต่างไปทำให้ rate ที่อ่านได้ <b>คลาดไปตามสัดส่วน</b>"
+  ],
+  "R-C3": [
+    "ถ้า RR ไม่เท่ากัน การวัด RR ช่วงเดียวจะได้ rate ไม่แน่นอน",
+    "ให้นับจำนวน QRS ในช่วงเวลาที่รู้ความยาวแน่นอนแล้วคูณให้เป็นต่อนาที"
+  ],
+  "A-C1": [
+    "Axis แบ่งเป็น 4 โซนตามมุม และตัดสินคร่าวๆ ได้จาก <b>สอง lead ที่ตั้งฉากกัน</b>",
+    "ช่วงก้ำกึ่งระหว่างปกติกับเบนซ้ายต้องใช้ lead ตัวที่สามช่วยตัดสิน"
+  ],
+  "A-C2": [
+    "ขนาดและทิศของ QRS ในแต่ละ lead ขึ้นกับว่า lead ชี้ไป <b>ทางเดียวกับ vector เฉลี่ยแค่ไหน</b>",
+    "มุมระหว่าง axis กับ lead บอกได้เลยว่า QRS จะบวก ลบ หรือสองข้างเท่ากัน"
+  ],
+  "A-C3": [
+    "มีสองวิธี: <b>วิธีลัด</b> เริ่มจาก lead ตัวเดียว ส่วน <b>วิธีตรง</b> ใช้ทุก lead ที่บวกและลบ",
+    "ตอบเสร็จให้เช็กกลับกับ quadrant (lead I + aVF) เสมอ"
+  ],
+  "A-C4": [
+    "ข้อรวมให้แยกอ่านทีละอย่าง: rate → axis → ความกว้าง QRS แล้วค่อยจับคู่กับตัวเลือก",
+    "Rate ต้องเริ่มจากการอ่าน paper speed"
+  ],
+  "E-C1": [
+    "Electrode 10 จุดให้ 12 leads แบ่งเป็น <b>limb leads</b> กับ <b>chest leads</b>",
+    "ตำแหน่ง chest lead อิง <b>ช่องซี่โครง</b> และ <b>เส้นแนวตั้งของทรวงอก</b>"
+  ],
+  "E-C2": [
+    "Sinus rhythm ต้องผ่านเกณฑ์ทั้ง rate, จุดกำเนิด, ความสัมพันธ์ P–QRS และรูป/ทิศของ P",
+    "ระวังตัวเลือกที่ฟังดูถูกแต่ <b>เกินกว่าเกณฑ์จริง</b>"
+  ],
+  "E-C3": [
+    "ถ้าไม่ใช่ sinus ให้ถามว่า P หายไป, P ไม่สัมพันธ์กับ QRS หรือ PR ยาว แล้วใครเป็นตัวคุมจังหวะแทน",
+    "ความกว้าง QRS บอกว่าตัวคุมจังหวะอยู่เหนือหรือใน ventricle"
+  ],
+  "E-C4": [
+    "ใบแล็บกำหนด <b>ลำดับการอ่าน</b> ECG ทั้งฉบับ ทำซ้ำลำดับเดิมทุกครั้งจะไม่พลาดข้อไหน",
+    "ข้อสอบแบบ “ตารางแปลผล” ให้เช็กทีละแถวกับ tracing จริง"
+  ]
+};
+
+window.THAI_Q = {
+  "C1": [
+    "ผิวนอกเซลล์ที่ depolarize แล้วเป็น <b>ลบ</b> เทียบกับเซลล์ที่ยังพัก (บวก) คลื่นที่วิ่งเข้าหา electrode บันทึก (อยู่ฝั่งเซลล์พัก) จึงเป็นคลื่นบวก",
+    "ตัวเลือกแรกสลับเครื่องหมาย ส่วนตัวเลือกเรื่อง repolarization บอกว่าบริเวณที่ repolarize แล้วเป็นลบ ซึ่งผิด เพราะกลับมาเป็นบวกแล้ว"
+  ],
+  "C2": [
+    "Atrial repolarization เกิด <b>พร้อมกับ ventricular depolarization</b> จึงถูก QRS ที่ใหญ่กว่ามากบังไว้",
+    "ไม่ได้เร็วหรือช้าเกินไป และจบไปนานก่อน T wave"
+  ],
+  "C3": [
+    "T wave = ventricular repolarization (phase 3) เกิดจาก <b>K⁺ ไหลออกจาก ventricular myocyte</b>",
+    "Na⁺ influx ของ ventricle คือ QRS; K⁺ efflux ของ atrium ถูก QRS บัง"
+  ],
+  "C4": [
+    "Fast Na⁺ channel คือ phase 0 ของกล้ามเนื้อ ventricle ซึ่งบน ECG คือ <b>QRS</b>",
+    "P wave (atria) กับ PR segment (AV node) ไม่ได้อาศัย fast Na⁺ ของ ventricle"
+  ],
+  "C5": [
+    "Endocardium depolarize ก่อนแต่มี <b>AP ยาวกว่า</b> epicardium จึง repolarize ทีหลัง",
+    "Repolarization เลยวิ่งจากนอกเข้าใน (กลับทิศ) และเครื่องหมายกลับด้วย → T ชี้ทางเดียวกับ QRS (concordant)",
+    "ตัวเลือกที่บอกว่าปกติเป็น discordant ผิด"
+  ],
+  "C6": [
+    "Phase 4 คือช่วงพักระหว่างจังหวะ ตรงกับ <b>TP segment</b>",
+    "QRS = phase 0, ST = phase 2, T = phase 3"
+  ],
+  "C7": [
+    "Phase 3 ของ atrium (atrial repolarization) เกิดพร้อม ventricular depolarization จึงอยู่ <b>ใน QRS complex</b>",
+    "P wave คือ phase 0 ของ atrium ส่วน ST กับ T เป็นของ ventricle"
+  ],
+  "C8": [
+    "Absolute refractory period ของ ventricle ครอบคลุม <b>QRS ต่อเนื่องถึง ST segment</b> จนถึงราวยอด T",
+    "ในตัวเลือก มีแค่ ST segment ที่อยู่ใน ARP ทั้งช่วง ครึ่งหลังของ T เป็น relative refractory"
+  ],
+  "W1": [
+    "A ชี้คลื่นเล็กก่อน QRS ใน lead II = <b>P wave</b>",
+    "B ชี้ช่วงราบหลัง QRS ใน V2 = <b>ST segment</b>"
+  ],
+  "W2": [
+    "X คือ <b>PR segment</b> (ท้าย P ถึงต้น QRS) = เวลาที่ไฟผ่าน AV node ที่นำช้า",
+    "Atrial depolarization คือตัว P wave ส่วน ventricular depolarization คือ QRS"
+  ],
+  "W3": [
+    "PR interval เริ่มตั้งแต่ต้น P จึงรวม <b>atrial depolarization + AV nodal delay</b>",
+    "P ไม่ใช่ ventricular systole, QRS ไม่ใช่ repolarization, ST อยู่ในช่วง ejection ไม่ใช่ filling"
+  ],
+  "W4": [
+    "AV node อยู่ใน <b>PR interval</b> ถ้านำช้าลง PR จะยาว (&gt; 200 ms = 1st-degree AV block)",
+    "QT, ST เป็นเรื่องของ ventricle ส่วน RR บอก rate จาก SA node"
+  ],
+  "W5": [
+    "PR ปกติ 120–200 ms; <b>PR 100 ms สั้นเกิน</b> → ไฟลัดไปถึง ventricle เร็ว (pre-excitation)",
+    "QRS 100 ms ปกติ, HR 100 ยังอยู่ในเกณฑ์, T ลบใน aVR ปกติ"
+  ],
+  "W6": [
+    "aVR มองหัวใจจากไหล่ขวา คลื่นปกติจึง <b>ลบใน aVR</b> รวมถึง P",
+    "QTc 500 ยาวเกิน, RR 500 ms = 120 bpm, ST depression 2 mm เกิน ±1 mm"
+  ],
+  "W7": [
+    "<b>P ลบใน aVR</b> คือ sinus ปกติ",
+    "PR 240 = 1st-degree AV block, QT 140 สั้นเกินจริง, P ลบใน lead II ไม่ใช่ sinus, RR 500 = 120 bpm"
+  ],
+  "W8": [
+    "T wave ปกติ <b>บวกใน V3–V6</b>",
+    "PR 240 ยาว, QRS 140 กว้าง, RR 500 เร็ว, P ลบใน lead II ผิดปกติ"
+  ],
+  "W9": [
+    "Q wave ที่ <b>กว้าง (&gt; 40 ms) และลึก</b> บอก old MI",
+    "อีกสี่ตัวคือเกณฑ์ปกติ: P บวกใน II, P ลบใน aVR, PR 120–200, QRS ≤ 110"
+  ],
+  "W10": [
+    "ST ควรอยู่บน isoelectric line ±1 mm; <b>ยก 4 mm</b> ผิดปกติ (acute injury)",
+    "PR 160, QRS 100, RR 800 (75 bpm) และ axis 30° ล้วนปกติ"
+  ],
+  "W11": [
+    "ข้อเดียวกับ W10 แค่สลับตัวเลือก: <b>ST elevation 4 mm</b> ผิดปกติข้อเดียว"
+  ],
+  "W12": [
+    "P wave = atrial depolarization → ตามด้วย <b>atrial contraction</b>",
+    "Ventricular contraction / isovolumic contraction ตามหลัง QRS; isovolumic relaxation ตามหลัง T"
+  ],
+  "W13": [
+    "จบ T → aortic valve ปิด (S2) → <b>isovolumetric relaxation</b>",
+    "Reduced ejection เกิดระหว่าง T; atrial contraction ตาม P ถัดไป; mitral ปิดตอน QRS"
+  ],
+  "W14": [
+    "QRS เริ่ม ventricular contraction เมื่อความดัน LV เกิน aorta (ปลาย isovolumic contraction) aortic valve จึงเปิด → ใกล้ <b>QRS</b> ที่สุดในตัวเลือก",
+    "T wave ใกล้จังหวะที่ aortic valve ปิด ไม่ใช่เปิด"
+  ],
+  "W15": [
+    "จุด D อยู่หลัง T = ต้น diastole, mitral เปิด → <b>rapid filling</b> เลือดไหลผ่าน mitral มากสุด",
+    "B (P wave) เป็นแค่ atrial kick ที่น้อยกว่า; C อยู่ในช่วง ejection ซึ่ง mitral ปิด"
+  ],
+  "W16": [
+    "Sympathetic เพิ่ม HR → RR สั้น → <b>QT สั้นลง</b> (QT ∝ RR)",
+    "ไม่ได้ทำให้ QRS สูงขึ้นหรือแคบลง; RR เพิ่มคือทิศตรงข้าม"
+  ],
+  "W17": [
+    "Muscarinic antagonist ปลด vagal brake → HR ↑ (RR ↓), QT ↓, QRS ไม่เปลี่ยน",
+    "<b>ST elevation</b> เป็นสัญญาณ myocardial injury ไม่ได้เกิดจากยานี้"
+  ],
+  "W18": [
+    "SA node คุม heart rate ซึ่งบน ECG คือ <b>RR interval</b> (atropine → RR สั้นลง)",
+    "PR บอก AV node; QT และ ST บอก ventricle"
+  ],
+  "L1": [
+    "Lead II ต่อจาก <b>แขนขวา (−) ไปขาซ้าย (+)</b> ชี้ลงซ้าย +60°"
+  ],
+  "L2": [
+    "ถามเรียง <b>positive ก่อน negative</b>: ขาซ้าย (+) กับแขนขวา (−)",
+    "ตัวเลือก “Right arm and left leg” คู่ถูกแต่ลำดับกลับ"
+  ],
+  "L3": [
+    "Lead III = <b>ขาซ้าย (+) เทียบแขนซ้าย (−)</b>",
+    "Lead I ใช้สองแขน, lead II ใช้แขนขวากับขาซ้าย, aVL เป็น augmented lead"
+  ],
+  "L4": [
+    "Lead III อยู่ระหว่าง <b>แขนซ้ายกับขาซ้าย</b> ขาขวาเป็นแค่ ground"
+  ],
+  "L5": [
+    "ขั้วบวกที่ข้อมือซ้าย ขั้วลบที่นิ้วมือขวา = <b>lead I</b> (LA + เทียบ RA −) ชี้ 0°"
+  ],
+  "L6": [
+    "aVR ชี้ −150° ตั้งฉากกับ +120° = <b>lead III</b>"
+  ],
+  "L7": [
+    "aVL ชี้ −30° ตั้งฉากกับ +60° = <b>lead II</b>"
+  ],
+  "L8": [
+    "aVF เป็น lead ของขาซ้าย ถ้า aVF ยังถูก แปลว่าขาซ้ายไม่ได้ย้าย → <b>สลับสองแขน</b>",
+    "ผลที่เห็น: lead I กลับหัว, II ↔ III, aVR ↔ aVL"
+  ],
+  "L9": [
+    "aVL เป็น lead ของแขนซ้าย ถ้า aVL ถูก แปลว่าแขนซ้ายไม่ได้ย้าย → <b>สลับแขนขวากับขาซ้าย</b> (ตาม AC81 short key)"
+  ],
+  "L10": [
+    "สลับสองแขนไม่ได้แตะขาซ้าย <b>aVF จึงยังแสดงที่ aVF</b> เหมือนเดิม",
+    "สิ่งที่เปลี่ยน: I กลับหัว (−I), II ↔ III, aVR ↔ aVL"
+  ],
+  "L11": [
+    "RL เป็นแค่ <b>ground</b> และขาสองข้างมีศักย์ใกล้เคียงกัน สลับกันจึงแทบไม่เปลี่ยน → None of the above",
+    "Lead I ไม่ได้ใช้ขาเลยจึงไม่กลับหัว"
+  ],
+  "L12": [
+    "แขนขวาไม่ได้ย้าย → <b>aVR ไม่เปลี่ยน</b>",
+    "Lead I กับ II สลับกัน, aVL ↔ aVF, lead III กลับหัว"
+  ],
+  "R1": [
+    "15 mm = 15 ช่องเล็กที่ 25 mm/s → HR = 1500 ÷ 15 = <b>100 bpm</b>"
+  ],
+  "R2": [
+    "R ห่างกัน 15 ช่องเล็ก (3 ช่องใหญ่) → 1500 ÷ 15 = <b>100 bpm</b>"
+  ],
+  "R3": [
+    "R ห่างกันราว 3 ช่องใหญ่ (15 ช่องเล็ก) → 300 ÷ 3 = <b>100 bpm</b>"
+  ],
+  "R4": [
+    "12.5 mm/s: 15 mm = 1.2 วินาที → 60 ÷ 1.2 = <b>50 bpm</b> (หรือ 750 ÷ 15)",
+    "100 bpm คือคำตอบของคนที่ลืมปรับความเร็ว"
+  ],
+  "R5": [
+    "ตัวเลขเดียวกับข้อก่อน: 15 ช่องเล็กที่ 12.5 mm/s → <b>50 bpm</b>"
+  ],
+  "R6": [
+    "RR ≈ 18 ช่องเล็ก: 1500 ÷ 18 ≈ 83 คือ <b>กับดัก</b>",
+    "กระดาษเร็วเป็น 2 เท่า ต้องคูณ 2 → ≈ <b>168 bpm</b> (3000 ÷ 18)"
+  ],
+  "R7": [
+    "R ห่างกันราว 15 ช่องเล็ก → 100 ที่ความเร็วปกติ × 2 (50 mm/s) = <b>200 bpm</b>"
+  ],
+  "R8": [
+    "AC81 short key = <b>200 bpm</b>: นับช่องเล็กระหว่าง R → 1500 ÷ ช่อง แล้ว ×2 เพราะ 50 mm/s"
+  ],
+  "R9": [
+    "อ่านตามโจทย์: QRS 18 ตัวในกระดาษมาตรฐาน 250 mm ที่ 50 mm/s คือแค่ 5 วินาที → 18 × 12 ≈ 216 → ใกล้ <b>200 bpm</b>",
+    "ถ้าจริงๆ คือ 18 ช่องเล็กระหว่าง R (แบบ i-RAT) จะได้ ≈ 167 → ใกล้ 150 ดู recall note"
+  ],
+  "R10": [
+    "R ห่างกันราว 25 ช่องเล็ก: 1500 ÷ 25 = 60 ที่ 25 mm/s → × 30/25 = <b>72 bpm</b>"
+  ],
+  "R11": [
+    "จังหวะไม่สม่ำเสมอ ไม่มี P = AF ใช้วิธีหาร RR ไม่ได้",
+    "นับ QRS ใน strip 10 วินาทีได้ราว 22 ตัว × 6 = <b>132 bpm</b>"
+  ],
+  "A1": [
+    "Lead I biphasic → axis อยู่ที่ ±90°; aVF บวก → <b>+90°</b>",
+    "ตามช่วงของคอร์ส (−30° ถึง +90°) +90° ยังนับเป็น normal แต่เป็นขอบพอดี"
+  ],
+  "A2": [
+    "Lead I ลบ + aVF บวก = quadrant ล่างขวา (+90° ถึง +180°) = <b>RAD</b>"
+  ],
+  "A3": [
+    "RAD ชี้หนี lead I (0°) และชี้เข้าหา aVF (+90°) → <b>lead I ลบ, aVF บวก</b>"
+  ],
+  "A4": [
+    "เหมือนข้อก่อน: RAD → <b>lead I ลบ, aVF บวก</b>",
+    "I ลบ + aVF ลบ คือ extreme axis"
+  ],
+  "A5": [
+    "LAD (−30° ถึง −90°) ชี้ขึ้นซ้าย → lead I บวก, II, III, aVF ลบ → ตรงกับ <b>lead I บวก, lead III ลบ</b>",
+    "I บวก + II บวก คือ axis ปกติ"
+  ],
+  "A6": [
+    "Biphasic lead ห่างจาก axis 90°: +30° + 90° = +120° = <b>lead III</b>"
+  ],
+  "A7": [
+    "−30° + 90° = +60° = <b>lead II</b> จึงเป็น lead ที่ใช้ตัดสินขอบ −30°"
+  ],
+  "A8": [
+    "+60° − 90° = −30° = <b>aVL</b> ส่วน lead II (+60°) จะสูงสุด"
+  ],
+  "A9": [
+    "Lead III ชี้ +120° อยู่ <b>ตรงข้าม −60°</b> (ห่าง 180°) → deflection ลบลึกที่สุด",
+    "aVR ห่าง 90° (biphasic), aVL ห่างแค่ 30° (บวก)"
+  ],
+  "A10": [
+    "Lead III อยู่ที่ +120° ตรงกับ axis → <b>R สูงสุด</b>"
+  ],
+  "A11": [
+    "aVL (−30°) ห่างจาก −60° แค่ 30° → <b>R สูงสุด</b>; lead III (+120°) ห่าง 180° → <b>S ลึกสุด</b>",
+    "“highest amplitude” ตีความได้สองแบบ AC81 key จึงให้ทั้งสองข้อ"
+  ],
+  "A12": [
+    "มุมแหลม (&lt;90°) → projection ตกฝั่งบวก → <b>บวกมากกว่าลบ</b>",
+    "บวกสูงสุดต้องชี้ตรงกับ lead พอดี (0°)"
+  ],
+  "A13": [
+    "มุมป้าน (90°–180°) → projection ตกฝั่งลบ → <b>ลบมากกว่าบวก</b>",
+    "ลบลึกสุดต้องห่างพอดี 180°"
+  ],
+  "A14": [
+    "I และ aVL บวก → axis ไม่เกิน +60°; III บวก → axis ไม่ต่ำกว่า +30° → อยู่ช่วง <b>+30° ถึง +60° = normal</b>"
+  ],
+  "A15": [
+    "aVL แบนที่สุด → axis เป็น +60° หรือ −120°",
+    "Lead II (+60°) สูงและบวก → <b>+60°</b>"
+  ],
+  "A16": [
+    "I, II, III, aVF บวก, aVR ลบ, aVL เล็กเกือบ biphasic → axis ≈ +60° = <b>normal</b>"
+  ],
+  "A17": [
+    "Lead I ลบสุทธิ (r เล็ก S ลึกกว่า), aVF และ III บวก, aVL ลบชัด → <b>RAD</b>",
+    "ภาพในชุดข้อสอบความละเอียดต่ำ ดู recall note"
+  ],
+  "A18": [
+    "I, II, III, aVF บวก; aVR, aVL ลบ → lead I + aVF บวกทั้งคู่ = <b>normal axis</b>"
+  ],
+  "A19": [
+    "Lead I และ aVL บวก; II, III, aVF ลบลึก → I บวก + aVF ลบ + II ลบ = <b>LAD (−30° ถึง −90°)</b>"
+  ],
+  "A20": [
+    "I, aVL, aVR บวก; II, III, aVF ลบ → axis ชี้ขึ้นซ้ายในช่วง <b>−30° ถึง −90°</b> (ตาม i-RAT key)"
+  ],
+  "A21": [
+    "I, II, III, aVL, aVF บวก มีแค่ aVR ลบ → axis ราว +30° ถึง +60° = <b>normal</b>"
+  ],
+  "A22": [
+    "RR ≈ 11 ช่องเล็ก → 1500 ÷ 11 ≈ 136 bpm = <b>tachycardia</b>",
+    "I, aVL บวก; II, III, aVF ลบ = <b>LAD</b>"
+  ],
+  "A23": [
+    "I และ aVL ลบ; II, III, aVF บวก = <b>RAD</b>",
+    "QRS กว้างราว 3 ช่องเล็กขึ้นไป = <b>wide QRS</b>"
+  ],
+  "A24": [
+    "RR ≈ 20 ช่องเล็ก → 75 ที่ 25 mm/s × 15/25 = <b>45 bpm (bradycardia)</b>",
+    "I, aVL บวก; II, III, aVF ลบ = <b>LAD</b>"
+  ],
+  "E1": [
+    "V2 = <b>ICS 4 ข้าง sternum ซ้าย</b>; ICS 4 ขวาคือ V1"
+  ],
+  "E2": [
+    "V4 = <b>ICS 5 ที่ midclavicular line</b> (ฝั่งซ้าย)",
+    "ตัวเลือกใน recall เขียน “right” ทุกข้อ ให้เลือกข้อที่เป็น ICS 5 + midclavicular"
+  ],
+  "E3": [
+    "V4 = <b>ICS 5, midclavicular line</b> แล้ว V5 = anterior axillary, V6 = midaxillary ระดับเดียวกัน"
+  ],
+  "E4": [
+    "V5 อยู่ที่ <b>anterior axillary line</b> ระดับเดียวกับ V4 (ICS 5)",
+    "ICS 5 midclavicular คือ V4"
+  ],
+  "E5": [
+    "V5 = <b>anterior axillary line</b> ระดับ V4",
+    "midaxillary = V6, midclavicular = V4, ICS 4 ข้าง sternum = V2"
+  ],
+  "E6": [
+    "<b>P ตามด้วย QRS ทุกตัว</b> คือเกณฑ์บน ECG ส่วน “มาจาก sinus” คือคำนิยามของ sinus rhythm",
+    "Rate ปกติ 60–100 ไม่ใช่ 100–120; P ลบใน aVR ไม่ใช่ aVL"
+  ],
+  "E7": [
+    "<b>QRS ทุกตัวมี P นำหน้า</b>",
+    "P ลบใน aVR (จึงไม่บวกทุก lead), P เหมือนกันแค่ภายใน lead เดียว, rate ปกติ 60–100"
+  ],
+  "E8": [
+    "<b>P ตามด้วย QRS แบบ 1:1</b> แสดงว่า atrium เป็นตัวขับ ventricle",
+    "40–60 bpm คือ junctional escape; P กลับหัวใน II หรือ P บวกใน aVR แปลว่าไฟไม่ได้เริ่มจาก SA node"
+  ],
+  "E9": [
+    "P <b>ต่างกันได้ในแต่ละ lead</b> ขอแค่รูปเหมือนกันใน lead เดียวกัน",
+    "อีกสามข้อเป็นเกณฑ์ของ sinus rhythm"
+  ],
+  "E10": [
+    "AC81 key = <b>sinus rhythm</b>: P นำหน้า QRS ทุกตัว บวกใน II",
+    "13 QRS ใน 10 วินาที ≈ 78 bpm ไม่ใช่ brady; lead I ลบ aVF บวก axis จึงไม่ปกติ"
+  ],
+  "E11": [
+    "P กับ QRS <b>ไม่สัมพันธ์กันเลย</b> และ atrial rate เร็วกว่า ventricular rate = <b>3rd-degree AV block</b>",
+    "Escape pacemaker ใต้จุด block คุม ventricle ที่ 40 bpm"
+  ],
+  "E12": [
+    "SA node เสีย → pacemaker ตัวถัดไปที่เร็วที่สุดคือ <b>AV node</b>",
+    "QRS แคบแปลว่าไฟเริ่มเหนือ ventricle และใช้ His–Purkinje ตามปกติ"
+  ],
+  "E13": [
+    "ใน AF ventricle ยังถูกกระตุ้นผ่านระบบนำไฟฟ้าปกติ → <b>QRS แคบ</b>",
+    "จังหวะไม่สม่ำเสมอ ไม่มี P และ ventricular rate มักเร็ว; pulse deficit เป็นการตรวจชีพจร ไม่ใช่ ECG"
+  ],
+  "E14": [
+    "Lead I ลบเป็นส่วนใหญ่ (S ลึก), aVF กับ III บวก, II แทบแบน → <b>RAD</b>",
+    "RR ราว 4 ช่องใหญ่ ≈ 75–80 bpm จึงไม่ใช่ tachycardia; ภาพเป็นภาพแทนจากอินเทอร์เน็ต"
+  ],
+  "E15": [
+    "I, II, III, aVF บวกหมด → axis <b>ปกติ</b> ไม่ใช่ LAD",
+    "QRS กว้างไม่ถึง 3 ช่องเล็ก → <b>แคบ</b> ไม่ใช่ wide; แถวอื่น (75 bpm, sinus, PR 160, ST isoelectric) ถูก"
+  ],
+  "E16": [
+    "อ่านตามลำดับใบแล็บ: rate → P → QRS height → axis → T → ST → PR → QT",
+    "ค่าปกติ: 60–100 สม่ำเสมอ, axis −30° ถึง +90°, T บวก (ยกเว้น aVR), ST ±1 mm, PR 0.12–0.20 s"
+  ]
+};
+
+/* Thai explanation of every concept card, shared by the student deck, the tutor deck and print.js.
+   One array of paragraphs per concept-card ID; each paragraph opens with a bold lead.
+   Faithful to the English card: it explains the same content and adds no new exam facts. */
+window.THAI_EXPLAIN = {
+  /* ---------------- C · Cardiophysiology ---------------- */
+  "C-C1": [
+    "<b>ECG วัดอะไร</b> Electrode บนผิววัด <b>ความต่างศักย์ระหว่างสองจุด</b> (lead = ขั้วบวกเทียบกับขั้วอ้างอิง) ไม่ได้วัดศักย์ในเซลล์ตัวใดตัวหนึ่ง",
+    "<b>ประจุที่ผิวนอกเซลล์</b> เซลล์ที่พัก (polarized) ผิวนอกเป็นบวก เมื่อ depolarize แล้วผิวนอกกลายเป็นลบ ตรงรอยต่อระหว่างสองโซนนี้จึงเกิด dipole: ฝั่งที่ depolarize แล้วเป็นลบ ฝั่งที่ยังพักเป็นบวก",
+    "<b>เส้นราบ</b> ถ้ากล้ามเนื้อพักทั้งหมดหรือ depolarize ทั้งหมด จะไม่มีความต่างศักย์ ECG เลยเป็นเส้นราบ (isoelectric)",
+    "<b>ทิศของคลื่น</b> คลื่น depolarization ที่วิ่งเข้าหาขั้วบวกให้ deflection ขึ้น วิ่งหนีให้ลง ถ้าวิ่งตั้งฉากกับ lead จะได้คลื่นขึ้นลงเท่ากัน (biphasic)",
+    "<b>Repolarization เป็นภาพสะท้อน</b> คลื่น repolarization ที่วิ่งไปทางเดียวกันจะให้ deflection เครื่องหมายตรงข้ามกับ depolarization เสมอ",
+    "<b>ผูกกับ i-RAT Q1</b> Electrode ที่อยู่บนส่วนที่ depolarize แล้วจะลบกว่า electrode ที่อยู่บนส่วนที่ยังพัก คลื่นที่วิ่งเข้าหา electrode บันทึกจึงเป็นคลื่นบวก"
+  ],
+  "C-C2": [
+    "<b>หนึ่งคลื่นหนึ่งเหตุการณ์</b> P wave = atrial depolarization, QRS = ventricular depolarization (septum → apex → free walls), T wave = ventricular repolarization",
+    "<b>กระแสไอออน</b> QRS มาจาก fast Na⁺ เข้าเซลล์ (phase 0) ของ ventricle ส่วน T wave มาจาก K⁺ ไหลออกจาก ventricular myocyte (phase 3)",
+    "<b>Atrial repolarization หายไปไหน</b> มันเล็กและเกิดพร้อมกับ ventricular depolarization ซึ่งใหญ่กว่ามาก จึงถูก QRS บังมิด ไม่ใช่เพราะเร็วหรือช้าเกินไป",
+    "<b>ขนาดตามมวลกล้ามเนื้อ</b> atria ผนังบางจึงได้ P เล็ก ventricle ผนังหนาจึงได้ QRS ใหญ่",
+    "<b>Node ไม่มีคลื่นของตัวเอง</b> SA node กับ AV node ก็ยิงไฟ แต่กระแสเล็กเกินจะเห็นบนผิว ช่วงราบ PR segment คือเวลาที่ไฟข้าม AV node"
+  ],
+  "C-C3": [
+    "<b>ลำดับ depolarization</b> ไฟเข้าผนัง ventricle จากด้านใน (endocardium) ออกไปด้านนอก (epicardium)",
+    "<b>AP ยาวไม่เท่ากัน</b> เซลล์ endocardium มี action potential ยาวกว่า epicardium เซลล์ด้านนอกโดนกระตุ้นทีหลังแต่ repolarize เสร็จก่อน",
+    "<b>ลำดับ repolarization</b> repolarization จึงวิ่งกลับทิศ คือจากนอกเข้าใน",
+    "<b>สองกลับเท่ากับไม่กลับ</b> ทิศกลับ (นอก→ใน) และเครื่องหมายก็กลับ (repolarization) ผลรวมคือ T ชี้ทางเดียวกับ QRS เรียกว่า concordant",
+    "<b>T ปกติอยู่ทางไหน</b> บวกใน II และ V3–V6 ลบใน aVR ถ้า T สวนทางกับ QRS ให้คิดถึงโรค ตัวเลือก “ปกติเป็น discordant” จึงผิด"
+  ],
+  "C-C4": [
+    "<b>Phase 0 → QRS</b> upstroke จาก fast Na⁺ ของกล้ามเนื้อ ventricle คือ QRS complex",
+    "<b>Phase 2 → ST segment</b> ช่วง plateau (Ca²⁺ เข้า ≈ K⁺ ออก) ทุกเซลล์ของ ventricle depolarize อยู่พร้อมกัน ไม่มีความต่างศักย์ ST จึงอยู่บน isoelectric line",
+    "<b>Phase 3 → T wave, Phase 4 → TP segment</b> ช่วงลงของ AP (K⁺ ออก) คือ T wave ส่วนช่วงพักระหว่างจังหวะ (I<sub>K1</sub>) คือ TP segment",
+    "<b>Atrium มาก่อน</b> phase 0 ของ atrium คือ P wave ส่วน phase 3 ของ atrium ตกอยู่ใน QRS",
+    "<b>Refractory period</b> absolute refractory ครอบตั้งแต่ QRS ผ่าน plateau ทั้งช่วงไปจนราวยอด T ครึ่งหลังของ T เป็น relative refractory"
+  ],
+  /* ---------------- W · Waves & intervals ---------------- */
+  "W-C1": [
+    "<b>สามคำที่ต้องแยก</b> wave คือคลื่นที่เบี่ยงจาก baseline (P, Q, R, S, T, U) segment คือช่วงราบระหว่างสองคลื่น interval คือคลื่นรวมกับ segment ที่ตามมา",
+    "<b>Interval หลัก</b> PR interval = ต้น P ถึงต้น QRS ส่วน QT interval = ต้น QRS ถึงปลาย T",
+    "<b>PR segment</b> ปลาย P ถึง QRS คือช่วงที่ไฟค้างใน AV node ความยาวของมันจึงบอก AV nodal delay (t-RAT 2569 Q8 ที่ทำเครื่องหมาย X)",
+    "<b>ST segment</b> ventricle depolarize ครบ (plateau) จึงอยู่บน isoelectric line",
+    "<b>Baseline</b> ให้ดูที่ TP segment ซึ่งทั้งหัวใจพักอยู่",
+    "<b>กับดัก</b> PR interval รวม P wave (atrial depolarization) กับ AV delay ส่วน PR segment มีแค่ AV delay"
+  ],
+  "W-C2": [
+    "<b>PR interval 120–200 ms</b> วัดตั้งแต่ atrium เริ่มถึง ventricle เริ่ม (รวม AV node) ถ้าสั้นกว่า 120 ไฟลัดข้าม AV node (pre-excitation) ถ้ายาวกว่า 200 คือ 1st-degree AV block",
+    "<b>QRS width ≤ 100–110 ms</b> เวลา ventricular depolarization ปกติแคบกว่า 120 ms ถ้ากว้างกว่าแปลว่า ventricle นำไฟช้า",
+    "<b>QT ขึ้นกับ rate</b> QT ∝ RR ∝ 1/HR หัวใจเต้นเร็ว QT สั้นลง",
+    "<b>QTc</b> ปรับด้วย QT/√RR ให้เทียบกันได้ ค่าปกติ 330–440 ms (ผู้หญิงถึง 450) QTc 500 ms ยาวเกิน",
+    "<b>นับช่อง</b> ที่ 25 mm/s ช่องเล็ก = 40 ms ดังนั้น PR ปกติ 3–5 ช่องเล็ก QRS ไม่ถึง 3 ช่อง",
+    "<b>ข้อสอบ AV node</b> ความผิดปกติที่ AV node เปลี่ยน PR ไม่ใช่ QT หรือ ST"
+  ],
+  "W-C3": [
+    "<b>ทิศของ P</b> P บวกใน lead II และลบใน aVR คือปกติ P ลบใน lead II ผิดปกติ",
+    "<b>T และ ST</b> T บวกใน V3–V6 ST ต้องอยู่บนเส้น baseline คลาดได้ไม่เกิน ±1 mm ST ยก 4 mm หรือกด 2 mm ผิดปกติ",
+    "<b>Q wave</b> q ปกติแคบกว่า 40 ms Q ที่กว้างและลึกบอก old myocardial infarction",
+    "<b>ตัวเลข</b> PR 160, QRS 100, QTc 330–440 ปกติ ส่วน PR 240, QRS 140, QT 140, QTc 500 ผิดปกติ",
+    "<b>RR ต้องแปลงก่อน</b> HR = 60 000 ÷ RR (ms) RR 600–1000 ms = 60–100 bpm RR 500 = 120 bpm RR 800 = 75 bpm",
+    "<b>Axis</b> ช่วงปกติ −30° ถึง +90° axis 30° จึงอยู่ในช่วงปกติ"
+  ],
+  "W-C4": [
+    "<b>ไฟมาก่อนเสมอ</b> แต่ละคลื่นนำหน้าการบีบหรือคลายที่มันสั่ง",
+    "<b>P → atrial contraction</b> หลัง P คือ atrial kick ช่วงท้ายของการเติมเลือด",
+    "<b>QRS → ventricle บีบ</b> AV valve ปิด (S1) เข้าสู่ isovolumic contraction แล้ว aortic valve เปิดหลัง QRS เล็กน้อย",
+    "<b>ST, T → ejection</b> rapid ejection ตามด้วย reduced ejection ระหว่าง T",
+    "<b>ปลาย T → S2</b> aortic valve ปิด ตามด้วย isovolumic relaxation",
+    "<b>ต้น TP → rapid filling</b> mitral valve เปิด เลือดไหลผ่าน mitral มากที่สุดช่วงนี้ (จุด D ใน t-RAT 2569 Q5)"
+  ],
+  "W-C5": [
+    "<b>Autonomic คุม node</b> sympathetic และ vagus ปรับ SA node กับ AV node เป็นหลัก",
+    "<b>Sympathetic หรือ atropine</b> SA node เร็วขึ้น RR สั้น (HR เพิ่ม) AV node นำเร็วขึ้น PR สั้น QT สั้นตาม RR",
+    "<b>QRS ไม่เปลี่ยน</b> การนำไฟฟ้าใน ventricle ไม่ได้ขึ้นกับ autonomic QRS กว้างเท่าเดิม และไม่ได้สูงขึ้น",
+    "<b>Vagus (ACh ที่ M₂)</b> ทิศตรงข้าม RR ยาว PR ยาว ถ้าแรงมากเกิด AV block หรือหยุดเต้นชั่วคราว",
+    "<b>ดูผลยาที่ SA node</b> ให้วัด RR interval ซึ่งก็คือ heart rate",
+    "<b>ST elevation</b> ไม่ใช่ผลของ autonomic แต่บอก myocardial injury"
+  ],
+  /* ---------------- L · Leads & swaps ---------------- */
+  "L-C1": [
+    "<b>Bipolar limb lead</b> แต่ละ lead ใช้ electrode สองแขนขา ขั้วหนึ่งบวก อีกขั้วลบ",
+    "<b>ขั้วของแต่ละ lead</b> lead I: LA บวก RA ลบ (0°) lead II: LL บวก RA ลบ (+60°) lead III: LL บวก LA ลบ (+120°)",
+    "<b>RL ไม่อยู่ใน lead ไหน</b> electrode ที่ขาขวาเป็น ground",
+    "<b>สามเหลี่ยม Einthoven</b> สาม lead ต่อกันเป็นสามเหลี่ยม II = I + III",
+    "<b>ทิศ</b> lead ชี้จากขั้วลบไปขั้วบวก lead I ชี้ไปซ้ายแนวนอน II ชี้ลงซ้าย III ชี้ลงขวา",
+    "<b>นาฬิกา smartwatch</b> ขั้วบวกที่ข้อมือซ้าย ขั้วลบที่นิ้วขวา = lead I"
+  ],
+  "L-C2": [
+    "<b>Augmented lead</b> ใช้แขนขาเดียวเป็นขั้วบวก เทียบกับค่าเฉลี่ยของอีกสองข้าง aVR บวกที่แขนขวา aVL บวกที่แขนซ้าย aVF บวกที่เท้าซ้าย",
+    "<b>มุม</b> aVL −30° aVF +90° aVR −150°",
+    "<b>Hexaxial wheel</b> รวม limb lead ทั้ง 6 บนวงกลมเดียวจะห่างกันทุก 30° ทั้งหมดอยู่ใน frontal plane ส่วน chest lead อยู่ใน horizontal plane",
+    "<b>คู่ตั้งฉาก</b> I ⊥ aVF, II ⊥ aVL, III ⊥ aVR (bipolar หนึ่งตัวจับคู่กับ augmented หนึ่งตัวเสมอ)",
+    "<b>ใช้ทำอะไร</b> คู่ตั้งฉากคือหัวใจของการหา axis: lead ที่ biphasic บอกว่า axis ตั้งฉากกับมัน"
+  ],
+  "L-C3": [
+    "<b>สลับสองแขน (RA ↔ LA)</b> พบบ่อยสุด lead I กลับหัว (−I) II กับ III สลับกัน aVR กับ aVL สลับกัน aVF ไม่เปลี่ยน",
+    "<b>RA ↔ LL</b> lead II กลับหัว I กับ III สลับกันและกลับหัว aVR กับ aVF สลับกัน aVL ไม่เปลี่ยน",
+    "<b>LA ↔ LL</b> lead III กลับหัว I กับ II สลับกัน aVL กับ aVF สลับกัน aVR ไม่เปลี่ยน",
+    "<b>LL ↔ RL</b> แทบไม่เปลี่ยนอะไร เพราะ RL เป็นแค่ ground และขาสองข้างมีศักย์ใกล้เคียงกัน",
+    "<b>หลักจำ</b> lead ที่ไม่เปลี่ยนคือ augmented lead ของแขนขาที่ไม่ได้ถูกย้าย",
+    "<b>โจทย์ “aVF ไปโผล่ที่ไหน”</b> สลับแขนไม่ได้แตะขาซ้าย aVF จึงยังอยู่ที่ aVF"
+  ],
+  /* ---------------- R · Heart rate ---------------- */
+  "R-C1": [
+    "<b>มาตรฐานกระดาษ</b> ความเร็ว 25 mm/s gain 10 mm/mV (กล่อง calibration ต้นแถว)",
+    "<b>ขนาดช่อง</b> ช่องเล็ก 1 mm = 0.04 s ช่องใหญ่ 5 ช่องเล็ก = 0.2 s",
+    "<b>สูตร</b> HR = 1500 ÷ จำนวนช่องเล็กระหว่าง R สองตัว หรือ 300 ÷ จำนวนช่องใหญ่ หรือ 60 ÷ RR (วินาที) เช่น RR 0.8 s = 75 bpm",
+    "<b>ตารางลัด</b> R ห่าง 1, 2, 3, 4, 5, 6 ช่องใหญ่ = 300, 150, 100, 75, 60, 50 bpm",
+    "<b>ทำไมสูตรได้ผล</b> ในหนึ่งนาทีกระดาษเลื่อน (ความเร็ว × 60) มิลลิเมตร และช่องเล็กยาว 1 mm Sinus rate ปกติ 60–100"
+  ],
+  "R-C2": [
+    "<b>นับช่องก่อน ปรับทีหลัง</b> สูตร 1500 ใช้กับ 25 mm/s เท่านั้น ความเร็วอื่นให้คูณด้วย (ความเร็ว ÷ 25)",
+    "<b>สูตรรวม</b> HR = 1500 ÷ ช่องเล็ก × (speed ÷ 25) = 60 × speed ÷ RR (mm)",
+    "<b>แต่ละความเร็ว</b> 12.5 mm/s ใช้ 750 ÷ ช่อง, 30 mm/s ใช้ 1800 ÷ ช่อง, 50 mm/s คลื่นถูกยืดกว้าง 2 เท่า ใช้ 3000 ÷ ช่อง",
+    "<b>ตัวอย่าง i-RAT Q14</b> 50 mm/s RR 18 ช่อง 1500 ÷ 18 = 83 คือกับดัก ต้อง × 2 = 168 bpm",
+    "<b>ตัวอย่าง AC76 Q7</b> 12.5 mm/s RR 15 mm 1500 ÷ 15 = 100 × 0.5 = 50 bpm",
+    "<b>กับดัก</b> กระดาษเร็วทำให้ rate ปกติดูช้าเกินไป กระดาษช้าทำให้ดูเร็ว อ่านความเร็วใต้ tracing ทุกครั้ง"
+  ],
+  "R-C3": [
+    "<b>RR ไม่เท่ากัน</b> ถ้าวัด RR ช่วงเดียวจะได้ rate ต่างกันทุกครั้ง",
+    "<b>นับแทนหาร</b> rhythm strip ใต้ 12-lead ยาว 10 วินาทีที่ 25 mm/s (250 mm) นับ QRS ทั้ง strip แล้ว × 6",
+    "<b>ตัวอย่าง t-RAT 2568 Q14</b> นับได้ 22 QRS → 132 bpm",
+    "<b>AF บน strip</b> ไม่มี P เห็นเป็น baseline หยักๆ RR ไม่สม่ำเสมอแบบไม่มีแบบแผน QRS แคบเพราะ ventricle ยังนำไฟปกติ",
+    "<b>นับอะไร</b> ใน AF ให้นับ ventricular rate (QRS) atria เต้นเร็วเกินกว่าจะนับได้"
+  ],
+  /* ---------------- A · QRS axis ---------------- */
+  "A-C1": [
+    "<b>สี่โซน</b> normal −30° ถึง +90°, LAD −30° ถึง −90°, RAD +90° ถึง +180°, extreme (northwest) −90° ถึง ±180°",
+    "<b>Quadrant check</b> ดู lead I กับ aVF (ตั้งฉากกัน): บวก/บวก = normal (0° ถึง +90°), I ลบ aVF บวก = RAD, ลบ/ลบ = extreme",
+    "<b>กรณี I บวก aVF ลบ</b> axis อยู่ระหว่าง 0° ถึง −90° ต้องดู lead II ต่อ: II บวก ยังเป็น normal (0° ถึง −30°) II ลบ จึงเป็น LAD",
+    "<b>กับดัก</b> I บวก + aVF ลบ ยังไม่ใช่ LAD เสมอ lead II ที่ลบคือตัวพิสูจน์ LAD",
+    "<b>ขอบ +90°</b> ตามช่วงของคอร์ส +90° ยังนับเป็นปกติ (โจทย์ AC75 Q4)"
+  ],
+  "A-C2": [
+    "<b>Projection</b> QRS ในแต่ละ lead คือเงาของ vector เฉลี่ยบนแกนของ lead นั้น",
+    "<b>ตามมุม</b> 0° (ชี้ตรง lead) = บวกสูงสุด มุมแหลม = บวกมากกว่าลบ 90° = biphasic (R ≈ S) มุมป้าน = ลบมากกว่าบวก 180° = ลบลึกสุด",
+    "<b>Lead ที่ biphasic</b> ห่างจาก axis 90° เช่น axis −30° → II, +30° → III, +60° → aVL, −60° หรือ +120° → aVR",
+    "<b>Lead ที่ R สูงสุด</b> axis −60° และ −30° → aVL, +30° → I กับ II พอกัน, +60° → II, +120° → III",
+    "<b>Highest amplitude</b> ตีความได้ทั้ง R สูงสุดและ S ลึกสุด ที่ −60° AC81 key จึงให้ทั้ง aVL (R สูงสุด) และ lead III (S ลึกสุด)"
+  ],
+  "A-C3": [
+    "<b>วิธีลัด เริ่มจาก lead ที่แบนที่สุด</b> ดูเฉพาะ limb lead 6 ตัว (frontal plane) หา lead ที่ R ≈ S มากที่สุด",
+    "<b>สองตัวเลือก</b> axis อยู่ห่างจาก lead นั้น ±90° ได้สองทิศ ดู lead ที่อยู่ทิศหนึ่ง ถ้าบวก axis ชี้ทางนั้น ถ้าลบ axis ชี้อีกทาง",
+    "<b>วิธีตรง หาคู่ที่ห่างกันที่สุด</b> ทำเครื่องหมายบวก/ลบให้ทั้ง 6 lead แล้วหา lead บวกสองตัวที่ห่างกันมากที่สุด (และคู่ที่ลบ) axis อยู่ที่จุดกึ่งกลาง ±15°",
+    "<b>ตัวอย่าง t-RAT 2569 Q11</b> aVL แบนที่สุด → +60° หรือ −120° lead II ที่ +60° มี R สูง → axis +60°",
+    "<b>ตรวจซ้ำเสมอ</b> เทียบคำตอบกับ quadrant ของ lead I และ aVF (axis +60° ต้องได้ I บวก aVF บวก)"
+  ],
+  "A-C4": [
+    "<b>แยกอ่านทีละเรื่อง</b> ข้อรวมทดสอบสามอย่าง อ่านทีละอย่างแล้วค่อยเลือกตัวเลือกที่ตรงทั้งหมด",
+    "<b>1 Rate</b> อ่าน paper speed ก่อน แล้วใช้ 1500 ÷ ช่องเล็ก แล้วปรับตามความเร็ว",
+    "<b>2 Axis</b> lead I กับ aVF ก่อน ถ้า I บวก aVF ลบ ให้ดู lead II",
+    "<b>3 QRS width</b> ปกติ ≤ 100–110 ms คือไม่ถึง 3 ช่องเล็ก",
+    "<b>ตัวอย่างในชุดข้อสอบ</b> i-RAT Q18: RR 11 ช่อง ≈ 136 bpm กับ LAD → tachycardia with LAD; i-RAT Q19: RAD กับ QRS กว้าง; t-RAT 2569 Q13 (15 mm/s): RR ≈ 20 ช่อง ≈ 45 bpm กับ LAD → bradycardia with LAD"
+  ],
+  /* ---------------- E · ECG lab ---------------- */
+  "E-C1": [
+    "<b>10 electrode ได้ 12 lead</b> limb electrode 4 ตัว (RA, LA, LL และ RL เป็น ground) ให้ I, II, III, aVR, aVL, aVF chest electrode 6 ตัวให้ V1–V6",
+    "<b>V1, V2</b> ICS 4 ชิด sternum ขวาและซ้ายตามลำดับ",
+    "<b>V3, V4</b> V3 อยู่กึ่งกลางระหว่าง V2 กับ V4 ส่วน V4 อยู่ ICS 5 ที่ midclavicular line",
+    "<b>V5, V6</b> ไล่ออกไปด้านข้างในระดับเดียวกับ V4: V5 ที่ anterior axillary line, V6 ที่ mid-axillary line",
+    "<b>สองระนาบ</b> chest lead มองหัวใจในแนว horizontal ส่วน limb lead มองในแนว frontal",
+    "<b>กับดัก</b> V1–V2 อยู่ ICS 4 ไม่ใช่ 5 และ V5 ไม่ได้อยู่แนวเดียวกับ V4"
+  ],
+  "E-C2": [
+    "<b>เกณฑ์ sinus rhythm</b> rate 60–100 bpm ไฟเริ่มจาก SA node P ตามด้วย QRS ทุกตัว (1:1)",
+    "<b>รูปของ P</b> P ต้องเหมือนกันทุกจังหวะ <i>ภายใน lead เดียวกัน</i> (monomorphic) ไม่จำเป็นต้องเหมือนกันข้าม lead",
+    "<b>ทิศของ P</b> บวกใน lead II ลบใน aVR",
+    "<b>กับดักที่ 1</b> “P หน้าตาเหมือนกันทุก lead” ไม่ใช่เกณฑ์ เพราะ P ต่างกันได้ในแต่ละ lead",
+    "<b>กับดักที่ 2</b> “P บวกทุก lead” ผิด เพราะ P ลบใน aVR"
+  ],
+  "E-C3": [
+    "<b>1st-degree AV block</b> PR นานกว่า 200 ms แต่ P ทุกตัวยังผ่านลงไปได้",
+    "<b>2nd-degree AV block</b> P บางตัวไม่มี QRS ตาม",
+    "<b>3rd-degree (complete) AV block</b> P กับ QRS ไม่สัมพันธ์กัน atria เต้นตาม sinus ventricle ใช้ escape rhythm ที่ช้ากว่า (เช่น 70 กับ 40)",
+    "<b>SA node เสีย</b> pacemaker ตัวถัดไปคือ AV node (junction) ได้จังหวะช้า QRS แคบ P หายหรือผิดรูป",
+    "<b>Atrial fibrillation</b> ไม่มี P RR ไม่สม่ำเสมอแบบไม่มีแบบแผน QRS ยังแคบ",
+    "<b>QRS แคบบอกอะไร</b> ventricle ยังถูกกระตุ้นผ่าน His–Purkinje ปัญหาจึงอยู่เหนือ ventricle ส่วน pulse deficit ใน AF ตรวจจากการคลำชีพจร ไม่ใช่ ECG"
+  ],
+  "E-C4": [
+    "<b>ลำดับในใบแล็บ</b> rate และความสม่ำเสมอ → รูป P → ความสูง QRS ใน V1, V5, V6 → QRS axis → รูป T → ST segment → PR → QT",
+    "<b>P wave</b> ติ๊กว่าปกติ มีรอยหยัก (notched) biphasic หรือสูงแหลม",
+    "<b>Axis, T, ST</b> axis ปกติ −30° ถึง +90° T ปกติ กลับหัว หรือแหลมสูงแบบเต็นท์ ST อยู่บนเส้น ยก หรือกด",
+    "<b>PR และ QT</b> PR ปกติ 0.12–0.20 วินาที QT ต้องตัดสินเทียบกับ heart rate",
+    "<b>ข้อแบบตารางแปลผล</b> เช็กแต่ละแถวกับ tracing ทีละแถว ส่วนใหญ่จะผิดสองแถว (t-RAT 2569 Q14: axis กับความกว้าง QRS)"
+  ]
+};
+
+(function () {
+  var S = CVS.sections, LET = 'ABCDEFGH';
+  var $ = function (id) { return document.getElementById(id); };
+  var LS = {
+    get: function (k, d) { try { var v = localStorage.getItem('ecgdeck:' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem('ecgdeck:' + k, JSON.stringify(v)); } catch (e) { } }
+  };
+  var byId = {}, secOf = {};
+  S.forEach(function (s, si) { s.items.forEach(function (it) { byId[it.id] = it; secOf[it.id] = si; }); });
+
+  /* Thai layers (src/thai-data.js, shared with the tutor deck and print.js) */
+  var THAI_Q = window.THAI_Q || {}, THAI_CONCEPT = window.THAI_CONCEPT || {}, THAI_SEC = window.THAI_SEC || {};
+
+  var state = {}, view = 'present', coreOnly = false, seq = [], idx = 0;
+  var thxOpen = !!LS.get('thx', false);  /* Thai explanation panel on concept cards: open or closed, remembered */
+  var bc = null; try { bc = new BroadcastChannel('ecg-peer-82'); } catch (e) { }  /* lets an open tutor deck follow along */
+
+  function isQ(it) { return !!it && (it.t === 'q' || it.t === 'tf' || it.t === 'open'); }
+  function secIndex(it) { return it.t === 'intro' ? -1 : (it.t === 'sec' ? it.si : secOf[it.id]); }
+  function counts(s) { var c = { c: 0, q: 0, core: 0 }; s.items.forEach(function (it) { if (it.t === 'c') c.c++; else { c.q++; if (it.core) c.core++; } }); return c; }
+  function find(id) { for (var i = 0; i < seq.length; i++) { if (seq[i].id === id) return i; } return -1; }
+
+  function buildSeq() {
+    seq = [{ t: 'intro', id: 'start' }];
+    S.forEach(function (s, si) {
+      seq.push({ t: 'sec', id: 'sec-' + s.id, si: si });
+      s.items.forEach(function (it) { if (coreOnly && isQ(it) && !it.core) return; seq.push(it); });
+    });
+  }
+
+  /* ---------- renderers ---------- */
+  function eyebrow(it) {
+    var s = S[secOf[it.id]];
+    var h = '<div class="eyebrow"><span class="id">' + it.id + '</span>';
+    h += it.t === 'c' ? '<span class="chip kind">Concept</span>' : '<span class="chip">' + (it.t === 'tf' ? 'True / False' : it.t === 'open' ? 'Think and explain' : 'MCQ') + '</span>';
+    if (it.src) h += '<span class="chip">' + it.src + '</span>';
+    if (it.core) h += '<span class="chip core">core</span>';
+    if (it.group) h += '<span class="chip grp">' + it.group + '</span>';
+    return h + '<span class="sp"></span><span>' + s.short + '</span></div>';
+  }
+  function answerText(it) {
+    if (it.t === 'q') {
+      var A = [].concat(it.a);
+      return 'เฉลย ' + A.map(function (i) { return LET[i]; }).join(' &amp; ') + ' &#183; ' + A.map(function (i) { return it.o[i]; }).join(' / ');
+    }
+    if (it.t === 'tf') return 'เฉลย: ' + (it.a ? 'True' : 'False');
+    return 'แนวคำตอบ (Model Answer)';
+  }
+  function renderExplainBullets(it) {
+    var bullets = THAI_Q[it.id];
+    if (bullets && bullets.length) {
+      return '<ul class="ex-list">' + bullets.map(function (b) { return '<li>' + b + '</li>'; }).join('') + '</ul>';
+    }
+    return '<p>' + (it.ex || it.ans || '') + '</p>';
+  }
+  function renderQ(it, browse) {
+    var st = state[it.id] || {};
+    var h = '<article class="card qcard' + (st.rev ? ' rev' : '') + '" data-id="' + it.id + '">' + eyebrow(it) + '<div class="stem">' + it.q + '</div>';
+    if (it.fig) h += '<div class="qfig">' + it.fig + '</div>';
+    if (it.t === 'q') {
+      var A = [].concat(it.a);
+      h += '<ol class="opts">' + it.o.map(function (o, i) {
+        return '<li><button type="button" class="opt' + (A.indexOf(i) >= 0 ? ' isans' : '') + (st.sel === i ? ' sel' : '') + '" data-v="' + i + '"><span class="L">' + LET[i] + '</span><span class="ot">' + o + '</span><span class="mk" aria-hidden="true"></span></button></li>';
+      }).join('') + '</ol>';
+    } else if (it.t === 'tf') {
+      h += '<div class="tfrow">' + [true, false].map(function (v) {
+        return '<button type="button" class="opt' + (it.a === v ? ' isans' : '') + (st.sel === v ? ' sel' : '') + '" data-v="' + v + '"><span class="L">' + (v ? 'T' : 'F') + '</span><span class="ot">' + (v ? 'True' : 'False') + '</span><span class="mk" aria-hidden="true"></span></button>';
+      }).join('') + '</div>';
+    } else {
+      h += '<p class="think">Think it through and say your answer out loud, then reveal.</p>';
+    }
+    h += '<div class="explain"><div class="ans">' + answerText(it) + '</div>' + renderExplainBullets(it) + (it.flag ? '<div class="flag"><b>Recall note:</b> ' + it.flag + '</div>' : '') + '</div>';
+    if (browse) h += '<div class="qfoot"><button type="button" class="btn small bshow">' + (st.rev ? 'Hide answer' : 'Show answer') + '</button></div>';
+    return h + '</article>';
+  }
+  function thxHtml(it, open) {
+    var tx = window.THAI_EXPLAIN && window.THAI_EXPLAIN[it.id];
+    if (!tx || !tx.length) return '';
+    return '<details class="thx"' + (open ? ' open' : '') + '><summary><span class="thx-h">Explanation</span><span class="thx-s">ภาษาไทย &#183; click or press L</span></summary><div class="thx-body">' + tx.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div></details>';
+  }
+  function renderC(it) {
+    var kp = THAI_CONCEPT[it.id];
+    var kpHtml = kp && kp.length ? '<div class="tpoints"><div class="tp-head">สรุปประเด็นสำคัญ (Key Points)</div><ul>' + kp.map(function (b) { return '<li>' + b + '</li>'; }).join('') + '</ul></div>' : '';
+    return '<article class="card concept" data-id="' + it.id + '">' + eyebrow(it) + '<h2>' + it.title + '</h2>' + kpHtml + '<div class="cbody">' + it.html + '</div>' + thxHtml(it, thxOpen) + '</article>';
+  }
+  function renderSec(si) {
+    var s = S[si], c = counts(s), ts = THAI_SEC[s.id] || {};
+    var toc = s.items.filter(function (it) { return it.t === 'c'; }).map(function (it) { return '<li><span class="tid">' + it.id + '</span>' + it.title + '</li>'; }).join('');
+    var trapsHtml = ts.traps && ts.traps.length ? '<div class="traps-box"><div class="tp-head">จุดหลอกข้อสอบที่พบบ่อย (Exam Traps)</div><ul>' + ts.traps.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div>' : '';
+    return '<article class="card secard"><div class="eyebrow"><span class="chip kind">' + s.kind + '</span><span class="id">Section ' + s.id + '</span><span class="chip">' + (si + 1) + ' of ' + S.length + '</span></div>' +
+      '<h2>' + s.title + '</h2><p class="lede">' + (ts.big || s.blurb) + '</p>' +
+      '<div class="stats"><span><b>' + c.c + '</b>concept cards</span><span><b>' + c.q + '</b>questions</span><span><b>' + c.core + '</b>core, for the video</span></div>' +
+      trapsHtml +
+      '<h3 class="minih">Concept cards in this section</h3><ol class="toc">' + toc + '</ol></article>';
+  }
+  function renderIntro() {
+    var tot = 0, core = 0;
+    S.forEach(function (s) { var c = counts(s); tot += c.q; core += c.core; });
+    var st = S.map(function (s, si) {
+      var c = counts(s);
+      return '<button type="button" class="station" data-sec="' + si + '"><span class="k">' + s.id + ' &#183; ' + s.kind + '</span><b>' + s.short + '</b><span>' + c.q + ' questions &#183; ' + c.core + ' core</span></button>';
+    }).join('');
+    var nc = 0; S.forEach(function (s) { nc += counts(s).c; });
+    return '<article class="card secard"><div class="eyebrow"><span class="chip kind">Peer support 82</span><span class="chip">CVS I &#183; ECG</span><span class="chip">AC75&#8211;81 + TBL RATs</span></div>' +
+      '<h2>CVS I Basic ECG &amp; ECG Lab</h2>' +
+      '<div class="coverline"><div class="counts"><div><b>' + nc + '</b><span>concepts</span></div><div><b>' + tot + '</b><span>questions</span></div></div>' +
+      '<a class="qrlink" href="https://punnawit9285.github.io/cvs-ecg-peer-tutoring/"><span class="qrcap">Scan to open the interactive deck</span><img src="img/qr-site.svg" width="112" height="112" alt="QR code for punnawit9285.github.io/cvs-ecg-peer-tutoring"><span>punnawit9285.github.io/cvs-ecg-peer-tutoring</span></a></div>' +
+      '<div class="stations">' + st + '</div>' +
+      '<p class="legend"><span class="chip core">core</span> done in the video</p></article>';
+  }
+
+  /* ---------- cloze blanks on concept cards ---------- */
+  function czOf(card) { return card ? card.querySelectorAll('.cz') : []; }
+  function czLeft(card) { var n = 0, cz = czOf(card); for (var i = 0; i < cz.length; i++) if (!cz[i].classList.contains('on')) n++; return n; }
+  function czApply(card, id) {
+    var on = (state[id] || {}).cz || [], cz = czOf(card);
+    for (var i = 0; i < cz.length; i++) cz[i].classList.toggle('on', on.indexOf(i) >= 0);
+  }
+  function czSave(card, id) {
+    var cz = czOf(card), on = [];
+    for (var i = 0; i < cz.length; i++) if (cz[i].classList.contains('on')) on.push(i);
+    (state[id] = state[id] || {}).cz = on;
+    if (view === 'present') updateReveal();
+  }
+  function flash(el) { el.classList.remove('last'); void el.offsetWidth; el.classList.add('last'); }
+  function ensureVisible(el) {
+    try {
+      var r = el.getBoundingClientRect(), pg = document.querySelector('.pager'), bottom = window.innerHeight - (pg ? pg.offsetHeight : 0) - 24;
+      if (r.bottom > bottom) window.scrollBy({ top: r.bottom - bottom, behavior: 'smooth' });
+      else if (r.top < 80) window.scrollBy({ top: r.top - 80, behavior: 'smooth' });
+    } catch (e) { }
+  }
+  function czNext(card, id) {
+    var cz = czOf(card);
+    for (var i = 0; i < cz.length; i++) {
+      if (!cz[i].classList.contains('on')) { cz[i].classList.add('on'); flash(cz[i]); ensureVisible(cz[i]); czSave(card, id); return true; }
+    }
+    return false;
+  }
+  function czAll(card, id, on) { var cz = czOf(card); for (var i = 0; i < cz.length; i++) cz[i].classList.toggle('on', on); czSave(card, id); }
+
+  /* ---------- figure zoom ---------- */
+  var zoom = document.createElement('div');
+  zoom.className = 'zoom'; zoom.hidden = true;
+  zoom.setAttribute('role', 'dialog'); zoom.setAttribute('aria-label', 'Enlarged figure (click or press Esc to close)');
+  zoom.innerHTML = '<div class="zbox"><div class="zpaper"><img alt=""></div><p class="zcap"></p></div>';
+  document.body.appendChild(zoom);
+  function openZoom(im) {
+    var fig = im.closest('figure'), cap = fig ? fig.querySelector('figcaption') : null, zi = zoom.querySelector('img');
+    zi.src = im.currentSrc || im.src; zi.alt = im.alt || '';
+    zoom.querySelector('.zcap').innerHTML = cap ? cap.innerHTML : '';
+    zoom.hidden = false;
+  }
+  function closeZoom() { zoom.hidden = true; }
+  zoom.addEventListener('click', closeZoom);
+
+  /* ---------- present mode ---------- */
+  function setTabs(si) {
+    var tabs = $('tabs').children;
+    for (var i = 0; i < tabs.length; i++) tabs[i].setAttribute('aria-current', i === si ? 'true' : 'false');
+  }
+  function setHash(id) { try { if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id); } catch (e) { } }
+  function updateReveal() {
+    var it = seq[idx], rv = $('reveal'), q = isQ(it);
+    if (it.t === 'c') {
+      var cc = $('stage').querySelector('.concept'), n = czOf(cc).length, left = czLeft(cc);
+      rv.disabled = !n;
+      rv.textContent = !n ? 'Reveal' : left ? 'Reveal next \u00B7 ' + left + ' left' : 'Hide blanks';
+      return;
+    }
+    rv.disabled = !q;
+    rv.textContent = q && (state[it.id] || {}).rev ? 'Hide answer' : 'Reveal';
+  }
+  function renderStage() {
+    var it = seq[idx];
+    $('stage').innerHTML = it.t === 'intro' ? renderIntro() : it.t === 'sec' ? renderSec(it.si) : it.t === 'c' ? renderC(it) : renderQ(it, false);
+    if (it.t === 'c') czApply($('stage').querySelector('.concept'), it.id);
+    var si = secIndex(it);
+    setTabs(si);
+    if (si < 0) { $('pos').innerHTML = 'Start'; }
+    else {
+      var n = 0, k = 0;
+      for (var i = 0; i < seq.length; i++) { if (secIndex(seq[i]) === si && seq[i].t !== 'sec') { n++; if (seq[i] === it) k = n; } }
+      $('pos').innerHTML = S[si].short + ' &#183; ' + (it.t === 'sec' ? 'intro' : k + ' / ' + n) + (it.t === 'sec' ? '' : ' &#183; <span>' + it.id + '</span>');
+    }
+    $('progBar').style.width = (100 * idx / (seq.length - 1)) + '%';
+    $('prev').disabled = idx === 0;
+    $('next').disabled = idx === seq.length - 1;
+    updateReveal();
+    setHash(it.id);
+    LS.set('pos', it.id);
+    try { if (bc) bc.postMessage({ pos: it.id }); } catch (e) { }
+  }
+  function go(d) {
+    var n = Math.max(0, Math.min(seq.length - 1, idx + d));
+    if (n === idx) return;
+    idx = n; renderStage();
+    try { window.scrollTo(0, 0); } catch (e) { }
+  }
+  function gotoSec(si) {
+    if (view === 'present') { var k = find('sec-' + S[si].id); if (k >= 0) { idx = k; renderStage(); try { window.scrollTo(0, 0); } catch (e) { } } }
+    else { var h = document.querySelector('#b-' + S[si].id + ' > header'); if (h) h.scrollIntoView({ block: 'start' }); setTabs(si); }
+  }
+  function toggleReveal(id, card) {
+    var st = state[id] = state[id] || {};
+    st.rev = !st.rev;
+    if (card) {
+      card.classList.toggle('rev', st.rev);
+      var b = card.querySelector('.bshow'); if (b) b.textContent = st.rev ? 'Hide answer' : 'Show answer';
+    }
+    if (view === 'present') updateReveal();
+  }
+  function resetItem(id) {
+    state[id] = {};
+    if (view === 'present') renderStage();
+  }
+  function selectOpt(it, v, card) {
+    var st = state[it.id] = state[it.id] || {};
+    if (st.rev) return;
+    st.sel = v;
+    var opts = card.querySelectorAll('.opt');
+    for (var i = 0; i < opts.length; i++) {
+      var ov = opts[i].getAttribute('data-v');
+      var match = it.t === 'tf' ? (ov === 'true') === v : parseInt(ov, 10) === v;
+      opts[i].classList.toggle('sel', match);
+    }
+  }
+  function jumpTo(id) {
+    if (!id) return false;
+    var k = find(id);
+    if (k < 0 && byId[id]) { coreOnly = false; $('coreOnly').checked = false; LS.set('core', false); buildSeq(); k = find(id); }
+    if (k < 0) return false;
+    idx = k;
+    if (view !== 'present') setView('present'); else renderStage();
+    return true;
+  }
+
+  /* ---------- browse mode ---------- */
+  function renderBrowse() {
+    var h = '';
+    S.forEach(function (s, si) {
+      h += '<section class="bsec" id="b-' + s.id + '"><header><div class="eyebrow"><span class="chip kind">' + s.kind + '</span><span class="id">Section ' + s.id + '</span></div><h2>' + s.title + '</h2><p>' + s.blurb + '</p></header>';
+      s.items.forEach(function (it) { if (coreOnly && isQ(it) && !it.core) return; h += it.t === 'c' ? renderC(it) : renderQ(it, true); });
+      h += '</section>';
+    });
+    $('blist').innerHTML = h;
+    var cs = $('blist').querySelectorAll('.concept');
+    for (var i = 0; i < cs.length; i++) czApply(cs[i], cs[i].getAttribute('data-id'));
+    applySearch();
+  }
+  function applySearch() {
+    var q = ($('q').value || '').trim().toLowerCase(), n = 0, tot = 0;
+    var cards = $('blist').querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+      tot++;
+      var show = !q || cards[i].textContent.toLowerCase().indexOf(q) >= 0;
+      cards[i].hidden = !show;
+      if (show) n++;
+    }
+    $('bcount').textContent = q ? n + ' of ' + tot + ' cards match' : tot + ' cards';
+  }
+  function setView(v) {
+    view = v; LS.set('view', v);
+    $('present').hidden = v !== 'present';
+    $('browse').hidden = v !== 'browse';
+    $('vPresent').setAttribute('aria-pressed', v === 'present' ? 'true' : 'false');
+    $('vBrowse').setAttribute('aria-pressed', v === 'browse' ? 'true' : 'false');
+    if (v === 'browse') {
+      renderBrowse();
+      var it = seq[idx], si = secIndex(it), el = null;
+      if (it.t === 'c' || isQ(it)) el = document.querySelector('#blist [data-id="' + it.id + '"]');
+      if (!el && si >= 0) el = document.querySelector('#b-' + S[si].id + ' > header');
+      if (el) el.scrollIntoView({ block: 'start' });
+      setTabs(Math.max(si, 0));
+    } else {
+      renderStage();
+    }
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target : null;
+    var z = t ? t.closest('.cz') : null;
+    if (z) {
+      var zc = z.closest('.concept');
+      if (zc) { z.classList.toggle('on'); if (z.classList.contains('on')) flash(z); czSave(zc, zc.getAttribute('data-id')); }
+      return;
+    }
+    var im = t ? t.closest('.scan img') : null;
+    if (im) { openZoom(im); return; }
+    var b = t ? t.closest('button') : null;
+    if (!b) return;
+    if (b.classList.contains('opt')) {
+      var card = b.closest('.qcard'); if (!card) return;
+      var it = byId[card.getAttribute('data-id')];
+      var raw = b.getAttribute('data-v');
+      selectOpt(it, it.t === 'tf' ? raw === 'true' : parseInt(raw, 10), card);
+      if (!(state[it.id] || {}).rev) toggleReveal(it.id, card);
+      return;
+    }
+    if (b.classList.contains('bshow')) { var c2 = b.closest('.qcard'); toggleReveal(c2.getAttribute('data-id'), c2); return; }
+    if (b.classList.contains('station') || b.classList.contains('tab')) { gotoSec(parseInt(b.getAttribute('data-sec'), 10)); return; }
+  });
+  $('prev').addEventListener('click', function () { go(-1); });
+  $('next').addEventListener('click', function () { go(1); });
+  $('reveal').addEventListener('click', function () {
+    var it = seq[idx];
+    if (it.t === 'c') { var cc = $('stage').querySelector('.concept'); if (!czNext(cc, it.id)) czAll(cc, it.id, false); return; }
+    if (isQ(it)) toggleReveal(it.id, $('stage').querySelector('.qcard'));
+  });
+  $('vPresent').addEventListener('click', function () { setView('present'); });
+  $('vBrowse').addEventListener('click', function () { setView('browse'); });
+  $('coreOnly').addEventListener('change', function () {
+    var cur = seq[idx];
+    coreOnly = this.checked; LS.set('core', coreOnly); buildSeq();
+    var k = find(cur.id);
+    if (k < 0) { var si = secIndex(cur); k = find('sec-' + S[Math.max(si, 0)].id); }
+    idx = Math.max(0, k);
+    if (view === 'present') renderStage(); else renderBrowse();
+  });
+  $('q').addEventListener('input', applySearch);
+  $('showAll').addEventListener('change', function () { $('blist').classList.toggle('showall', this.checked); });
+  $('themeBtn').addEventListener('click', function () {
+    var root = document.documentElement, t = root.getAttribute('data-theme');
+    var dark = t ? t === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); LS.set('theme', next);
+  });
+  $('fsBtn').addEventListener('click', function () {
+    try {
+      if (document.fullscreenElement) { document.exitFullscreen(); }
+      else if (document.documentElement.requestFullscreen) { var p = document.documentElement.requestFullscreen(); if (p && p.catch) p.catch(function () { }); }
+    } catch (err) { }
+  });
+  document.addEventListener('keydown', function (e) {
+    var tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (!zoom.hidden) { if (k === 'Escape' || k === ' ' || k === 'Enter') { e.preventDefault(); closeZoom(); } return; }
+    if (view !== 'present') { if (k === 'b' || k === 'B') setView('present'); return; }
+    var it = seq[idx];
+    if (k === 'ArrowRight' || k === 'PageDown') { go(1); e.preventDefault(); return; }
+    if (k === 'ArrowLeft' || k === 'PageUp') { go(-1); e.preventDefault(); return; }
+    if (k === ' ' || k === 'Enter') {
+      e.preventDefault();
+      if (it.t === 'c') {
+        var cc = $('stage').querySelector('.concept');
+        if (czLeft(cc)) { if (k === ' ') czNext(cc, it.id); else czAll(cc, it.id, true); } else go(1);
+        return;
+      }
+      if (isQ(it) && !(state[it.id] || {}).rev) toggleReveal(it.id, $('stage').querySelector('.qcard')); else go(1);
+      return;
+    }
+    if (k === 'b' || k === 'B') { setView('browse'); return; }
+    if ((k === 'l' || k === 'L') && it.t === 'c') { var tx = $('stage').querySelector('.thx'); if (tx) { tx.open = !tx.open; if (tx.open) ensureVisible(tx); } return; }
+    if (k === 'r' || k === 'R') { if (isQ(it)) resetItem(it.id); else if (it.t === 'c') czAll($('stage').querySelector('.concept'), it.id, false); return; }
+    var card = $('stage').querySelector('.qcard'); if (!card) return;
+    var up = k.toUpperCase();
+    if (it.t === 'tf') { if (up === 'T') selectOpt(it, true, card); else if (up === 'F') selectOpt(it, false, card); return; }
+    if (it.t === 'q') {
+      var i = LET.indexOf(up);
+      if (i < 0 && /^[1-8]$/.test(k)) i = parseInt(k, 10) - 1;
+      if (i >= 0 && i < it.o.length) selectOpt(it, i, card);
+    }
+  });
+  var tx = null;
+  document.addEventListener('touchstart', function (e) {
+    if (view !== 'present' || e.touches.length !== 1) { tx = null; return; }
+    var t = e.target; if (t && t.closest && t.closest('.tblwrap, .tabs')) { tx = null; return; }
+    tx = [e.touches[0].clientX, e.touches[0].clientY];
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (!tx) return;
+    var dx = e.changedTouches[0].clientX - tx[0], dy = e.changedTouches[0].clientY - tx[1];
+    if (Math.abs(dx) > 70 && Math.abs(dx) > 2 * Math.abs(dy)) go(dx < 0 ? 1 : -1);
+    tx = null;
+  }, { passive: true });
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (d && d.classList && d.classList.contains('thx') && view === 'present') { thxOpen = d.open; LS.set('thx', thxOpen); }
+  }, true);
+  window.addEventListener('hashchange', function () { jumpTo(location.hash.slice(1)); });
+
+  /* ---------- start ---------- */
+  $('tabs').innerHTML = S.map(function (s, si) { return '<button type="button" class="tab" data-sec="' + si + '"><span class="k">' + s.id + '</span>' + s.short + '</button>'; }).join('');
+  var th = LS.get('theme', null); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th);
+
+  function start(data) {
+    data = data || {};
+    if (data.state) state = data.state;
+    coreOnly = typeof data.coreOnly === 'boolean' ? data.coreOnly : !!LS.get('core', false);
+    $('coreOnly').checked = coreOnly;
+    buildSeq();
+    var want = location.hash ? location.hash.slice(1) : (data.pos || LS.get('pos', 'start'));
+    var k = find(want); idx = k >= 0 ? k : 0;
+    setView(data.view || LS.get('view', 'present'));
+  }
+  var hot = window.claude && window.claude.hot;
+  if (hot && typeof hot.snapshot === 'function') {
+    try { hot.snapshot(function () { return { state: state, view: view, coreOnly: coreOnly, pos: seq[idx] && seq[idx].id }; }); } catch (e) { }
+  }
+  if (hot && typeof hot.ready === 'function') hot.ready(start); else start((hot && hot.data) || {});
+})();
+
+</script>
+</body>
+</html>

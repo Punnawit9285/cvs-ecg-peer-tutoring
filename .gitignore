@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+# course source PDFs: used to crop figures, not published
+src-pdf/
+# local build artifacts
+dist/fonts/
+dist/print.html
+tools/pdfrender
+tools/pdftext
+tools/qr
+_harness.html
+# partial build left by another agent, kept locally for reference only
+_gemini-partial/
