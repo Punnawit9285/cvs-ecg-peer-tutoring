@@ -121,3 +121,5 @@ table.toc td:first-child { white-space: normal; }
 .bksec { margin-top: 10px; }
 .part + .bksec { margin-top: 18px; }
 .xkp { margin: 2px 0 6px; padding: 5px 10px 5px 1.6em; background: var(--ven-soft); border-left: 3px solid var(--ven); border-radius: 6px; line-height: 1.5; font-family: "IBM Plex Sans Thai", var(--f-body); break-inside: avoid; }
+.xtx { margin: 0 0 4px; padding-left: 1.15em; display: grid; gap: 3px; line-height: 1.55; font-family: "IBM Plex Sans Thai", var(--f-body); }
+.xtx li { break-inside: avoid; }

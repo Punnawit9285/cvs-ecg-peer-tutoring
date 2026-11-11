@@ -1,183 +1,142 @@
-/* Thai explanation of every concept card, shared by the student deck, the tutor deck and print.js.
-   One array of paragraphs per concept-card ID; each paragraph opens with a bold lead.
-   Faithful to the English card: it explains the same content and adds no new exam facts. */
+/* Thai explanation of every concept card, shared by both decks and print.js.
+   One short line per idea: a bold topic, then the cause → effect chain. 4 lines per card. */
 window.THAI_EXPLAIN = {
-  /* ---------------- C · Cardiophysiology ---------------- */
   "C-C1": [
-    "<b>ECG วัดอะไร</b> Electrode บนผิววัด <b>ความต่างศักย์ระหว่างสองจุด</b> (lead = ขั้วบวกเทียบกับขั้วอ้างอิง) ไม่ได้วัดศักย์ในเซลล์ตัวใดตัวหนึ่ง",
-    "<b>ประจุที่ผิวนอกเซลล์</b> เซลล์ที่พัก (polarized) ผิวนอกเป็นบวก เมื่อ depolarize แล้วผิวนอกกลายเป็นลบ ตรงรอยต่อระหว่างสองโซนนี้จึงเกิด dipole: ฝั่งที่ depolarize แล้วเป็นลบ ฝั่งที่ยังพักเป็นบวก",
-    "<b>เส้นราบ</b> ถ้ากล้ามเนื้อพักทั้งหมดหรือ depolarize ทั้งหมด จะไม่มีความต่างศักย์ ECG เลยเป็นเส้นราบ (isoelectric)",
-    "<b>ทิศของคลื่น</b> คลื่น depolarization ที่วิ่งเข้าหาขั้วบวกให้ deflection ขึ้น วิ่งหนีให้ลง ถ้าวิ่งตั้งฉากกับ lead จะได้คลื่นขึ้นลงเท่ากัน (biphasic)",
-    "<b>Repolarization เป็นภาพสะท้อน</b> คลื่น repolarization ที่วิ่งไปทางเดียวกันจะให้ deflection เครื่องหมายตรงข้ามกับ depolarization เสมอ",
-    "<b>ผูกกับ i-RAT Q1</b> Electrode ที่อยู่บนส่วนที่ depolarize แล้วจะลบกว่า electrode ที่อยู่บนส่วนที่ยังพัก คลื่นที่วิ่งเข้าหา electrode บันทึกจึงเป็นคลื่นบวก"
+    "<b>ECG วัดอะไร</b> ความต่างศักย์บนผิวหนังระหว่างสองจุด ไม่ใช่ศักย์ในเซลล์เดียว",
+    "<b>ประจุด้านนอก</b> เซลล์พัก = + · เซลล์ depolarize = −",
+    "<b>ทิศ</b> depolarization วิ่งเข้าหาขั้ว + → กราฟขึ้น · วิ่งหนี → ลง · ตั้งฉาก → biphasic",
+    "<b>Repolarization</b> ภาพกลับด้าน: ทิศเดียวกันแต่เครื่องหมายตรงข้าม · พักหมดหรือ depolarize หมด → เส้นราบ"
   ],
   "C-C2": [
-    "<b>หนึ่งคลื่นหนึ่งเหตุการณ์</b> P wave = atrial depolarization, QRS = ventricular depolarization (septum → apex → free walls), T wave = ventricular repolarization",
-    "<b>กระแสไอออน</b> QRS มาจาก fast Na⁺ เข้าเซลล์ (phase 0) ของ ventricle ส่วน T wave มาจาก K⁺ ไหลออกจาก ventricular myocyte (phase 3)",
-    "<b>Atrial repolarization หายไปไหน</b> มันเล็กและเกิดพร้อมกับ ventricular depolarization ซึ่งใหญ่กว่ามาก จึงถูก QRS บังมิด ไม่ใช่เพราะเร็วหรือช้าเกินไป",
-    "<b>ขนาดตามมวลกล้ามเนื้อ</b> atria ผนังบางจึงได้ P เล็ก ventricle ผนังหนาจึงได้ QRS ใหญ่",
-    "<b>Node ไม่มีคลื่นของตัวเอง</b> SA node กับ AV node ก็ยิงไฟ แต่กระแสเล็กเกินจะเห็นบนผิว ช่วงราบ PR segment คือเวลาที่ไฟข้าม AV node"
+    "<b>P wave</b> atrial depolarization",
+    "<b>QRS</b> ventricular depolarization (fast Na⁺ เข้า) · <b>T</b> ventricular repolarization (K⁺ ออก)",
+    "<b>Atrial repolarization</b> เกิดพร้อม QRS ที่ใหญ่กว่า → ถูกซ่อน มองไม่เห็น",
+    "<b>ขนาดคลื่น</b> ตามมวลกล้ามเนื้อ → P เล็ก QRS ใหญ่ · SA, AV node เล็กเกินจะเห็น"
   ],
   "C-C3": [
-    "<b>ลำดับ depolarization</b> ไฟเข้าผนัง ventricle จากด้านใน (endocardium) ออกไปด้านนอก (epicardium)",
-    "<b>AP ยาวไม่เท่ากัน</b> เซลล์ endocardium มี action potential ยาวกว่า epicardium เซลล์ด้านนอกโดนกระตุ้นทีหลังแต่ repolarize เสร็จก่อน",
-    "<b>ลำดับ repolarization</b> repolarization จึงวิ่งกลับทิศ คือจากนอกเข้าใน",
-    "<b>สองกลับเท่ากับไม่กลับ</b> ทิศกลับ (นอก→ใน) และเครื่องหมายก็กลับ (repolarization) ผลรวมคือ T ชี้ทางเดียวกับ QRS เรียกว่า concordant",
-    "<b>T ปกติอยู่ทางไหน</b> บวกใน II และ V3–V6 ลบใน aVR ถ้า T สวนทางกับ QRS ให้คิดถึงโรค ตัวเลือก “ปกติเป็น discordant” จึงผิด"
+    "<b>Depolarization</b> endocardium → epicardium",
+    "<b>AP ของ endocardium ยาวกว่า</b> → epicardium repolarize ก่อน → repolarization วิ่ง epi → endo",
+    "<b>ผล</b> ทิศตรงข้าม × เครื่องหมายตรงข้าม → T ชี้ทางเดียวกับ QRS (concordant)",
+    "<b>T ปกติ</b> ตั้งใน II, V3–V6 · กลับหัวใน aVR · T สวน QRS = โรค"
   ],
   "C-C4": [
-    "<b>Phase 0 → QRS</b> upstroke จาก fast Na⁺ ของกล้ามเนื้อ ventricle คือ QRS complex",
-    "<b>Phase 2 → ST segment</b> ช่วง plateau (Ca²⁺ เข้า ≈ K⁺ ออก) ทุกเซลล์ของ ventricle depolarize อยู่พร้อมกัน ไม่มีความต่างศักย์ ST จึงอยู่บน isoelectric line",
-    "<b>Phase 3 → T wave, Phase 4 → TP segment</b> ช่วงลงของ AP (K⁺ ออก) คือ T wave ส่วนช่วงพักระหว่างจังหวะ (I<sub>K1</sub>) คือ TP segment",
-    "<b>Atrium มาก่อน</b> phase 0 ของ atrium คือ P wave ส่วน phase 3 ของ atrium ตกอยู่ใน QRS",
-    "<b>Refractory period</b> absolute refractory ครอบตั้งแต่ QRS ผ่าน plateau ทั้งช่วงไปจนราวยอด T ครึ่งหลังของ T เป็น relative refractory"
+    "<b>Phase 0</b> Na⁺ เข้า → QRS",
+    "<b>Phase 2</b> plateau ทุกเซลล์ depolarize → ST segment ราบ",
+    "<b>Phase 3</b> K⁺ ออก → T wave · <b>Phase 4</b> พัก → TP segment",
+    "<b>Refractory</b> absolute ≈ QRS ถึงยอด T · atrial phase 3 อยู่ใน QRS"
   ],
-  /* ---------------- W · Waves & intervals ---------------- */
   "W-C1": [
-    "<b>สามคำที่ต้องแยก</b> wave คือคลื่นที่เบี่ยงจาก baseline (P, Q, R, S, T, U) segment คือช่วงราบระหว่างสองคลื่น interval คือคลื่นรวมกับ segment ที่ตามมา",
-    "<b>Interval หลัก</b> PR interval = ต้น P ถึงต้น QRS ส่วน QT interval = ต้น QRS ถึงปลาย T",
-    "<b>PR segment</b> ปลาย P ถึง QRS คือช่วงที่ไฟค้างใน AV node ความยาวของมันจึงบอก AV nodal delay (t-RAT 2569 Q8 ที่ทำเครื่องหมาย X)",
-    "<b>ST segment</b> ventricle depolarize ครบ (plateau) จึงอยู่บน isoelectric line",
-    "<b>Baseline</b> ให้ดูที่ TP segment ซึ่งทั้งหัวใจพักอยู่",
-    "<b>กับดัก</b> PR interval รวม P wave (atrial depolarization) กับ AV delay ส่วน PR segment มีแค่ AV delay"
+    "<b>คำศัพท์</b> wave = คลื่น · segment = เส้นราบระหว่างคลื่น · interval = คลื่น + segment",
+    "<b>PR segment</b> ไฟค้างที่ AV node",
+    "<b>PR interval</b> เริ่ม P → เริ่ม QRS · <b>QT</b> เริ่ม QRS → จบ T",
+    "<b>Baseline</b> ดูที่ TP segment ตอนหัวใจพักทั้งหมด"
   ],
   "W-C2": [
-    "<b>PR interval 120–200 ms</b> วัดตั้งแต่ atrium เริ่มถึง ventricle เริ่ม (รวม AV node) ถ้าสั้นกว่า 120 ไฟลัดข้าม AV node (pre-excitation) ถ้ายาวกว่า 200 คือ 1st-degree AV block",
-    "<b>QRS width ≤ 100–110 ms</b> เวลา ventricular depolarization ปกติแคบกว่า 120 ms ถ้ากว้างกว่าแปลว่า ventricle นำไฟช้า",
-    "<b>QT ขึ้นกับ rate</b> QT ∝ RR ∝ 1/HR หัวใจเต้นเร็ว QT สั้นลง",
-    "<b>QTc</b> ปรับด้วย QT/√RR ให้เทียบกันได้ ค่าปกติ 330–440 ms (ผู้หญิงถึง 450) QTc 500 ms ยาวเกิน",
-    "<b>นับช่อง</b> ที่ 25 mm/s ช่องเล็ก = 40 ms ดังนั้น PR ปกติ 3–5 ช่องเล็ก QRS ไม่ถึง 3 ช่อง",
-    "<b>ข้อสอบ AV node</b> ความผิดปกติที่ AV node เปลี่ยน PR ไม่ใช่ QT หรือ ST"
+    "<b>PR</b> 120–200 ms · สั้นกว่า → ไฟลัด (pre-excitation) · ยาวกว่า → 1st-degree block",
+    "<b>QRS</b> ≤ 100–110 ms · กว้าง → ventricle นำไฟช้า",
+    "<b>QT</b> หัวใจเต้นเร็ว → QT สั้นลง · QTc 330–440 (หญิง ≤ 450)",
+    "<b>AV node ผิดปกติ</b> → PR เปลี่ยน ไม่ใช่ QT หรือ ST"
   ],
   "W-C3": [
-    "<b>ทิศของ P</b> P บวกใน lead II และลบใน aVR คือปกติ P ลบใน lead II ผิดปกติ",
-    "<b>T และ ST</b> T บวกใน V3–V6 ST ต้องอยู่บนเส้น baseline คลาดได้ไม่เกิน ±1 mm ST ยก 4 mm หรือกด 2 mm ผิดปกติ",
-    "<b>Q wave</b> q ปกติแคบกว่า 40 ms Q ที่กว้างและลึกบอก old myocardial infarction",
-    "<b>ตัวเลข</b> PR 160, QRS 100, QTc 330–440 ปกติ ส่วน PR 240, QRS 140, QT 140, QTc 500 ผิดปกติ",
-    "<b>RR ต้องแปลงก่อน</b> HR = 60 000 ÷ RR (ms) RR 600–1000 ms = 60–100 bpm RR 500 = 120 bpm RR 800 = 75 bpm",
-    "<b>Axis</b> ช่วงปกติ −30° ถึง +90° axis 30° จึงอยู่ในช่วงปกติ"
+    "<b>P</b> ตั้งใน II · กลับหัวใน aVR (ปกติ)",
+    "<b>T</b> ตั้งใน V3–V6 · <b>ST</b> ไม่เกิน ±1 mm",
+    "<b>ผิดปกติ</b> ST ยก 4 mm · Q กว้างลึก (MI เก่า) · RR 500 ms = 120 bpm",
+    "<b>แปลง RR</b> HR = 60 000 ÷ RR (ms) ก่อนตัดสิน"
   ],
   "W-C4": [
-    "<b>ไฟมาก่อนเสมอ</b> แต่ละคลื่นนำหน้าการบีบหรือคลายที่มันสั่ง",
-    "<b>P → atrial contraction</b> หลัง P คือ atrial kick ช่วงท้ายของการเติมเลือด",
-    "<b>QRS → ventricle บีบ</b> AV valve ปิด (S1) เข้าสู่ isovolumic contraction แล้ว aortic valve เปิดหลัง QRS เล็กน้อย",
-    "<b>ST, T → ejection</b> rapid ejection ตามด้วย reduced ejection ระหว่าง T",
-    "<b>ปลาย T → S2</b> aortic valve ปิด ตามด้วย isovolumic relaxation",
-    "<b>ต้น TP → rapid filling</b> mitral valve เปิด เลือดไหลผ่าน mitral มากที่สุดช่วงนี้ (จุด D ใน t-RAT 2569 Q5)"
+    "<b>ไฟมาก่อน</b> คลื่นไฟฟ้าเกิดก่อนการบีบตัวที่มันสั่ง",
+    "<b>P</b> → atria บีบ · <b>QRS</b> → S1, isovolumic contraction → aortic valve เปิดหลัง QRS",
+    "<b>ปลาย T</b> → S2 → isovolumic relaxation",
+    "<b>ต้น TP</b> → mitral เปิด → เลือดเติมเร็ว (flow ผ่าน mitral มากสุด)"
   ],
   "W-C5": [
-    "<b>Autonomic คุม node</b> sympathetic และ vagus ปรับ SA node กับ AV node เป็นหลัก",
-    "<b>Sympathetic หรือ atropine</b> SA node เร็วขึ้น RR สั้น (HR เพิ่ม) AV node นำเร็วขึ้น PR สั้น QT สั้นตาม RR",
-    "<b>QRS ไม่เปลี่ยน</b> การนำไฟฟ้าใน ventricle ไม่ได้ขึ้นกับ autonomic QRS กว้างเท่าเดิม และไม่ได้สูงขึ้น",
-    "<b>Vagus (ACh ที่ M₂)</b> ทิศตรงข้าม RR ยาว PR ยาว ถ้าแรงมากเกิด AV block หรือหยุดเต้นชั่วคราว",
-    "<b>ดูผลยาที่ SA node</b> ให้วัด RR interval ซึ่งก็คือ heart rate",
-    "<b>ST elevation</b> ไม่ใช่ผลของ autonomic แต่บอก myocardial injury"
+    "<b>Sympathetic ↑ หรือ atropine</b> SA เร็ว → RR สั้น · AV เร็ว → PR สั้น · QT สั้น",
+    "<b>QRS กว้างเท่าเดิม</b> การนำไฟใน ventricle ไม่ขึ้นกับ autonomic",
+    "<b>Vagus ↑</b> RR ยาว · PR ยาว → อาจ block",
+    "<b>ดูยาที่ SA node</b> วัด RR · ST ยก = บาดเจ็บ ไม่เกี่ยว autonomic"
   ],
-  /* ---------------- L · Leads & swaps ---------------- */
   "L-C1": [
-    "<b>Bipolar limb lead</b> แต่ละ lead ใช้ electrode สองแขนขา ขั้วหนึ่งบวก อีกขั้วลบ",
-    "<b>ขั้วของแต่ละ lead</b> lead I: LA บวก RA ลบ (0°) lead II: LL บวก RA ลบ (+60°) lead III: LL บวก LA ลบ (+120°)",
-    "<b>RL ไม่อยู่ใน lead ไหน</b> electrode ที่ขาขวาเป็น ground",
-    "<b>สามเหลี่ยม Einthoven</b> สาม lead ต่อกันเป็นสามเหลี่ยม II = I + III",
-    "<b>ทิศ</b> lead ชี้จากขั้วลบไปขั้วบวก lead I ชี้ไปซ้ายแนวนอน II ชี้ลงซ้าย III ชี้ลงขวา",
-    "<b>นาฬิกา smartwatch</b> ขั้วบวกที่ข้อมือซ้าย ขั้วลบที่นิ้วขวา = lead I"
+    "<b>Lead I</b> + LA, − RA (0°) · <b>II</b> + LL, − RA (+60°) · <b>III</b> + LL, − LA (+120°)",
+    "<b>Right leg</b> = ground ไม่อยู่ใน lead ใด",
+    "<b>Einthoven</b> II = I + III",
+    "<b>นาฬิกา</b> ข้อมือซ้าย + นิ้วขวา → lead I"
   ],
   "L-C2": [
-    "<b>Augmented lead</b> ใช้แขนขาเดียวเป็นขั้วบวก เทียบกับค่าเฉลี่ยของอีกสองข้าง aVR บวกที่แขนขวา aVL บวกที่แขนซ้าย aVF บวกที่เท้าซ้าย",
-    "<b>มุม</b> aVL −30° aVF +90° aVR −150°",
-    "<b>Hexaxial wheel</b> รวม limb lead ทั้ง 6 บนวงกลมเดียวจะห่างกันทุก 30° ทั้งหมดอยู่ใน frontal plane ส่วน chest lead อยู่ใน horizontal plane",
-    "<b>คู่ตั้งฉาก</b> I ⊥ aVF, II ⊥ aVL, III ⊥ aVR (bipolar หนึ่งตัวจับคู่กับ augmented หนึ่งตัวเสมอ)",
-    "<b>ใช้ทำอะไร</b> คู่ตั้งฉากคือหัวใจของการหา axis: lead ที่ biphasic บอกว่า axis ตั้งฉากกับมัน"
+    "<b>Augmented</b> aVR + แขนขวา · aVL + แขนซ้าย · aVF + เท้าซ้าย",
+    "<b>มุม</b> aVL −30° · aVF +90° · aVR −150°",
+    "<b>Hexaxial</b> 6 lead ห่างกันทุก 30° (frontal plane)",
+    "<b>คู่ตั้งฉาก</b> I–aVF · II–aVL · III–aVR"
   ],
   "L-C3": [
-    "<b>สลับสองแขน (RA ↔ LA)</b> พบบ่อยสุด lead I กลับหัว (−I) II กับ III สลับกัน aVR กับ aVL สลับกัน aVF ไม่เปลี่ยน",
-    "<b>RA ↔ LL</b> lead II กลับหัว I กับ III สลับกันและกลับหัว aVR กับ aVF สลับกัน aVL ไม่เปลี่ยน",
-    "<b>LA ↔ LL</b> lead III กลับหัว I กับ II สลับกัน aVL กับ aVF สลับกัน aVR ไม่เปลี่ยน",
-    "<b>LL ↔ RL</b> แทบไม่เปลี่ยนอะไร เพราะ RL เป็นแค่ ground และขาสองข้างมีศักย์ใกล้เคียงกัน",
-    "<b>หลักจำ</b> lead ที่ไม่เปลี่ยนคือ augmented lead ของแขนขาที่ไม่ได้ถูกย้าย",
-    "<b>โจทย์ “aVF ไปโผล่ที่ไหน”</b> สลับแขนไม่ได้แตะขาซ้าย aVF จึงยังอยู่ที่ aVF"
+    "<b>สลับ RA ↔ LA</b> (บ่อยสุด) lead I กลับหัว · II ↔ III · aVF ไม่เปลี่ยน",
+    "<b>RA ↔ LL</b> aVL ไม่เปลี่ยน · <b>LA ↔ LL</b> aVR ไม่เปลี่ยน",
+    "<b>LL ↔ RL</b> แทบไม่เปลี่ยน (RL เป็น ground)",
+    "<b>จำ</b> lead ที่ไม่เปลี่ยน = augmented lead ของแขนขาที่ไม่ได้ย้าย"
   ],
-  /* ---------------- R · Heart rate ---------------- */
   "R-C1": [
-    "<b>มาตรฐานกระดาษ</b> ความเร็ว 25 mm/s gain 10 mm/mV (กล่อง calibration ต้นแถว)",
-    "<b>ขนาดช่อง</b> ช่องเล็ก 1 mm = 0.04 s ช่องใหญ่ 5 ช่องเล็ก = 0.2 s",
-    "<b>สูตร</b> HR = 1500 ÷ จำนวนช่องเล็กระหว่าง R สองตัว หรือ 300 ÷ จำนวนช่องใหญ่ หรือ 60 ÷ RR (วินาที) เช่น RR 0.8 s = 75 bpm",
-    "<b>ตารางลัด</b> R ห่าง 1, 2, 3, 4, 5, 6 ช่องใหญ่ = 300, 150, 100, 75, 60, 50 bpm",
-    "<b>ทำไมสูตรได้ผล</b> ในหนึ่งนาทีกระดาษเลื่อน (ความเร็ว × 60) มิลลิเมตร และช่องเล็กยาว 1 mm Sinus rate ปกติ 60–100"
+    "<b>กระดาษ</b> 25 mm/s · ช่องเล็ก 0.04 s · ช่องใหญ่ 0.2 s",
+    "<b>สูตร</b> HR = 1500 ÷ ช่องเล็ก = 300 ÷ ช่องใหญ่",
+    "<b>จำ</b> 1, 2, 3, 4, 5 ช่องใหญ่ → 300, 150, 100, 75, 60",
+    "<b>ปกติ</b> sinus 60–100 bpm"
   ],
   "R-C2": [
-    "<b>นับช่องก่อน ปรับทีหลัง</b> สูตร 1500 ใช้กับ 25 mm/s เท่านั้น ความเร็วอื่นให้คูณด้วย (ความเร็ว ÷ 25)",
-    "<b>สูตรรวม</b> HR = 1500 ÷ ช่องเล็ก × (speed ÷ 25) = 60 × speed ÷ RR (mm)",
-    "<b>แต่ละความเร็ว</b> 12.5 mm/s ใช้ 750 ÷ ช่อง, 30 mm/s ใช้ 1800 ÷ ช่อง, 50 mm/s คลื่นถูกยืดกว้าง 2 เท่า ใช้ 3000 ÷ ช่อง",
-    "<b>ตัวอย่าง i-RAT Q14</b> 50 mm/s RR 18 ช่อง 1500 ÷ 18 = 83 คือกับดัก ต้อง × 2 = 168 bpm",
-    "<b>ตัวอย่าง AC76 Q7</b> 12.5 mm/s RR 15 mm 1500 ÷ 15 = 100 × 0.5 = 50 bpm",
-    "<b>กับดัก</b> กระดาษเร็วทำให้ rate ปกติดูช้าเกินไป กระดาษช้าทำให้ดูเร็ว อ่านความเร็วใต้ tracing ทุกครั้ง"
+    "<b>1500 ใช้ได้ที่ 25 mm/s เท่านั้น</b> ความเร็วอื่นต้องปรับ",
+    "<b>12.5 mm/s</b> 750 ÷ ช่องเล็ก · <b>50 mm/s</b> 3000 ÷ ช่องเล็ก",
+    "<b>กับดัก</b> กระดาษเร็ว → HR ปกติดูช้า · ใช้ 1500 ตรงๆ จะได้ค่าผิด",
+    "<b>อ่านความเร็วใต้กราฟเสมอ</b>"
   ],
   "R-C3": [
-    "<b>RR ไม่เท่ากัน</b> ถ้าวัด RR ช่วงเดียวจะได้ rate ต่างกันทุกครั้ง",
-    "<b>นับแทนหาร</b> rhythm strip ใต้ 12-lead ยาว 10 วินาทีที่ 25 mm/s (250 mm) นับ QRS ทั้ง strip แล้ว × 6",
-    "<b>ตัวอย่าง t-RAT 2568 Q14</b> นับได้ 22 QRS → 132 bpm",
-    "<b>AF บน strip</b> ไม่มี P เห็นเป็น baseline หยักๆ RR ไม่สม่ำเสมอแบบไม่มีแบบแผน QRS แคบเพราะ ventricle ยังนำไฟปกติ",
-    "<b>นับอะไร</b> ใน AF ให้นับ ventricular rate (QRS) atria เต้นเร็วเกินกว่าจะนับได้"
+    "<b>RR ไม่สม่ำเสมอ</b> หาร RR เดียวได้ค่าไม่คงที่ → นับแทน",
+    "<b>Rhythm strip</b> 10 วินาที → จำนวน QRS × 6",
+    "<b>AF</b> ไม่มี P · baseline เป็นคลื่น · RR ไม่สม่ำเสมอ · QRS แคบ",
+    "<b>ใน AF</b> รายงาน ventricular rate (นับ QRS)"
   ],
-  /* ---------------- A · QRS axis ---------------- */
   "A-C1": [
-    "<b>สี่โซน</b> normal −30° ถึง +90°, LAD −30° ถึง −90°, RAD +90° ถึง +180°, extreme (northwest) −90° ถึง ±180°",
-    "<b>Quadrant check</b> ดู lead I กับ aVF (ตั้งฉากกัน): บวก/บวก = normal (0° ถึง +90°), I ลบ aVF บวก = RAD, ลบ/ลบ = extreme",
-    "<b>กรณี I บวก aVF ลบ</b> axis อยู่ระหว่าง 0° ถึง −90° ต้องดู lead II ต่อ: II บวก ยังเป็น normal (0° ถึง −30°) II ลบ จึงเป็น LAD",
-    "<b>กับดัก</b> I บวก + aVF ลบ ยังไม่ใช่ LAD เสมอ lead II ที่ลบคือตัวพิสูจน์ LAD",
-    "<b>ขอบ +90°</b> ตามช่วงของคอร์ส +90° ยังนับเป็นปกติ (โจทย์ AC75 Q4)"
+    "<b>ปกติ</b> −30° ถึง +90° · LAD −30° ถึง −90° · RAD +90° ถึง +180°",
+    "<b>I +, aVF +</b> → ปกติ · <b>I −, aVF +</b> → RAD · <b>I −, aVF −</b> → extreme",
+    "<b>I +, aVF −</b> → ดู lead II: บวก = ยังปกติ · ลบ = LAD",
+    "<b>กับดัก</b> I + / aVF − ยังไม่ใช่ LAD เสมอ ต้องให้ II ลบ"
   ],
   "A-C2": [
-    "<b>Projection</b> QRS ในแต่ละ lead คือเงาของ vector เฉลี่ยบนแกนของ lead นั้น",
-    "<b>ตามมุม</b> 0° (ชี้ตรง lead) = บวกสูงสุด มุมแหลม = บวกมากกว่าลบ 90° = biphasic (R ≈ S) มุมป้าน = ลบมากกว่าบวก 180° = ลบลึกสุด",
-    "<b>Lead ที่ biphasic</b> ห่างจาก axis 90° เช่น axis −30° → II, +30° → III, +60° → aVL, −60° หรือ +120° → aVR",
-    "<b>Lead ที่ R สูงสุด</b> axis −60° และ −30° → aVL, +30° → I กับ II พอกัน, +60° → II, +120° → III",
-    "<b>Highest amplitude</b> ตีความได้ทั้ง R สูงสุดและ S ลึกสุด ที่ −60° AC81 key จึงให้ทั้ง aVL (R สูงสุด) และ lead III (S ลึกสุด)"
+    "<b>หลัก</b> แต่ละ lead เห็น QRS vector ที่ฉายลงบนแกนของตัวเอง",
+    "<b>มุม 0°</b> บวกสูงสุด · &lt; 90° บวกมากกว่าลบ · 90° biphasic",
+    "<b>มุม &gt; 90°</b> ลบมากกว่าบวก · 180° ลบลึกสุด",
+    "<b>ตัวอย่าง</b> axis +30° → III แบน · −30° → II แบน · +60° → aVL แบน"
   ],
   "A-C3": [
-    "<b>วิธีลัด เริ่มจาก lead ที่แบนที่สุด</b> ดูเฉพาะ limb lead 6 ตัว (frontal plane) หา lead ที่ R ≈ S มากที่สุด",
-    "<b>สองตัวเลือก</b> axis อยู่ห่างจาก lead นั้น ±90° ได้สองทิศ ดู lead ที่อยู่ทิศหนึ่ง ถ้าบวก axis ชี้ทางนั้น ถ้าลบ axis ชี้อีกทาง",
-    "<b>วิธีตรง หาคู่ที่ห่างกันที่สุด</b> ทำเครื่องหมายบวก/ลบให้ทั้ง 6 lead แล้วหา lead บวกสองตัวที่ห่างกันมากที่สุด (และคู่ที่ลบ) axis อยู่ที่จุดกึ่งกลาง ±15°",
-    "<b>ตัวอย่าง t-RAT 2569 Q11</b> aVL แบนที่สุด → +60° หรือ −120° lead II ที่ +60° มี R สูง → axis +60°",
-    "<b>ตรวจซ้ำเสมอ</b> เทียบคำตอบกับ quadrant ของ lead I และ aVF (axis +60° ต้องได้ I บวก aVF บวก)"
+    "<b>ทางลัด</b> หา lead ที่ biphasic ที่สุด → axis ตั้งฉาก ±90°",
+    "<b>เลือกทาง</b> ดู lead ที่มุมนั้น: ตั้ง → ชี้ไปทางนั้น",
+    "<b>วิธีตรง</b> axis ≈ กึ่งกลางของ lead บวกสองตัวที่ห่างกันที่สุด",
+    "<b>เช็ก</b> lead I และ aVF ต้องสอดคล้องกับมุมที่ได้"
   ],
   "A-C4": [
-    "<b>แยกอ่านทีละเรื่อง</b> ข้อรวมทดสอบสามอย่าง อ่านทีละอย่างแล้วค่อยเลือกตัวเลือกที่ตรงทั้งหมด",
-    "<b>1 Rate</b> อ่าน paper speed ก่อน แล้วใช้ 1500 ÷ ช่องเล็ก แล้วปรับตามความเร็ว",
-    "<b>2 Axis</b> lead I กับ aVF ก่อน ถ้า I บวก aVF ลบ ให้ดู lead II",
-    "<b>3 QRS width</b> ปกติ ≤ 100–110 ms คือไม่ถึง 3 ช่องเล็ก",
-    "<b>ตัวอย่างในชุดข้อสอบ</b> i-RAT Q18: RR 11 ช่อง ≈ 136 bpm กับ LAD → tachycardia with LAD; i-RAT Q19: RAD กับ QRS กว้าง; t-RAT 2569 Q13 (15 mm/s): RR ≈ 20 ช่อง ≈ 45 bpm กับ LAD → bradycardia with LAD"
+    "<b>1 · Rate</b> อ่านความเร็วกระดาษก่อน → 1500 ÷ ช่อง → ปรับ",
+    "<b>2 · Axis</b> lead I, aVF → ถ้า I + / aVF − ดู lead II",
+    "<b>3 · QRS</b> กว้างไม่เกิน 3 ช่องเล็ก",
+    "<b>เลือกคำตอบ</b> ที่ตรงทั้งสามข้อ"
   ],
-  /* ---------------- E · ECG lab ---------------- */
   "E-C1": [
-    "<b>10 electrode ได้ 12 lead</b> limb electrode 4 ตัว (RA, LA, LL และ RL เป็น ground) ให้ I, II, III, aVR, aVL, aVF chest electrode 6 ตัวให้ V1–V6",
-    "<b>V1, V2</b> ICS 4 ชิด sternum ขวาและซ้ายตามลำดับ",
-    "<b>V3, V4</b> V3 อยู่กึ่งกลางระหว่าง V2 กับ V4 ส่วน V4 อยู่ ICS 5 ที่ midclavicular line",
-    "<b>V5, V6</b> ไล่ออกไปด้านข้างในระดับเดียวกับ V4: V5 ที่ anterior axillary line, V6 ที่ mid-axillary line",
-    "<b>สองระนาบ</b> chest lead มองหัวใจในแนว horizontal ส่วน limb lead มองในแนว frontal",
-    "<b>กับดัก</b> V1–V2 อยู่ ICS 4 ไม่ใช่ 5 และ V5 ไม่ได้อยู่แนวเดียวกับ V4"
+    "<b>10 electrode → 12 lead</b> limb = frontal plane · chest = horizontal plane",
+    "<b>V1, V2</b> 4th ICS ขวาและซ้ายของ sternum",
+    "<b>V4</b> 5th ICS แนว midclavicular · V3 อยู่กลาง V2–V4",
+    "<b>V5</b> anterior axillary · <b>V6</b> mid-axillary (ระดับเดียวกับ V4)"
   ],
   "E-C2": [
-    "<b>เกณฑ์ sinus rhythm</b> rate 60–100 bpm ไฟเริ่มจาก SA node P ตามด้วย QRS ทุกตัว (1:1)",
-    "<b>รูปของ P</b> P ต้องเหมือนกันทุกจังหวะ <i>ภายใน lead เดียวกัน</i> (monomorphic) ไม่จำเป็นต้องเหมือนกันข้าม lead",
-    "<b>ทิศของ P</b> บวกใน lead II ลบใน aVR",
-    "<b>กับดักที่ 1</b> “P หน้าตาเหมือนกันทุก lead” ไม่ใช่เกณฑ์ เพราะ P ต่างกันได้ในแต่ละ lead",
-    "<b>กับดักที่ 2</b> “P บวกทุก lead” ผิด เพราะ P ลบใน aVR"
+    "<b>Rate</b> 60–100 · <b>origin</b> SA node",
+    "<b>ทุก P ตามด้วย QRS</b> 1 : 1",
+    "<b>P</b> ตั้งใน II กลับหัวใน aVR · รูปเหมือนกันภายใน lead เดียวกัน",
+    "<b>กับดัก</b> P ต่างกันระหว่าง lead ได้ · ไม่ได้บวกทุก lead"
   ],
   "E-C3": [
-    "<b>1st-degree AV block</b> PR นานกว่า 200 ms แต่ P ทุกตัวยังผ่านลงไปได้",
-    "<b>2nd-degree AV block</b> P บางตัวไม่มี QRS ตาม",
-    "<b>3rd-degree (complete) AV block</b> P กับ QRS ไม่สัมพันธ์กัน atria เต้นตาม sinus ventricle ใช้ escape rhythm ที่ช้ากว่า (เช่น 70 กับ 40)",
-    "<b>SA node เสีย</b> pacemaker ตัวถัดไปคือ AV node (junction) ได้จังหวะช้า QRS แคบ P หายหรือผิดรูป",
-    "<b>Atrial fibrillation</b> ไม่มี P RR ไม่สม่ำเสมอแบบไม่มีแบบแผน QRS ยังแคบ",
-    "<b>QRS แคบบอกอะไร</b> ventricle ยังถูกกระตุ้นผ่าน His–Purkinje ปัญหาจึงอยู่เหนือ ventricle ส่วน pulse deficit ใน AF ตรวจจากการคลำชีพจร ไม่ใช่ ECG"
+    "<b>1st-degree</b> PR &gt; 200 ms แต่ผ่านทุกตัว · <b>2nd</b> P บางตัวไม่มี QRS ตาม",
+    "<b>3rd-degree</b> P กับ QRS ไม่สัมพันธ์ · atria เร็วกว่า ventricle",
+    "<b>SA node เสีย</b> AV node รับแทน → ช้า QRS แคบ",
+    "<b>QRS แคบ</b> ventricle ยังใช้ His–Purkinje → ปัญหาอยู่เหนือ ventricle"
   ],
   "E-C4": [
-    "<b>ลำดับในใบแล็บ</b> rate และความสม่ำเสมอ → รูป P → ความสูง QRS ใน V1, V5, V6 → QRS axis → รูป T → ST segment → PR → QT",
-    "<b>P wave</b> ติ๊กว่าปกติ มีรอยหยัก (notched) biphasic หรือสูงแหลม",
-    "<b>Axis, T, ST</b> axis ปกติ −30° ถึง +90° T ปกติ กลับหัว หรือแหลมสูงแบบเต็นท์ ST อยู่บนเส้น ยก หรือกด",
-    "<b>PR และ QT</b> PR ปกติ 0.12–0.20 วินาที QT ต้องตัดสินเทียบกับ heart rate",
-    "<b>ข้อแบบตารางแปลผล</b> เช็กแต่ละแถวกับ tracing ทีละแถว ส่วนใหญ่จะผิดสองแถว (t-RAT 2569 Q14: axis กับความกว้าง QRS)"
+    "<b>ลำดับอ่าน</b> rate → P → QRS → axis → T → ST → PR → QT",
+    "<b>ค่าปกติ</b> axis −30° ถึง +90° · PR 0.12–0.20 s · ST บน baseline",
+    "<b>รูปร่าง</b> P: notched, biphasic, peaked · T: กลับหัว, tent-shaped",
+    "<b>ข้อ “แปลผลผิดข้อไหน”</b> เช็กทีละแถว · มักผิดสองแถว"
   ]
 };
