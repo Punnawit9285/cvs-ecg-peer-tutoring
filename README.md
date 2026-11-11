@@ -8,7 +8,7 @@ Question-first peer-tutoring deck for **CVS I: the basic ECG lecture (TBL) and t
 |---|---|
 | **Student deck** (present to the audience) | https://punnawit9285.github.io/cvs-ecg-peer-tutoring/student.html |
 | **Tutor deck** (second screen: answers, Thai explanations, tutor notes, script) | https://punnawit9285.github.io/cvs-ecg-peer-tutoring/tutor.html |
-| **Student handout PDF** | https://punnawit9285.github.io/cvs-ecg-peer-tutoring/student.pdf?v=828218ec |
+| **Student handout PDF** | https://punnawit9285.github.io/cvs-ecg-peer-tutoring/student.pdf?v=3b439cdb |
 
 Open the student and tutor decks in the same browser and tick *Follow student* in the tutor deck: it jumps to whatever card the student deck shows.
 
